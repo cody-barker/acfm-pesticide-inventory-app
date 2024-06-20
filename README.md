@@ -9,9 +9,11 @@ backend together, and easily deploy them to Render.
 SQLite, you will need to make the following changes in the project files:
 
 1. In the `Gemfile`, replace `gem 'pg', '~> 1.1'` with `gem 'sqlite3', '~>
-   1.4'`.
+1.4'`.
 2. In the `database.yml` file, change the line `adapter: postgresql` to
    `adapter: sqlite3`.
+
+   TEST
 
 ## Requirements
 
