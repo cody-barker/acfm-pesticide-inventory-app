@@ -31,26 +31,22 @@ hilight = Product.create!(
   epa_reg: ""
 )
 
-container1 = {
-  user_id: 1,
+container1 = User.find(1).containers.create!(
   shelf: 1,
   row: "A"
-}
+)
 
-container2 = {
-  user_id: 1,
+container2 = User.find(1).containers.create!(
   shelf: 1,
   row: "B"
-}
+)
 
-container3 = {
-  user_id: 1,
+container3 = User.find(1).containers.create!(
   shelf: 2,
-  row: "E"
-}
-
-container4 = {
-  user_id: 1,
-  shelf: 3,
-  row: "C"
-}
+  row: "A"
+)
+  
+container4 = User.find(1).containers.create!(
+  shelf: 2,
+  row: "B"
+)

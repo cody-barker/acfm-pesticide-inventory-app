@@ -1,3 +1,4 @@
 class ContainerSerializer < ActiveModel::Serializer
-  attributes :id
+  belongs_to :user
+  attributes :id, :shelf, :row
 end
