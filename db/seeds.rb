@@ -10,3 +10,23 @@ user = User.create!(
     username: "test",
     password: "test"
 )
+
+garlon = Product.create!(
+  name: "Garlon 3a",
+  epa_reg: "62719-37"
+)
+
+aquaneat = Product.create!(
+  name: "AquaNeat",
+  epa_reg: "228-365"
+)
+
+competitor = Product.create!(
+  name: "Competitor",
+  epa_reg: ""
+)
+
+hilight = Product.create!(
+  name: "Hi-Light",
+  epa_reg: ""
+)
