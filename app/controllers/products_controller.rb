@@ -10,21 +10,21 @@ class ProductsController < ApplicationController
     end
 
     def update
-      products.find(params[:id])
+      product = products.find(params[:id])
       product.update!(product_params)
       render json: product, status: :accepted
     end
 
     def destroy
-      products.find(params[:id])
+      product = products.find(params[:id])
       product.destroy
-      render json: {}, status: :no_content
+      render json: product, status: :no_content
     end
 
     private
 
     def products
-      products = Product.all
+      @products ||= Product.all
     end
 
     def product_params
