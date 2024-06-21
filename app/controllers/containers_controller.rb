@@ -41,6 +41,6 @@ class ContainersController < ApplicationController
   end
 
   def container_params
-    params.permit(:user_id, :shelf, :row)
+    params.permit(:user_id, :shelf, :row, contents_attributes: [:product_id, :concentration]).merge(user_id: user_id)
   end
 end
