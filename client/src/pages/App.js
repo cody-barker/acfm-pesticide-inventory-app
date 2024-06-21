@@ -2,6 +2,8 @@ import "../styles/App.css";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import Login from "./Login";
+import { Routes, Route } from "react-router-dom";
+import NavBar from "../components/NavBar";
 
 function App() {
   const { user } = useContext(UserContext);
@@ -10,11 +12,16 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Hello</p>
+    <>
+      <header className="header">
+        <NavBar />
       </header>
-    </div>
+      <main>
+        <Routes>
+          <Route path="/" element={<App />} />
+        </Routes>
+      </main>
+    </>
   );
 }
 
