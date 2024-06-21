@@ -25,7 +25,7 @@ function ProductsProvider({ children }) {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <div></div>;
   }
 
   return (

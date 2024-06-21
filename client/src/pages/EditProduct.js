@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
 import { ProductsContext } from "../contexts/ProductsContext";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function EditProduct() {
+  const navigate = useNavigate();
   let { id } = useParams();
   id = parseInt(id);
   const { products, setProducts } = useContext(ProductsContext);
@@ -19,22 +20,30 @@ function EditProduct() {
     setEpaReg(e.target.value);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const updatedProduct = { ...product, name, epa_reg: epaReg };
+    const updatedProducts = products.map((p) =>
+      p.id === updatedProduct.id ? updatedProduct : p
+    );
+    setProducts(updatedProducts);
+    navigate("/products");
+  };
+
   return (
     <div className="container">
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           Name
-          <input type="text" value={name} onChange={handleNameChange}></input>
+          <input type="text" value={name} onChange={handleNameChange} />
         </label>
         <label>
           EPA Reg
-          <input
-            type="text"
-            value={epaReg}
-            onChange={handleEpaRegChange}
-          ></input>
+          <input type="text" value={epaReg} onChange={handleEpaRegChange} />
         </label>
-        <submit className="login-btn">Submit</submit>
+        <button type="submit" className="login-btn">
+          Submit
+        </button>
       </form>
     </div>
   );
