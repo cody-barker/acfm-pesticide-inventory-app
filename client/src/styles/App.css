@@ -190,3 +190,7 @@ footer {
   align-items: center;
   padding: 1em;
 }
+
+.margin-4em {
+  margin: 4em;
+}
