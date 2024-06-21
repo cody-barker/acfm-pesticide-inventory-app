@@ -1,5 +1,25 @@
+import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import { ProductsContext } from "../contexts/ProductsContext";
+
 function Product() {
-  return <p>Product</p>;
+  const { id } = useParams();
+  const { products } = useContext(ProductsContext);
+  const product = products.find((product) => product.id === parseInt(id));
+
+  if (!product) {
+    return <p>Product not found</p>;
+  }
+
+  return (
+    <div className="container">
+      <div className="product">
+        <h1>{product.name}</h1>
+        <p>EPA Reg: {product.epa_reg}</p>
+        {/* Add more product details here */}
+      </div>
+    </div>
+  );
 }
 
 export default Product;

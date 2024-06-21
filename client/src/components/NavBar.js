@@ -19,7 +19,7 @@ function NavBar() {
   }
 
   return (
-    <nav id="navbar" className="container">
+    <nav id="navbar">
       <NavLink to="/">
         <img className="logo-img" src="/assets/acfm-logo.svg" alt="logo"></img>
       </NavLink>
