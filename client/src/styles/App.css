@@ -56,7 +56,6 @@ a:visited {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  min-height: 7svh;
 }
 
 .nav-btn {
@@ -65,6 +64,19 @@ a:visited {
   border: 0px black solid;
   background-color: transparent;
   color: rgb(27, 49, 15);
+  padding: 0 10px;
+}
+
+.logo {
+  padding-right: 10px;
+}
+
+.logo-img {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 3em;
+  height: 1.75em;
   padding: 0 10px;
 }
 

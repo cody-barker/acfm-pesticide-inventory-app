@@ -4,6 +4,8 @@ import { UserContext } from "../contexts/UserContext";
 import Login from "./Login";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "../components/NavBar";
+import Products from "./Products";
+import Inventory from "./Inventory";
 
 function App() {
   const { user } = useContext(UserContext);
@@ -18,7 +20,8 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<App />} />
+          <Route path="/" element={<Inventory />} />
+          <Route path="/products" element={<Products />} />
         </Routes>
       </main>
     </>
