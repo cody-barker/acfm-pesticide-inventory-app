@@ -31,8 +31,8 @@ hilight = Product.create!(
   epa_reg: ""
 )
 
-shelf1 = Shelf.create!()
-shelf2 = Shelf.create!()
-shelf3 = Shelf.create!()
-shelf4 = Shelf.create!()
-shelf5 = Shelf.create!()
+shelf1 = Shelf.create!(number: 1)
+shelf2 = Shelf.create!(number: 2)
+shelf3 = Shelf.create!(number: 3)
+shelf4 = Shelf.create!(number: 4)
+shelf5 = Shelf.create!(number: 5)
