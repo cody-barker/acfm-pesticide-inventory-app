@@ -62,7 +62,7 @@ function EditProduct() {
           EPA Reg
           <input type="text" value={epaReg} onChange={handleEpaRegChange} />
         </label>
-        <button type="submit" className="login-btn">
+        <button type="submit" className="blue-btn">
           Submit
         </button>
       </form>

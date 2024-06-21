@@ -18,7 +18,7 @@ ul {
   padding: 0;
 }
 
-.login-btn {
+.blue-btn {
   background: rgba(0, 81, 255, 0.77);
   color: white;
   padding: 0.5em 1.25em;
@@ -29,17 +29,33 @@ ul {
   box-shadow: 1.5px 1.5px 1px rgb(173, 190, 195);
 }
 
-.login-btn:visited {
+.blue-btn:visited {
   color: white;
 }
 
-.login-btn:hover {
+.blue-btn:hover {
   opacity: 0.8;
   transition-duration: 0.5s;
 }
 
+.remove-btn {
+  background: red;
+  color: white;
+  padding: 0.5em 1.25em;
+  margin: 0.5em;
+  border: 1px solid black;
+  border-radius: 3em;
+  cursor: pointer;
+  box-shadow: 1.5px 1.5px 1px rgb(173, 190, 195);
+}
+
 a {
   text-decoration: none;
+  color: blue;
+}
+
+td > a:visited {
+  color: blue;
 }
 
 a:visited {
@@ -183,14 +199,19 @@ footer {
   margin: 0 auto;
 }
 
-.product-options > span {
+.product-options > button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin: 4em auto;
   padding: 1em;
 }
 
 .margin-4em {
   margin: 4em;
+}
+
+button:hover {
+  cursor: pointer;
 }

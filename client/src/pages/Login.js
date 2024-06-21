@@ -13,7 +13,7 @@ function Login() {
           <LoginForm />
           <p>
             Don't have an account? &nbsp;
-            <button className="login-btn" onClick={() => setShowLogin(false)}>
+            <button className="blue-btn" onClick={() => setShowLogin(false)}>
               Sign Up
             </button>
           </p>
@@ -23,7 +23,7 @@ function Login() {
           <SignUpForm />
           <p>
             Already have an account? &nbsp;
-            <button className="login-btn" onClick={() => setShowLogin(true)}>
+            <button className="blue-btn" onClick={() => setShowLogin(true)}>
               Log In
             </button>
           </p>

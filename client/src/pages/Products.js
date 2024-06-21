@@ -66,7 +66,7 @@ function Products() {
   return (
     <div className="table-container">
       <div className="center margin-4em">
-        <button onClick={handleVis} className="login-btn">
+        <button onClick={handleVis} className="blue-btn">
           {vis ? "Cancel" : "Add a Product"}
         </button>
         <div>
@@ -86,8 +86,8 @@ function Products() {
                   onChange={handleEpaRegChange}
                 ></input>
               </label>
-              <button type="submit" className="login-btn">
-                Submit
+              <button type="submit" className="blue-btn">
+                Add Product
               </button>
             </form>
           ) : null}
