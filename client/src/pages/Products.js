@@ -3,7 +3,7 @@ import { ProductsContext } from "../contexts/ProductsContext";
 import { Link } from "react-router-dom";
 
 function Products() {
-  const { products } = useContext(ProductsContext);
+  const { products, setProducts } = useContext(ProductsContext);
   const [vis, setVis] = useState(false);
   const [name, setName] = useState("");
   const [epaReg, setEpaReg] = useState("");
@@ -14,6 +14,34 @@ function Products() {
 
   function handleEpaRegChange(e) {
     setEpaReg(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const newProduct = { name, epa_reg: epaReg };
+
+    fetch("/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newProduct),
+    })
+      .then((r) => {
+        if (!r.ok) {
+          throw new Error("Failed to add product");
+        }
+        return r.json();
+      })
+      .then((product) => {
+        setProducts((prevProducts) => [...prevProducts, product]);
+        setName("");
+        setEpaReg("");
+        setVis(false);
+      })
+      .catch((error) => {
+        console.error("Error adding product:", error);
+      });
   }
 
   if (!products) {
@@ -43,7 +71,7 @@ function Products() {
         </button>
         <div>
           {vis ? (
-            <form>
+            <form onSubmit={handleSubmit}>
               <label>
                 <input
                   type="text"

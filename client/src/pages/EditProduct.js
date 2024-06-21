@@ -23,11 +23,32 @@ function EditProduct() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const updatedProduct = { ...product, name, epa_reg: epaReg };
-    const updatedProducts = products.map((p) =>
-      p.id === updatedProduct.id ? updatedProduct : p
-    );
-    setProducts(updatedProducts);
-    navigate("/products");
+
+    // Make the API call to update the product in the database
+    fetch(`/products/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedProduct),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to update product");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const updatedProducts = products.map((p) =>
+          p.id === updatedProduct.id ? updatedProduct : p
+        );
+        setProducts(updatedProducts);
+        navigate("/products");
+      })
+      .catch((error) => {
+        console.error("Error updating product:", error);
+        // Handle error (e.g., show a notification to the user)
+      });
   };
 
   return (
