@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Products from "./Products";
 import Inventory from "./Inventory";
+import Product from "./Product";
 
 function App() {
   const { user } = useContext(UserContext);
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Inventory />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<Product />} />
         </Routes>
       </main>
     </>
