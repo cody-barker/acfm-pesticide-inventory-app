@@ -172,3 +172,21 @@ footer {
 .table-container {
   margin-top: 4em;
 }
+
+.product {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.product-options {
+  margin: 0 auto;
+}
+
+.product-options > span {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+}

@@ -16,7 +16,9 @@ function Product() {
       <div className="product">
         <h1>{product.name}</h1>
         <p>EPA Reg: {product.epa_reg}</p>
-        {/* Add more product details here */}
+        <div className="product-options">
+          <span>Edit</span> <span>Remove</span>
+        </div>
       </div>
     </div>
   );
