@@ -11,21 +11,19 @@ class ContainersController < ApplicationController
   end
 
   def create
-    user = find_user_by_session_id
-    container = user.containers.create!(container_params)
+    container = @user.containers.create!(container_params)
+    build_contents(container, params[:container][:contents_attributes])
     render json: container, status: :created
   end
 
   def update
-   user = find_user_by_session_id
-   container = user.containers.find(params[:id])
+   container = @user.containers.find(params[:id])
    container.update!(container_params)
    render json: container, status: :accepted
   end
 
   def destroy
-    user = find_user_by_session_id
-    container = user.containers.find(params[:id])
+    container = @user.containers.find(params[:id])
     container.destroy
     render json: container, status: :no_content
   end
@@ -33,7 +31,7 @@ class ContainersController < ApplicationController
   private
 
   def find_user_by_session_id
-      User.find_by(id: session[:user_id])
+      @user = User.find_by(id: session[:user_id])
   end
 
   def set_container
@@ -41,6 +39,12 @@ class ContainersController < ApplicationController
   end
 
   def container_params
-    params.permit(:user_id, :shelf, :row, contents_attributes: [:product_id, :concentration]).merge(user_id: user_id)
+    params.permit(:user_id, :shelf, :row, contents_attributes: [:product_id, :concentration]).merge(user_id: :user_id)
+  end
+
+  def build_contents(container, contents_attributes)
+    contents_attributes.each do |_, content_params|
+      container.contents.build(content_params)
+    end
   end
 end
