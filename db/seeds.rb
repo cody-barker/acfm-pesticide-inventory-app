@@ -50,3 +50,27 @@ container4 = User.find(1).containers.create!(
   shelf: 2,
   row: "B"
 )
+
+contents1 = Content.create!(
+  container_id: 1,
+  product_id: 1,
+  concentration: 2
+)
+
+contents2 = Content.create!(
+  container_id: 1,
+  product_id: 2,
+  concentration: 2
+)
+
+contents3 = Content.create!(
+  container_id: 1,
+  product_id: 3,
+  concentration: 1
+)
+
+contents4 = Content.create!(
+  container_id: 1,
+  product_id: 4,
+  concentration: 0.5
+)

@@ -10,6 +10,7 @@ function Inventory() {
   const containers = user.containers.map((container) => {
     return container;
   });
+
   const tableRows = containers.map((container) => {
     return (
       <tr key={container.id}>
@@ -25,6 +26,7 @@ function Inventory() {
         <tr>
           <th>Shelf</th>
           <th>Row</th>
+          <th>Contents</th>
         </tr>
       </thead>
       <tbody>{tableRows}</tbody>
