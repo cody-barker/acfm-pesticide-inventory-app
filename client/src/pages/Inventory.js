@@ -4,39 +4,95 @@ import { ProductsContext } from "../contexts/ProductsContext";
 
 function Inventory() {
   const { user, setUser } = useContext(UserContext);
-  const { products, setProducts } = useContext(ProductsContext);
+  const { products } = useContext(ProductsContext);
   const [vis, setVis] = useState(false);
   const [shelf, setShelf] = useState(0);
   const [row, setRow] = useState("");
+  const [contents, setContents] = useState([
+    { product_id: "", concentration: "" },
+  ]);
   const [loading, setLoading] = useState(true);
 
-  // useEffect to set loading state based on user context
   useEffect(() => {
     if (user && user.containers) {
       setLoading(false);
     }
   }, [user]);
 
-  // Handle loading state
   if (loading) {
     return <p>Loading...</p>;
   }
 
-  // Function to compare containers alphanumerically by shelf and row
-  const compareContainers = (a, b) => {
-    // Concatenate shelf and row into a sortable string
-    const keyA = `${a.shelf}${a.row}`;
-    const keyB = `${b.shelf}${b.row}`;
-    // Compare the concatenated strings
-    if (keyA < keyB) return -1;
-    if (keyA > keyB) return 1;
-    return 0;
+  const handleVis = () => {
+    setVis(!vis);
   };
 
-  // Sort containers alphanumerically
-  const sortedContainers = user.containers.slice().sort(compareContainers);
+  const handleShelfChange = (e) => {
+    setShelf(e.target.value);
+  };
 
-  // Render table rows based on sorted containers
+  const handleRowChange = (e) => {
+    setRow(e.target.value);
+  };
+
+  const handleContentChange = (index, e) => {
+    const { name, value } = e.target;
+    const updatedContents = [...contents];
+    updatedContents[index][name] = value;
+    setContents(updatedContents);
+  };
+
+  const addContentField = () => {
+    setContents([...contents, { product_id: "", concentration: "" }]);
+  };
+
+  const removeContentField = (index) => {
+    const updatedContents = [...contents];
+    updatedContents.splice(index, 1);
+    setContents(updatedContents);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const container = {
+      user_id: user.id,
+      shelf: parseInt(shelf),
+      row,
+      contents_attributes: contents, // Ensure contents are correctly nested
+    };
+
+    fetch("/containers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ container }),
+    })
+      .then((r) => {
+        if (!r.ok) {
+          throw new Error("Failed to add container");
+        }
+        return r.json();
+      })
+      .then((container) => {
+        setUser((prevUser) => ({
+          ...prevUser,
+          containers: [...prevUser.containers, container],
+        }));
+        setShelf(0);
+        setRow("");
+        setContents([{ product_id: "", concentration: "" }]);
+        setVis(false);
+      })
+      .catch((error) => {
+        console.error("Error adding container:", error);
+      });
+  };
+
+  const sortedContainers = user.containers
+    .slice()
+    .sort((a, b) => `${a.shelf}${a.row}` - `${b.shelf}${b.row}`);
+
   const tableRows = sortedContainers.map((container) => (
     <tr key={container.id}>
       <td>{container.shelf}</td>
@@ -54,48 +110,6 @@ function Inventory() {
     </tr>
   ));
 
-  function handleVis() {
-    setVis(!vis);
-  }
-
-  function handleShelfChange(e) {
-    setShelf(e.target.value);
-  }
-
-  function handleRowChange(e) {
-    setRow(e.target.value);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    const container = { shelf, row };
-    fetch("/containers", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(container),
-    })
-      .then((r) => {
-        if (!r.ok) {
-          throw new Error("Failed to add container");
-        }
-        return r.json();
-      })
-      .then((container) => {
-        setUser((prevUser) => ({
-          ...prevUser,
-          containers: [...prevUser.containers, container],
-        }));
-        setShelf(0);
-        setRow("");
-        setVis(false);
-      })
-      .catch((error) => {
-        console.error("Error adding container:", error);
-      });
-  }
-
   return (
     <>
       <div className="center margin-4em">
@@ -106,19 +120,62 @@ function Inventory() {
           {vis ? (
             <form onSubmit={handleSubmit}>
               <label>
+                Shelf:
                 <input
                   type="number"
                   value={shelf}
                   onChange={handleShelfChange}
-                ></input>
+                  name="shelf"
+                  required
+                />
               </label>
               <label>
+                Row:
                 <input
                   type="text"
                   value={row}
                   onChange={handleRowChange}
-                ></input>
+                  name="row"
+                  required
+                />
               </label>
+              <div>
+                Contents:
+                {contents.map((content, index) => (
+                  <div key={index}>
+                    <select
+                      value={content.product_id}
+                      onChange={(e) => handleContentChange(index, e)}
+                      name="product_id"
+                      required
+                    >
+                      <option value="">Select a product</option>
+                      {products.map((product) => (
+                        <option key={product.id} value={product.id}>
+                          {product.name}
+                        </option>
+                      ))}
+                    </select>
+                    <input
+                      type="number"
+                      placeholder="Concentration"
+                      value={content.concentration}
+                      onChange={(e) => handleContentChange(index, e)}
+                      name="concentration"
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeContentField(index)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+                <button type="button" onClick={addContentField}>
+                  Add Content
+                </button>
+              </div>
               <button type="submit" className="blue-btn">
                 Add Container
               </button>
