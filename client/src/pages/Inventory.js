@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { ProductsContext } from "../contexts/ProductsContext";
+import { NavLink } from "react-router-dom";
 
 function Inventory() {
   const { user, setUser } = useContext(UserContext);
@@ -101,12 +102,25 @@ function Inventory() {
 
   const tableRows = sortedContainers.map((container) => (
     <tr key={container.id}>
-      <td>{container.shelf}</td>
-      <td>{container.row}</td>
+      <td>
+        <NavLink to={`/container/${container.id}`} className="navlink">
+          {container.shelf}
+        </NavLink>
+      </td>
+      <td>
+        <NavLink to={`/container/${container.id}`} className="navlink">
+          {container.row}
+        </NavLink>
+      </td>
       {container.contents.map((content, index) => (
         <td key={index}>
-          {content.concentration}%{" "}
-          {products.find((product) => product.id === content.product_id)?.name}
+          <NavLink to={`/container/${container.id}`} className="navlink">
+            {content.concentration}%{" "}
+            {
+              products.find((product) => product.id === content.product_id)
+                ?.name
+            }
+          </NavLink>
         </td>
       ))}
     </tr>

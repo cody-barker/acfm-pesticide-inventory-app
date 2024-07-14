@@ -233,3 +233,12 @@ footer {
 button:hover {
   cursor: pointer;
 }
+
+.navlink {
+  text-decoration: none;
+  color: black;
+}
+
+.navlink:visited {
+  color: black;
+}

@@ -73,6 +73,7 @@ function Products() {
           {vis ? (
             <form onSubmit={handleSubmit}>
               <label>
+                Product Name
                 <input
                   type="text"
                   value={name}
@@ -80,6 +81,7 @@ function Products() {
                 ></input>
               </label>
               <label>
+                EPA Reg #
                 <input
                   type="text"
                   value={epaReg}
@@ -97,7 +99,7 @@ function Products() {
         <thead>
           <tr className="table-header-row">
             <th>Name</th>
-            <th>EPA Reg</th>
+            <th>EPA Reg #</th>
           </tr>
         </thead>
         <tbody>{productComps}</tbody>
