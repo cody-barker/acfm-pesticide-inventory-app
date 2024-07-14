@@ -6,8 +6,8 @@ function Inventory() {
   const { user, setUser } = useContext(UserContext);
   const { products } = useContext(ProductsContext);
   const [vis, setVis] = useState(false);
-  const [shelf, setShelf] = useState(0);
-  const [row, setRow] = useState("");
+  const [shelf, setShelf] = useState(1); // Default shelf selection
+  const [row, setRow] = useState("A"); // Default row selection
   const [contents, setContents] = useState([
     { product_id: "", concentration: "" },
   ]);
@@ -28,7 +28,7 @@ function Inventory() {
   };
 
   const handleShelfChange = (e) => {
-    setShelf(e.target.value);
+    setShelf(parseInt(e.target.value));
   };
 
   const handleRowChange = (e) => {
@@ -56,8 +56,8 @@ function Inventory() {
     e.preventDefault();
     const container = {
       user_id: user.id,
-      shelf: parseInt(shelf),
-      row,
+      shelf: shelf,
+      row: row,
       contents_attributes: contents, // Ensure contents are correctly nested
     };
 
@@ -79,8 +79,8 @@ function Inventory() {
           ...prevUser,
           containers: [...prevUser.containers, container],
         }));
-        setShelf(0);
-        setRow("");
+        setShelf(1); // Reset to default after submission
+        setRow("A"); // Reset to default after submission
         setContents([{ product_id: "", concentration: "" }]);
         setVis(false);
       })
@@ -89,9 +89,15 @@ function Inventory() {
       });
   };
 
-  const sortedContainers = user.containers
-    .slice()
-    .sort((a, b) => `${a.shelf}${a.row}` - `${b.shelf}${b.row}`);
+  // Sorting containers alphanumerically by shelf and row
+  const sortedContainers = user.containers.slice().sort((a, b) => {
+    // Sort by shelf first
+    if (a.shelf !== b.shelf) {
+      return a.shelf - b.shelf;
+    }
+    // Then sort by row alphabetically
+    return a.row.localeCompare(b.row);
+  });
 
   const tableRows = sortedContainers.map((container) => (
     <tr key={container.id}>
@@ -121,26 +127,26 @@ function Inventory() {
             <form onSubmit={handleSubmit}>
               <label>
                 Shelf:
-                <input
-                  type="number"
-                  value={shelf}
-                  onChange={handleShelfChange}
-                  name="shelf"
-                  required
-                />
+                <select value={shelf} onChange={handleShelfChange} required>
+                  {[...Array(10).keys()].map((num) => (
+                    <option key={num + 1} value={num + 1}>
+                      {num + 1}
+                    </option>
+                  ))}
+                </select>
               </label>
               <label>
                 Row:
-                <input
-                  type="text"
-                  value={row}
-                  onChange={handleRowChange}
-                  name="row"
-                  required
-                />
+                <select value={row} onChange={handleRowChange} required>
+                  {["A", "B", "C", "D", "E"].map((char) => (
+                    <option key={char} value={char}>
+                      {char}
+                    </option>
+                  ))}
+                </select>
               </label>
               <div>
-                Contents:
+                Content:
                 {contents.map((content, index) => (
                   <div key={index}>
                     <select
@@ -156,14 +162,17 @@ function Inventory() {
                         </option>
                       ))}
                     </select>
-                    <input
-                      type="number"
-                      placeholder="Concentration"
-                      value={content.concentration}
-                      onChange={(e) => handleContentChange(index, e)}
-                      name="concentration"
-                      required
-                    />
+                    <label>
+                      Concentration:
+                      <input
+                        type="number"
+                        placeholder="Concentration"
+                        value={content.concentration}
+                        onChange={(e) => handleContentChange(index, e)}
+                        name="concentration"
+                        required
+                      />
+                    </label>
                     <button
                       type="button"
                       onClick={() => removeContentField(index)}
