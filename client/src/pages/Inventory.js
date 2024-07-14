@@ -103,16 +103,12 @@ function Inventory() {
     <tr key={container.id}>
       <td>{container.shelf}</td>
       <td>{container.row}</td>
-      {container.contents.map((content, index) => {
-        let product = products.find(
-          (product) => product.id === content.product_id
-        );
-        return product ? (
-          <td key={index}>
-            {content.concentration}% {product.name}
-          </td>
-        ) : null;
-      })}
+      {container.contents.map((content, index) => (
+        <td key={index}>
+          {content.concentration}%{" "}
+          {products.find((product) => product.id === content.product_id)?.name}
+        </td>
+      ))}
     </tr>
   ));
 
@@ -146,7 +142,7 @@ function Inventory() {
                 </select>
               </label>
               <div>
-                Content:
+                Contents:
                 {contents.map((content, index) => (
                   <div key={index}>
                     <select
@@ -163,7 +159,7 @@ function Inventory() {
                       ))}
                     </select>
                     <label>
-                      Concentration:
+                      Content Concentration:
                       <input
                         type="number"
                         placeholder="Concentration"
@@ -193,12 +189,12 @@ function Inventory() {
         </div>
       </div>
 
-      <table>
+      <table className="inventory-table">
         <thead>
           <tr>
             <th>Shelf</th>
             <th>Row</th>
-            <th>Contents</th>
+            <th colSpan={products.length + 1}>Contents</th>
           </tr>
         </thead>
         <tbody>{tableRows}</tbody>

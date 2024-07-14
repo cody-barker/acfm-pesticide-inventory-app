@@ -179,6 +179,24 @@ footer {
   background-color: #f2f2f2; /* Optional: Adds a background color to the header */
 }
 
+.inventory-table {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+.inventory-table th,
+.inventory-table td {
+  padding: 1em;
+  border: 1px solid black;
+  text-align: center; /* or center, or right based on your preference */
+}
+
+.inventory-table thead {
+  background-color: #f2f2f2; /* Optional: Adds a background color to the header */
+}
+
 .container {
   margin-top: 4em;
   display: flex;
