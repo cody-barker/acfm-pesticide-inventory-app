@@ -8,10 +8,13 @@ function Inventory() {
 
   const { user, setUser } = useContext(UserContext);
   const { products, setProducts } = useContext(ProductsContext);
+  const [vis, setVis] = useState(false);
+  const [shelf, setShelf] = useState(0);
+  const [row, setRow] = useState("");
+
   const containers = user.containers.map((container) => {
     return container;
   });
-  console.log(containers);
 
   const tableRows = containers.map((container) => {
     return (
@@ -19,11 +22,9 @@ function Inventory() {
         <td>{container.shelf}</td>
         <td>{container.row}</td>
         {container.contents.map((content, index) => {
-          // Find the product object that matches the product_id
           let product = products.find(
             (product) => product.id === content.product_id
           );
-          // Render a <td> if product is found
           return product ? (
             <td key={index}>
               {content.concentration}% {product.name}
@@ -34,17 +35,72 @@ function Inventory() {
     );
   });
 
+  function handleVis() {
+    setVis(!vis);
+  }
+
+  function handleShelfChange(e) {
+    setShelf(e.target.value);
+  }
+
+  function handleRowChange(e) {
+    setRow(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const container = { shelf, row };
+    fetch("/containers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(container),
+    });
+  }
+
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Shelf</th>
-          <th>Row</th>
-          <th>Contents</th>
-        </tr>
-      </thead>
-      <tbody>{tableRows}</tbody>
-    </table>
+    <>
+      <div className="center margin-4em">
+        <button onClick={handleVis} className="blue-btn">
+          {vis ? "Cancel" : "Add a Container"}
+        </button>
+        <div>
+          {vis ? (
+            <form onSubmit={handleSubmit}>
+              <label>
+                <input
+                  type="number"
+                  value={shelf}
+                  onChange={handleShelfChange}
+                ></input>
+              </label>
+              <label>
+                <input
+                  type="text"
+                  value={row}
+                  onChange={handleRowChange}
+                ></input>
+              </label>
+              <button type="submit" className="blue-btn">
+                Add Container
+              </button>
+            </form>
+          ) : null}
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Shelf</th>
+            <th>Row</th>
+            <th>Contents</th>
+          </tr>
+        </thead>
+        <tbody>{tableRows}</tbody>
+      </table>
+    </>
   );
 }
 
