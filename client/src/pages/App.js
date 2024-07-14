@@ -8,6 +8,7 @@ import Products from "./Products";
 import Inventory from "./Inventory";
 import Product from "./Product";
 import EditProduct from "./EditProduct";
+import Container from "./Container";
 
 function App() {
   const { user } = useContext(UserContext);
@@ -26,6 +27,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<Product />} />
           <Route path="/products/:id/edit" element={<EditProduct />} />
+          <Route path="/container/:id" element={<Container />} />
         </Routes>
       </main>
     </>
