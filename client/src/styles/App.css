@@ -140,7 +140,7 @@ select:hover {
 }
 
 .wrapper {
-  min-height: 100svh;
+  min-height: 100vh; /* Corrected to use viewport height */
   display: flex;
   justify-content: center;
   align-items: center;
