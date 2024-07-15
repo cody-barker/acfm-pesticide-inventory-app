@@ -13,15 +13,15 @@ import Container from "./Container";
 import EditContainer from "./EditContainer";
 
 function App() {
-  const { user } = useContext(UserContext);
-  const { loading } = useContext(ProductsContext);
+  const { user, loading: userLoading } = useContext(UserContext);
+  const { loading: productsLoading } = useContext(ProductsContext);
+
+  if (userLoading || productsLoading) {
+    return <div></div>;
+  }
 
   if (!user) {
     return <Login />;
-  }
-
-  if (loading) {
-    return <div>Loading...</div>;
   }
 
   return (
