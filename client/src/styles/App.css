@@ -41,7 +41,6 @@ ul {
 .remove-btn {
   background: red;
   color: white;
-  padding: 0.5em 1.25em;
   margin: 0.5em;
   border: 1px solid black;
   border-radius: 3em;
@@ -98,7 +97,7 @@ input {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 3px;
+  padding: 0.5em;
   margin: 5px;
   width: 100%;
 }
@@ -128,7 +127,7 @@ label {
   color: red;
 }
 
-.select {
+select {
   margin: 1em;
   padding: 0.5em;
 }
@@ -259,9 +258,43 @@ button {
   margin: 3em;
 }
 
-.flex {
+.flex-column {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+}
+
+.flex-column > * {
+  padding: 0.5em;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+
+.flex-row > * {
+  margin: 0.5em;
+}
+
+.grey-button {
+  border-radius: 2em;
+  padding: 0.5em 1em;
+  border: 1px solid black;
+}
+
+.margin-top {
+  margin-top: 2em;
+}
+
+.margin-top-small {
+  margin-top: 1em;
+}
+
+.button-width {
+  min-width: 6em;
 }

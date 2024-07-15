@@ -148,9 +148,9 @@ function Inventory() {
         </button>
         <div>
           {vis ? (
-            <form className="flex" onSubmit={handleSubmit}>
-              <div>
-                <label>
+            <form onSubmit={handleSubmit}>
+              <div className="flex-column">
+                <label className="flex-row">
                   Shelf:
                   <select value={shelf} onChange={handleShelfChange} required>
                     {[...Array(10).keys()].map((num) => (
@@ -160,7 +160,7 @@ function Inventory() {
                     ))}
                   </select>
                 </label>
-                <label>
+                <label className="flex-row">
                   Row:
                   <select value={row} onChange={handleRowChange} required>
                     {["A", "B", "C", "D", "E"].map((char) => (
@@ -170,9 +170,8 @@ function Inventory() {
                     ))}
                   </select>
                 </label>
-                Contents:
                 {contents.map((content, index) => (
-                  <div key={index}>
+                  <div className="flex-row" key={index}>
                     <select
                       value={content.product_id}
                       onChange={(e) => handleContentChange(index, e)}
@@ -187,7 +186,6 @@ function Inventory() {
                       ))}
                     </select>
                     <label>
-                      Content Concentration:
                       <input
                         type="number"
                         placeholder="Concentration"
@@ -198,6 +196,7 @@ function Inventory() {
                       />
                     </label>
                     <button
+                      className="grey-button"
                       type="button"
                       onClick={() => removeContentField(index)}
                     >
@@ -205,12 +204,16 @@ function Inventory() {
                     </button>
                   </div>
                 ))}
-                <button type="button" onClick={addContentField}>
-                  Add Content
+                <button
+                  className="grey-button margin-top-small"
+                  type="button"
+                  onClick={addContentField}
+                >
+                  Add More Contents
                 </button>
               </div>
-              <button type="submit" className="blue-btn">
-                Add Container
+              <button type="submit" className="blue-btn margin-top">
+                Submit Container
               </button>
             </form>
           ) : null}

@@ -89,7 +89,7 @@ function Products() {
                 ></input>
               </label>
               <button type="submit" className="blue-btn">
-                Add Product
+                Submit Product
               </button>
             </form>
           ) : null}

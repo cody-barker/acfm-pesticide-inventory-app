@@ -42,10 +42,10 @@ function Product() {
         <h1>{product.name}</h1>
         <p>EPA Reg: {product.epa_reg}</p>
         <div className="product-options">
-          <button className="blue-btn">
+          <button className="blue-btn button-width">
             <Link to={`/products/${id}/edit`}>Edit</Link>
           </button>
-          <button className="remove-btn" onClick={handleDelete}>
+          <button className="remove-btn button-width" onClick={handleDelete}>
             Remove
           </button>
         </div>
