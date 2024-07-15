@@ -119,6 +119,12 @@ function Inventory() {
     .slice()
     .sort((a, b) => a.name.localeCompare(b.name));
 
+  // Calculate the maximum number of contents in any container
+  const maxContents = Math.max(
+    ...user.containers.map((container) => container.contents.length),
+    0
+  );
+
   const tableRows = sortedContainers.map((container) => (
     <tr key={container.id}>
       <td>
@@ -250,7 +256,7 @@ function Inventory() {
           <tr>
             <th>Shelf</th>
             <th>Row</th>
-            <th colSpan={products.length + 1}>Contents</th>
+            <th colSpan={maxContents + 1}>Contents</th>
           </tr>
         </thead>
         <tbody>{tableRows}</tbody>

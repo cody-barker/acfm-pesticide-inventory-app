@@ -48,6 +48,7 @@ function Product() {
           <button className="remove-btn button-width" onClick={handleDelete}>
             Remove
           </button>
+          <p className="errors">Warning: Removing a product will remove it from all containers with that product.</p>
         </div>
       </div>
     </div>
