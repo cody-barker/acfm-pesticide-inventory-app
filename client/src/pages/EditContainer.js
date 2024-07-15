@@ -41,13 +41,15 @@ function EditContainer() {
   }
 
   function handleContentChange(index, key, value) {
-    const updatedContents = [...contents];
-    updatedContents[index][key] = value === "" ? null : value;
-    setContents(updatedContents);
+    if (key === "product_id" || key === "concentration") {
+      const updatedContents = [...contents];
+      updatedContents[index][key] = value;
+      setContents(updatedContents);
+    }
   }
 
   function handleAddContent() {
-    setContents([...contents, { product_id: "", concentration: null }]);
+    setContents([...contents, { product_id: "", concentration: 0 }]);
   }
 
   function handleExpiresChange(event) {
@@ -141,7 +143,11 @@ function EditContainer() {
               <select
                 value={content.product_id}
                 onChange={(e) =>
-                  handleContentChange(index, "product_id", e.target.value)
+                  handleContentChange(
+                    index,
+                    "product_id",
+                    parseInt(e.target.value)
+                  )
                 }
               >
                 <option value="">Select a product</option>
@@ -155,20 +161,21 @@ function EditContainer() {
             <label>
               Concentration
               <input
-                type="text"
-                value={content.concentration || ""}
+                type="number"
+                required
+                value={content.concentration}
                 onChange={(e) =>
-                  handleContentChange(index, "concentration", e.target.value)
+                  handleContentChange(
+                    index,
+                    "concentration",
+                    parseInt(e.target.value)
+                  )
                 }
               />
             </label>
           </div>
         ))}
-        <button
-          type="button"
-          className="add-content-btn"
-          onClick={handleAddContent}
-        >
+        <button type="button" className="add-content-btn" onClick={handleAddContent}>
           Add Content
         </button>
         <button type="submit" className="blue-btn">
