@@ -3,10 +3,14 @@ import { ProductsContext } from "../contexts/ProductsContext";
 import { Link } from "react-router-dom";
 
 function Products() {
-  const { products, setProducts } = useContext(ProductsContext);
+  const { products, setProducts, loading } = useContext(ProductsContext);
   const [vis, setVis] = useState(false);
   const [name, setName] = useState("");
   const [epaReg, setEpaReg] = useState("");
+
+  if (loading) {
+    return <div>Loading products...</div>;
+  }
 
   function handleNameChange(e) {
     setName(e.target.value);

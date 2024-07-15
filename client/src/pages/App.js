@@ -1,6 +1,7 @@
 import "../styles/App.css";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
+import { ProductsContext } from "../contexts/ProductsContext";
 import Login from "./Login";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "../components/NavBar";
@@ -13,8 +14,14 @@ import EditContainer from "./EditContainer";
 
 function App() {
   const { user } = useContext(UserContext);
+  const { loading } = useContext(ProductsContext);
+
   if (!user) {
     return <Login />;
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
   return (

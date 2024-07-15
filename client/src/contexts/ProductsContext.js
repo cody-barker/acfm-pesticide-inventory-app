@@ -24,12 +24,8 @@ function ProductsProvider({ children }) {
       });
   }, []);
 
-  if (loading) {
-    return <div></div>;
-  }
-
   return (
-    <ProductsContext.Provider value={{ products, setProducts }}>
+    <ProductsContext.Provider value={{ products, setProducts, loading }}>
       {children}
     </ProductsContext.Provider>
   );
