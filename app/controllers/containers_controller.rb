@@ -41,13 +41,13 @@ class ContainersController < ApplicationController
 
 
   def container_params
-    params.require(:container).permit(:user_id, :shelf, :row, contents_attributes: [:product_id, :concentration])
+    params.require(:container).permit(:id, :user_id, :shelf, :row, contents_attributes: [:product_id, :concentration])
   end
 
 
-  # def set_container
-  #   @container = Container.find(params[:id])
-  # end
+  def set_container
+    @container = Container.find(params[:id])
+  end
 
   # def container_params
   #   params.permit(:user_id, :shelf, :row, contents_attributes: [:product_id, :concentration]).merge(user_id: :user_id)

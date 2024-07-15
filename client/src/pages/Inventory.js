@@ -103,18 +103,18 @@ function Inventory() {
   const tableRows = sortedContainers.map((container) => (
     <tr key={container.id}>
       <td>
-        <NavLink to={`/container/${container.id}`} className="navlink">
+        <NavLink to={`/containers/${container.id}`} className="navlink">
           {container.shelf}
         </NavLink>
       </td>
       <td>
-        <NavLink to={`/container/${container.id}`} className="navlink">
+        <NavLink to={`/containers/${container.id}`} className="navlink">
           {container.row}
         </NavLink>
       </td>
       {container.contents.map((content, index) => (
         <td key={index}>
-          <NavLink to={`/container/${container.id}`} className="navlink">
+          <NavLink to={`/containers/${container.id}`} className="navlink">
             {content.concentration}%{" "}
             {
               products.find((product) => product.id === content.product_id)
