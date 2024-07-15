@@ -55,7 +55,7 @@ a {
 }
 
 td > a:visited {
-  color: blue;
+  color: black;
 }
 
 a:visited {
@@ -129,7 +129,8 @@ label {
 }
 
 .select {
-  margin: 0.5em;
+  margin: 1em;
+  padding: 0.5em;
 }
 
 .wrapper {
@@ -238,6 +239,9 @@ button:hover {
   cursor: pointer;
 }
 
+button {
+  font-size: 0.9em;
+}
 .navlink {
   text-decoration: none;
   color: black;
@@ -249,4 +253,15 @@ button:hover {
 
 .blue-btn:visited {
   color: white;
+}
+
+.filter-container {
+  margin: 3em;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }

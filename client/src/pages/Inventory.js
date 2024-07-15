@@ -148,28 +148,28 @@ function Inventory() {
         </button>
         <div>
           {vis ? (
-            <form onSubmit={handleSubmit}>
-              <label>
-                Shelf:
-                <select value={shelf} onChange={handleShelfChange} required>
-                  {[...Array(10).keys()].map((num) => (
-                    <option key={num + 1} value={num + 1}>
-                      {num + 1}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                Row:
-                <select value={row} onChange={handleRowChange} required>
-                  {["A", "B", "C", "D", "E"].map((char) => (
-                    <option key={char} value={char}>
-                      {char}
-                    </option>
-                  ))}
-                </select>
-              </label>
+            <form className="flex" onSubmit={handleSubmit}>
               <div>
+                <label>
+                  Shelf:
+                  <select value={shelf} onChange={handleShelfChange} required>
+                    {[...Array(10).keys()].map((num) => (
+                      <option key={num + 1} value={num + 1}>
+                        {num + 1}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Row:
+                  <select value={row} onChange={handleRowChange} required>
+                    {["A", "B", "C", "D", "E"].map((char) => (
+                      <option key={char} value={char}>
+                        {char}
+                      </option>
+                    ))}
+                  </select>
+                </label>
                 Contents:
                 {contents.map((content, index) => (
                   <div key={index}>
@@ -219,8 +219,12 @@ function Inventory() {
 
       <div className="filter-container">
         <label>
-          Filter by Product:
-          <select value={selectedProduct} onChange={handleProductFilterChange}>
+          Filter by Product
+          <select
+            value={selectedProduct}
+            onChange={handleProductFilterChange}
+            className="select"
+          >
             <option value="">All Products</option>
             {products.map((product) => (
               <option key={product.id} value={product.id}>
