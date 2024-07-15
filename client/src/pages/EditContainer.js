@@ -51,6 +51,13 @@ function EditContainer() {
     setContents([...contents, { product_id: "", concentration: 0 }]);
   }
 
+  const handleExpiresChange = (e, index) => {
+    const { value } = e.target;
+    const updatedContainers = [...user.containers];
+    updatedContainers[index].expires = value;
+    setUser(updatedContainers);
+  };
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -58,6 +65,7 @@ function EditContainer() {
       id: container.id,
       shelf,
       row,
+      expires: container.expires,
       contents_attributes: contents.map((content) => {
         if (content.id && !content.product_id) {
           return { ...content, _destroy: true };
@@ -158,10 +166,15 @@ function EditContainer() {
                 }
               />
             </label>
-            {/* Disable or hide remove button */}
-            {/* <button type="button" onClick={() => handleRemoveContent(index)}>
-              Remove
-            </button> */}
+            <label>
+              Expires:
+              <input
+                type="datetime-local"
+                value={container.expires}
+                onChange={(e) => handleExpiresChange(e, index)}
+                name="expires"
+              />
+            </label>
           </div>
         ))}
         <button type="button" onClick={handleAddContent}>

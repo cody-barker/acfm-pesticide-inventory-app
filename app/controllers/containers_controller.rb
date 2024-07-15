@@ -37,7 +37,7 @@ class ContainersController < ApplicationController
   end
 
   def container_params
-    params.require(:container).permit(:shelf, :row, contents_attributes: [:id, :product_id, :concentration, :_destroy])
+    params.require(:container).permit(:shelf, :row, contents_attributes: [:id, :product_id, :concentration, :container_id, :_destroy])
   end
 
   def set_container
