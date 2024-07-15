@@ -1,18 +1,17 @@
-import { useContext} from "react";
+import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { ProductsContext } from "../contexts/ProductsContext";
 
 function Container() {
   const navigate = useNavigate();
-
-  let { id } = useParams();
-  id = parseInt(id);
-
+  const { id } = useParams();
   const { user, setUser } = useContext(UserContext);
   const { products } = useContext(ProductsContext);
 
-  const container = user.containers.find((container) => container.id === id);
+  const container = user.containers.find(
+    (container) => container.id === parseInt(id)
+  );
 
   if (!container) {
     return <p>Loading...</p>;
@@ -24,7 +23,7 @@ function Container() {
     })
       .then((r) => {
         if (!r.ok) {
-          throw new Error("Failed to delete product");
+          throw new Error("Failed to delete container");
         }
         if (r.status === 204) {
           return {};
@@ -33,15 +32,18 @@ function Container() {
       })
       .then(() => {
         const updatedContainers = user.containers.filter(
-          (container) => container.id !== id
+          (container) => container.id !== parseInt(id)
         );
         setUser({ ...user, containers: updatedContainers });
         navigate("/");
       })
       .catch((error) => {
-        console.error("Error deleting product:", error);
+        console.error("Error deleting container:", error);
       });
   }
+
+  // Calculate the number of contents in the container
+  const numContents = container.contents.length;
 
   return (
     <div>
@@ -50,7 +52,7 @@ function Container() {
           <tr>
             <th>Shelf</th>
             <th>Row</th>
-            <th colSpan={products.length + 1}>Contents</th>
+            <th colSpan={numContents + 1}>Contents</th>
           </tr>
         </thead>
         <tbody>
