@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { ProductsContext } from "../contexts/ProductsContext";
@@ -8,10 +8,29 @@ function Container() {
   const { id } = useParams();
   const { user, setUser } = useContext(UserContext);
   const { products } = useContext(ProductsContext);
+  const [expirationClass, setExpirationClass] = useState(""); // State to manage expiration class
 
   const container = user.containers.find(
     (container) => container.id === parseInt(id)
   );
+
+  useEffect(() => {
+    if (container) {
+      const today = new Date();
+      const expires = new Date(container.expires);
+      const threeMonthsFromNow = new Date(
+        today.getFullYear(),
+        today.getMonth() + 3,
+        today.getDate()
+      );
+
+      if (expires < threeMonthsFromNow) {
+        setExpirationClass("text-red"); // Set text to red if expiration is within 3 months
+      } else {
+        setExpirationClass(""); // Clear the class if expiration is not within 3 months
+      }
+    }
+  }, [container]);
 
   if (!container) {
     return <p>Loading...</p>;
@@ -50,6 +69,7 @@ function Container() {
       <table className="inventory-table margin-top-4em">
         <thead>
           <tr>
+            <th>Expires</th>
             <th>Shelf</th>
             <th>Row</th>
             <th colSpan={numContents + 1}>Contents</th>
@@ -57,6 +77,9 @@ function Container() {
         </thead>
         <tbody>
           <tr>
+            <td className={expirationClass}>
+              {container.expires.slice(0, 10)}
+            </td>
             <td>{container.shelf}</td>
             <td>{container.row}</td>
             {container.contents.map((content, index) => (

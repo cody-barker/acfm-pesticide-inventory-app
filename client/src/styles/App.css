@@ -305,3 +305,7 @@ button {
 .container-submit {
   margin-top: 3em;
 }
+
+.text-red {
+  color: red;
+}

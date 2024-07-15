@@ -158,36 +158,55 @@ function Inventory() {
     0
   );
 
-  const tableRows = sortedContainers.map((container) => (
-    <tr key={container.id}>
-      <td>
-        <NavLink to={`/containers/${container.id}`} className="navlink">
-          {container.expires.slice(0, 10)}
-        </NavLink>
-      </td>
-      <td>
-        <NavLink to={`/containers/${container.id}`} className="navlink">
-          {container.shelf}
-        </NavLink>
-      </td>
-      <td>
-        <NavLink to={`/containers/${container.id}`} className="navlink">
-          {container.row}
-        </NavLink>
-      </td>
-      {container.contents.map((content, index) => (
-        <td key={index}>
+  const tableRows = sortedContainers.map((container) => {
+    // Calculate 3 months from today
+    const today = new Date();
+    const threeMonthsFromNow = new Date(
+      today.getFullYear(),
+      today.getMonth() + 3,
+      today.getDate()
+    );
+
+    return (
+      <tr key={container.id}>
+        <td>
           <NavLink to={`/containers/${container.id}`} className="navlink">
-            {content.concentration}%{" "}
-            {
-              products.find((product) => product.id === content.product_id)
-                ?.name
-            }
+            <span
+              style={{
+                color:
+                  new Date(container.expires) < threeMonthsFromNow
+                    ? "red"
+                    : "inherit",
+              }}
+            >
+              {container.expires.slice(0, 10)}
+            </span>
           </NavLink>
         </td>
-      ))}
-    </tr>
-  ));
+        <td>
+          <NavLink to={`/containers/${container.id}`} className="navlink">
+            {container.shelf}
+          </NavLink>
+        </td>
+        <td>
+          <NavLink to={`/containers/${container.id}`} className="navlink">
+            {container.row}
+          </NavLink>
+        </td>
+        {container.contents.map((content, index) => (
+          <td key={index}>
+            <NavLink to={`/containers/${container.id}`} className="navlink">
+              {content.concentration}%{" "}
+              {
+                products.find((product) => product.id === content.product_id)
+                  ?.name
+              }
+            </NavLink>
+          </td>
+        ))}
+      </tr>
+    );
+  });
 
   return (
     <>
@@ -300,13 +319,30 @@ function Inventory() {
         </label>
       </div>
 
-      <table className="inventory-table table">
+      <table className="inventory-table">
         <thead>
           <tr>
-            <th>Expires</th>
-            <th>Shelf</th>
-            <th>Row</th>
-            <th>Contents</th>
+            <th>
+              <NavLink to={"/containers"} className="navlink">
+                Contents
+              </NavLink>
+            </th>
+            <th>
+              <NavLink to={"/containers"} className="navlink">
+                Shelf
+              </NavLink>
+            </th>
+            <th>
+              <NavLink to={"/containers"} className="navlink">
+                Row
+              </NavLink>
+            </th>
+            {/* Set colSpan dynamically based on maxContents */}
+            <th colSpan={maxContents}>
+              <NavLink to={"/containers"} className="navlink">
+                Contents
+              </NavLink>
+            </th>
           </tr>
         </thead>
         <tbody>{tableRows}</tbody>
