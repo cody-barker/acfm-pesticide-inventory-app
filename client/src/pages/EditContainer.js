@@ -16,6 +16,7 @@ function EditContainer() {
   const [shelf, setShelf] = useState(container?.shelf || "");
   const [row, setRow] = useState(container?.row || "");
   const [contents, setContents] = useState(container?.contents || []);
+  const [expires, setExpires] = useState(container?.expires || "");
 
   useEffect(() => {
     if (container) {
@@ -27,6 +28,7 @@ function EditContainer() {
           id: content.id || null,
         }))
       );
+      setExpires(container.expires); // Prefill expires with current container's expires
     }
   }, [container]);
 
@@ -39,7 +41,6 @@ function EditContainer() {
   }
 
   function handleContentChange(index, key, value) {
-    // Only update product_id and concentration fields
     if (key === "product_id" || key === "concentration") {
       const updatedContents = [...contents];
       updatedContents[index][key] = value;
@@ -51,12 +52,9 @@ function EditContainer() {
     setContents([...contents, { product_id: "", concentration: 0 }]);
   }
 
-  const handleExpiresChange = (e, index) => {
-    const { value } = e.target;
-    const updatedContainers = [...user.containers];
-    updatedContainers[index].expires = value;
-    setUser(updatedContainers);
-  };
+  function handleExpiresChange(event) {
+    setExpires(event.target.value);
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -65,7 +63,7 @@ function EditContainer() {
       id: container.id,
       shelf,
       row,
-      expires: container.expires,
+      expires, // Include updated expires date for the entire container
       contents_attributes: contents.map((content) => {
         if (content.id && !content.product_id) {
           return { ...content, _destroy: true };
@@ -127,6 +125,15 @@ function EditContainer() {
               ))}
             </select>
           </label>
+          <label>
+            Expires:
+            <input
+              type="date" // Use type "date" for date only input
+              value={expires}
+              onChange={handleExpiresChange}
+              name="expires"
+            />
+          </label>
         </div>
 
         {contents.map((content, index) => (
@@ -164,15 +171,6 @@ function EditContainer() {
                     parseInt(e.target.value)
                   )
                 }
-              />
-            </label>
-            <label>
-              Expires:
-              <input
-                type="datetime-local"
-                value={container.expires}
-                onChange={(e) => handleExpiresChange(e, index)}
-                name="expires"
               />
             </label>
           </div>
