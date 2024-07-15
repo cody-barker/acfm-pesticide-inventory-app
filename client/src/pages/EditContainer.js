@@ -39,13 +39,22 @@ function EditContainer() {
     setContents(updatedContents);
   }
 
+  function handleAddContent() {
+    setContents([...contents, { product_id: "", concentration: 0 }]);
+  }
+
+  function handleRemoveContent(index) {
+    const updatedContents = contents.filter((_, i) => i !== index);
+    setContents(updatedContents);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     const updatedContainer = {
       id: container.id,
       shelf,
       row,
-      contents_attributes: contents,
+      contents_attributes: contents.filter((content) => content.product_id), // Filter out invalid contents
     };
 
     fetch(`/containers/${id}`, {
@@ -117,6 +126,7 @@ function EditContainer() {
                   )
                 }
               >
+                <option value="">Select a product</option>
                 {products.map((product) => (
                   <option key={product.id} value={product.id}>
                     {product.name}
@@ -128,6 +138,7 @@ function EditContainer() {
               Concentration
               <input
                 type="number"
+                required
                 value={content.concentration}
                 onChange={(e) =>
                   handleContentChange(
@@ -138,8 +149,14 @@ function EditContainer() {
                 }
               />
             </label>
+            <button type="button" onClick={() => handleRemoveContent(index)}>
+              Remove
+            </button>
           </div>
         ))}
+        <button type="button" onClick={handleAddContent}>
+          Add Content
+        </button>
         <button type="submit" className="blue-btn">
           Submit
         </button>

@@ -16,12 +16,6 @@ class ContainersController < ApplicationController
     render json: container, status: :created
   end
 
-  # def update
-  #  container = @user.containers.find(params[:id])
-  #  container.update!(container_params)
-  #  render json: container, status: :accepted
-  # end
-
   def update
     container = @user.containers.find(params[:id])
     if container.update(container_params)
@@ -40,26 +34,14 @@ class ContainersController < ApplicationController
   private
 
   def find_user_by_session_id
-      @user = User.find_by(id: session[:user_id])
+    @user = User.find_by(id: session[:user_id])
   end
-
 
   def container_params
     params.require(:container).permit(:id, :user_id, :shelf, :row, contents_attributes: [:id, :product_id, :concentration])
   end
 
-
   def set_container
     @container = Container.find(params[:id])
   end
-
-  # def container_params
-  #   params.permit(:user_id, :shelf, :row, contents_attributes: [:product_id, :concentration]).merge(user_id: :user_id)
-  # end
-
-  # def build_contents(container, contents_attributes)
-  #   contents_attributes.each do |_, content_params|
-  #     container.contents.build(content_params)
-  #   end
-  # end
 end
