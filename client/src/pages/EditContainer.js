@@ -161,14 +161,14 @@ function EditContainer() {
             <label>
               Concentration
               <input
-                type="number"
+                type="text"
                 required
                 value={content.concentration}
                 onChange={(e) =>
                   handleContentChange(
                     index,
                     "concentration",
-                    parseInt(e.target.value)
+                    parseFloat(e.target.value)
                   )
                 }
               />
