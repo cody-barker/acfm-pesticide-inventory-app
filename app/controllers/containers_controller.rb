@@ -11,20 +11,24 @@ class ContainersController < ApplicationController
     render json: @container
   end
 
-  # def create
-  #   container = @user.containers.create!(container_params)
-  #   build_contents(container, params[:container][:contents_attributes])
-  #   render json: container, status: :created
-  # end
   def create
     container = @user.containers.create!(container_params)
     render json: container, status: :created
   end
 
+  # def update
+  #  container = @user.containers.find(params[:id])
+  #  container.update!(container_params)
+  #  render json: container, status: :accepted
+  # end
+
   def update
-   container = @user.containers.find(params[:id])
-   container.update!(container_params)
-   render json: container, status: :accepted
+    container = @user.containers.find(params[:id])
+    if container.update(container_params)
+      render json: container, status: :accepted
+    else
+      render json: { error: 'Failed to update container' }, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -41,7 +45,7 @@ class ContainersController < ApplicationController
 
 
   def container_params
-    params.require(:container).permit(:id, :user_id, :shelf, :row, contents_attributes: [:product_id, :concentration])
+    params.require(:container).permit(:id, :user_id, :shelf, :row, contents_attributes: [:id, :product_id, :concentration])
   end
 
 
