@@ -1,5 +1,5 @@
 class ContainersController < ApplicationController
-  before_action :set_container, only: [:show, :edit, :update, :destroy]
+  before_action :set_container, only: [:show, :update, :destroy]
   before_action :find_user_by_session_id
 
   def index
@@ -16,10 +16,9 @@ class ContainersController < ApplicationController
     render json: container, status: :created
   end
 
-  def update
-    container = @user.containers.find(params[:id])
-    if container.update(container_params)
-      render json: container, status: :accepted
+   def update
+    if @container.update(container_params)
+      render json: @container, status: :ok
     else
       render json: { error: 'Failed to update container' }, status: :unprocessable_entity
     end
@@ -38,7 +37,7 @@ class ContainersController < ApplicationController
   end
 
   def container_params
-    params.require(:container).permit(:id, :user_id, :shelf, :row, contents_attributes: [:id, :product_id, :concentration])
+    params.require(:container).permit(:shelf, :row, contents_attributes: [:id, :product_id, :concentration, :_destroy])
   end
 
   def set_container

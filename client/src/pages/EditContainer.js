@@ -21,7 +21,12 @@ function EditContainer() {
     if (container) {
       setShelf(container.shelf);
       setRow(container.row);
-      setContents(container.contents);
+      setContents(
+        container.contents.map((content) => ({
+          ...content,
+          id: content.id || null,
+        }))
+      );
     }
   }, [container]);
 
@@ -34,27 +39,31 @@ function EditContainer() {
   }
 
   function handleContentChange(index, key, value) {
-    const updatedContents = [...contents];
-    updatedContents[index][key] = value;
-    setContents(updatedContents);
+    // Only update product_id and concentration fields
+    if (key === "product_id" || key === "concentration") {
+      const updatedContents = [...contents];
+      updatedContents[index][key] = value;
+      setContents(updatedContents);
+    }
   }
 
   function handleAddContent() {
     setContents([...contents, { product_id: "", concentration: 0 }]);
   }
 
-  function handleRemoveContent(index) {
-    const updatedContents = contents.filter((_, i) => i !== index);
-    setContents(updatedContents);
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
+
     const updatedContainer = {
       id: container.id,
       shelf,
       row,
-      contents_attributes: contents.filter((content) => content.product_id), // Filter out invalid contents
+      contents_attributes: contents.map((content) => {
+        if (content.id && !content.product_id) {
+          return { ...content, _destroy: true };
+        }
+        return content;
+      }),
     };
 
     fetch(`/containers/${id}`, {
@@ -149,9 +158,10 @@ function EditContainer() {
                 }
               />
             </label>
-            <button type="button" onClick={() => handleRemoveContent(index)}>
+            {/* Disable or hide remove button */}
+            {/* <button type="button" onClick={() => handleRemoveContent(index)}>
               Remove
-            </button>
+            </button> */}
           </div>
         ))}
         <button type="button" onClick={handleAddContent}>

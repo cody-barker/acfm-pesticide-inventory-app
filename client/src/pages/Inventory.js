@@ -22,7 +22,7 @@ function Inventory() {
   }, [user]);
 
   if (loading) {
-    return <p></p>;
+    return <p>Loading...</p>;
   }
 
   const handleVis = () => {
@@ -49,6 +49,10 @@ function Inventory() {
   };
 
   const removeContentField = (index) => {
+    // Check if this is the last content field, if so, disable removal
+    if (contents.length === 1) {
+      return;
+    }
     const updatedContents = [...contents];
     updatedContents.splice(index, 1);
     setContents(updatedContents);
@@ -208,10 +212,12 @@ function Inventory() {
                         required
                       />
                     </label>
+                    {/* Disable remove button if it's the last content field */}
                     <button
                       className="grey-button"
                       type="button"
                       onClick={() => removeContentField(index)}
+                      disabled={contents.length === 1}
                     >
                       Remove
                     </button>
