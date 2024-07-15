@@ -175,7 +175,11 @@ function EditContainer() {
             </label>
           </div>
         ))}
-        <button type="button" onClick={handleAddContent}>
+        <button
+          type="button"
+          className="add-content-btn"
+          onClick={handleAddContent}
+        >
           Add Content
         </button>
         <button type="submit" className="blue-btn">

@@ -210,6 +210,11 @@ function Inventory() {
 
   return (
     <>
+      <div className="total-containers flex-row">
+        <p>
+          <b>{user.containers.length}</b> Containers in Inventory
+        </p>
+      </div>
       <div className="center margin-3em">
         <button onClick={handleVis} className="blue-btn">
           {vis ? "Cancel" : "Add a Container"}
@@ -276,7 +281,7 @@ function Inventory() {
                     </label>
                     {/* Disable remove button if it's the last content field */}
                     <button
-                      className="grey-button"
+                      className="grey-button  remove-btn"
                       type="button"
                       onClick={() => removeContentField(index)}
                       disabled={contents.length === 1}
@@ -300,7 +305,6 @@ function Inventory() {
           ) : null}
         </div>
       </div>
-
       <div className="filter-container">
         <label>
           Filter by Product

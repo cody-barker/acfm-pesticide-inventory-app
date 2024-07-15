@@ -39,6 +39,8 @@ function Product() {
   return (
     <div className="container">
       <div className="product">
+        {" "}
+        {/* Apply 'product' class here */}
         <h1>{product.name}</h1>
         <p>EPA Reg: {product.epa_reg}</p>
         <div className="product-options">
@@ -48,7 +50,10 @@ function Product() {
           <button className="remove-btn button-width" onClick={handleDelete}>
             Remove
           </button>
-          <p className="errors">Warning: Removing a product will remove it from all containers with that product.</p>
+          <p className="errors">
+            Warning: Removing a product will remove it from all containers with
+            that product.
+          </p>
         </div>
       </div>
     </div>

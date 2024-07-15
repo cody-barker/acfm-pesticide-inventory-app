@@ -217,8 +217,11 @@ footer {
 
 .product {
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* Optional: Center text inside the container */
+  margin-top: 3em; /* Adjust margin as needed */
 }
 
 .product-options {
@@ -290,6 +293,10 @@ button {
   border: 1px solid black;
 }
 
+.remove-btn {
+  margin-left: 1em;
+}
+
 .margin-top {
   margin-top: 2em;
 }
@@ -308,4 +315,12 @@ button {
 
 .text-red {
   color: red;
+}
+
+.add-content-btn {
+  margin: 1em;
+}
+
+.total-containers {
+  margin-top: 3em;
 }
