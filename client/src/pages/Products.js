@@ -65,7 +65,7 @@ function Products() {
 
   return (
     <div className="table-container">
-      <div className="center margin-4em">
+      <div className="center margin-3em">
         <button onClick={handleVis} className="blue-btn">
           {vis ? "Cancel" : "Add a Product"}
         </button>

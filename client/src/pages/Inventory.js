@@ -13,6 +13,7 @@ function Inventory() {
     { product_id: "", concentration: "" },
   ]);
   const [loading, setLoading] = useState(true);
+  const [selectedProduct, setSelectedProduct] = useState(""); // State for filtering by product
 
   useEffect(() => {
     if (user && user.containers) {
@@ -90,8 +91,21 @@ function Inventory() {
       });
   };
 
+  const handleProductFilterChange = (e) => {
+    setSelectedProduct(e.target.value);
+  };
+
+  // Filter containers based on selected product
+  const filteredContainers = selectedProduct
+    ? user.containers.filter((container) =>
+        container.contents.some(
+          (content) => content.product_id === parseInt(selectedProduct)
+        )
+      )
+    : user.containers;
+
   // Sorting containers alphanumerically by shelf and row
-  const sortedContainers = user.containers.slice().sort((a, b) => {
+  const sortedContainers = filteredContainers.slice().sort((a, b) => {
     // Sort by shelf first
     if (a.shelf !== b.shelf) {
       return a.shelf - b.shelf;
@@ -128,7 +142,7 @@ function Inventory() {
 
   return (
     <>
-      <div className="center margin-4em">
+      <div className="center margin-3em">
         <button onClick={handleVis} className="blue-btn">
           {vis ? "Cancel" : "Add a Container"}
         </button>
@@ -201,6 +215,20 @@ function Inventory() {
             </form>
           ) : null}
         </div>
+      </div>
+
+      <div className="filter-container">
+        <label>
+          Filter by Product:
+          <select value={selectedProduct} onChange={handleProductFilterChange}>
+            <option value="">All Products</option>
+            {products.map((product) => (
+              <option key={product.id} value={product.id}>
+                {product.name}
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
 
       <table className="inventory-table">
