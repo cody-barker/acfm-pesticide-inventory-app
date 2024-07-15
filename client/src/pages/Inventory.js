@@ -305,13 +305,13 @@ function Inventory() {
           ) : null}
         </div>
       </div>
-      <div className="filter-container">
+      <div className="flex-row filter-products">
         <label>
-          Filter by Product
+          Filter by Product:
           <select
             value={selectedProduct}
             onChange={handleProductFilterChange}
-            className="select"
+            className="margin-left"
           >
             <option value="">All Products</option>
             {sortedProducts.map((product) => (
@@ -322,35 +322,19 @@ function Inventory() {
           </select>
         </label>
       </div>
-
-      <table className="inventory-table">
-        <thead>
-          <tr>
-            <th>
-              <NavLink to={"/containers"} className="navlink">
-                Expires
-              </NavLink>
-            </th>
-            <th>
-              <NavLink to={"/containers"} className="navlink">
-                Shelf
-              </NavLink>
-            </th>
-            <th>
-              <NavLink to={"/containers"} className="navlink">
-                Row
-              </NavLink>
-            </th>
-            {/* Set colSpan dynamically based on maxContents */}
-            <th colSpan={maxContents}>
-              <NavLink to={"/containers"} className="navlink">
-                Contents
-              </NavLink>
-            </th>
-          </tr>
-        </thead>
-        <tbody>{tableRows}</tbody>
-      </table>
+      <div className="center">
+        <table className="inventory-table">
+          <thead>
+            <tr>
+              <th>Expiration Date</th>
+              <th>Shelf</th>
+              <th>Row</th>
+              <th>Contents</th>
+            </tr>
+          </thead>
+          <tbody>{tableRows}</tbody>
+        </table>
+      </div>
     </>
   );
 }
