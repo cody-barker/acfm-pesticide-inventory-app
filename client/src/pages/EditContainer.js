@@ -41,15 +41,13 @@ function EditContainer() {
   }
 
   function handleContentChange(index, key, value) {
-    if (key === "product_id" || key === "concentration") {
-      const updatedContents = [...contents];
-      updatedContents[index][key] = value;
-      setContents(updatedContents);
-    }
+    const updatedContents = [...contents];
+    updatedContents[index][key] = value === "" ? null : value;
+    setContents(updatedContents);
   }
 
   function handleAddContent() {
-    setContents([...contents, { product_id: "", concentration: 0 }]);
+    setContents([...contents, { product_id: "", concentration: null }]);
   }
 
   function handleExpiresChange(event) {
@@ -143,11 +141,7 @@ function EditContainer() {
               <select
                 value={content.product_id}
                 onChange={(e) =>
-                  handleContentChange(
-                    index,
-                    "product_id",
-                    parseInt(e.target.value)
-                  )
+                  handleContentChange(index, "product_id", e.target.value)
                 }
               >
                 <option value="">Select a product</option>
@@ -162,14 +156,9 @@ function EditContainer() {
               Concentration
               <input
                 type="text"
-                required
-                value={content.concentration}
+                value={content.concentration || ""}
                 onChange={(e) =>
-                  handleContentChange(
-                    index,
-                    "concentration",
-                    parseFloat(e.target.value)
-                  )
+                  handleContentChange(index, "concentration", e.target.value)
                 }
               />
             </label>
