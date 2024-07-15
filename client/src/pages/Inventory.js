@@ -328,7 +328,7 @@ function Inventory() {
           <tr>
             <th>
               <NavLink to={"/containers"} className="navlink">
-                Contents
+                Expires
               </NavLink>
             </th>
             <th>
