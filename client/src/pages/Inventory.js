@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { ProductsContext } from "../contexts/ProductsContext";
 import { NavLink } from "react-router-dom";
@@ -14,12 +14,26 @@ function Inventory() {
   ]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState(""); // State for filtering by product
+  const [expires, setExpires] = useState(""); // State for expiration date
 
   useEffect(() => {
     if (user && user.containers) {
       setLoading(false);
     }
   }, [user]);
+
+  useEffect(() => {
+    // Calculate 2 years from today
+    const today = new Date();
+    const twoYearsFromNow = new Date(
+      today.getFullYear() + 2,
+      today.getMonth(),
+      today.getDate()
+    );
+    // Format the date as YYYY-MM-DD for the input field
+    const formattedDate = twoYearsFromNow.toISOString().slice(0, 10);
+    setExpires(formattedDate);
+  }, []);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -60,10 +74,22 @@ function Inventory() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Calculate 2 years from today
+    const today = new Date();
+    const twoYearsFromNow = new Date(
+      today.getFullYear() + 2,
+      today.getMonth(),
+      today.getDate()
+    );
+    // Format the date as YYYY-MM-DD for the input field
+    const formattedDate = twoYearsFromNow.toISOString().slice(0, 10);
+
     const container = {
       user_id: user.id,
       shelf: shelf,
       row: row,
+      expires: formattedDate, // Update expires to formattedDate
       contents_attributes: contents, // Ensure contents are correctly nested
     };
 
@@ -81,6 +107,9 @@ function Inventory() {
         return r.json();
       })
       .then((container) => {
+        // Update the expires state in user.containers
+        container.expires = formattedDate;
+
         setUser((prevUser) => ({
           ...prevUser,
           containers: [...prevUser.containers, container],
@@ -131,6 +160,11 @@ function Inventory() {
 
   const tableRows = sortedContainers.map((container) => (
     <tr key={container.id}>
+      <td>
+        <NavLink to={`/containers/${container.id}`} className="navlink">
+          {container.expires.slice(0, 10)}
+        </NavLink>
+      </td>
       <td>
         <NavLink to={`/containers/${container.id}`} className="navlink">
           {container.shelf}
@@ -187,6 +221,15 @@ function Inventory() {
                     </select>
                   </label>
                 </div>
+                <label>
+                  Expiration Date:
+                  <input
+                    type="date"
+                    value={expires}
+                    onChange={(e) => setExpires(e.target.value)}
+                    required
+                  />
+                </label>
                 {contents.map((content, index) => (
                   <div className="flex-row" key={index}>
                     <select
@@ -260,9 +303,10 @@ function Inventory() {
       <table className="inventory-table table">
         <thead>
           <tr>
+            <th>Expires</th>
             <th>Shelf</th>
             <th>Row</th>
-            <th colSpan={maxContents + 1}>Contents</th>
+            <th>Contents</th>
           </tr>
         </thead>
         <tbody>{tableRows}</tbody>
