@@ -22,7 +22,7 @@ function Inventory() {
   }, [user]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p></p>;
   }
 
   const handleVis = () => {
@@ -150,26 +150,28 @@ function Inventory() {
           {vis ? (
             <form onSubmit={handleSubmit}>
               <div className="flex-column">
-                <label className="flex-row">
-                  Shelf:
-                  <select value={shelf} onChange={handleShelfChange} required>
-                    {[...Array(10).keys()].map((num) => (
-                      <option key={num + 1} value={num + 1}>
-                        {num + 1}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <label className="flex-row">
-                  Row:
-                  <select value={row} onChange={handleRowChange} required>
-                    {["A", "B", "C", "D", "E"].map((char) => (
-                      <option key={char} value={char}>
-                        {char}
-                      </option>
-                    ))}
-                  </select>
-                </label>
+                <div className="flex-row">
+                  <label>
+                    Shelf:
+                    <select value={shelf} onChange={handleShelfChange} required>
+                      {[...Array(10).keys()].map((num) => (
+                        <option key={num + 1} value={num + 1}>
+                          {num + 1}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label>
+                    Row:
+                    <select value={row} onChange={handleRowChange} required>
+                      {["A", "B", "C", "D", "E"].map((char) => (
+                        <option key={char} value={char}>
+                          {char}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
                 {contents.map((content, index) => (
                   <div className="flex-row" key={index}>
                     <select
@@ -212,7 +214,7 @@ function Inventory() {
                   Add More Contents
                 </button>
               </div>
-              <button type="submit" className="blue-btn margin-top">
+              <button type="submit" className="blue-btn container-submit">
                 Submit Container
               </button>
             </form>
@@ -238,7 +240,7 @@ function Inventory() {
         </label>
       </div>
 
-      <table className="inventory-table">
+      <table className="inventory-table table">
         <thead>
           <tr>
             <th>Shelf</th>

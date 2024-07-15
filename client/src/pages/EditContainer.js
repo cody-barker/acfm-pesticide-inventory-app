@@ -80,28 +80,31 @@ function EditContainer() {
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
-        <label>
-          Shelf
-          <select value={shelf} onChange={handleShelfChange}>
-            {[...Array(10).keys()].map((i) => (
-              <option key={i + 1} value={i + 1}>
-                {i + 1}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Row
-          <select value={row} onChange={handleRowChange}>
-            {["A", "B", "C", "D", "E"].map((r) => (
-              <option key={r} value={r}>
-                {r}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div className="flex-row">
+          <label>
+            Shelf
+            <select value={shelf} onChange={handleShelfChange}>
+              {[...Array(10).keys()].map((i) => (
+                <option key={i + 1} value={i + 1}>
+                  {i + 1}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Row
+            <select value={row} onChange={handleRowChange}>
+              {["A", "B", "C", "D", "E"].map((r) => (
+                <option key={r} value={r}>
+                  {r}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
         {contents.map((content, index) => (
-          <div key={index}>
+          <div key={index} className="flex-row">
             <label>
               Product
               <select
