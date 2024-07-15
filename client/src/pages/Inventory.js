@@ -114,6 +114,11 @@ function Inventory() {
     return a.row.localeCompare(b.row);
   });
 
+  // Sort products alphabetically by name
+  const sortedProducts = products
+    .slice()
+    .sort((a, b) => a.name.localeCompare(b.name));
+
   const tableRows = sortedContainers.map((container) => (
     <tr key={container.id}>
       <td>
@@ -181,7 +186,7 @@ function Inventory() {
                       required
                     >
                       <option value="">Select a product</option>
-                      {products.map((product) => (
+                      {sortedProducts.map((product) => (
                         <option key={product.id} value={product.id}>
                           {product.name}
                         </option>
@@ -231,7 +236,7 @@ function Inventory() {
             className="select"
           >
             <option value="">All Products</option>
-            {products.map((product) => (
+            {sortedProducts.map((product) => (
               <option key={product.id} value={product.id}>
                 {product.name}
               </option>

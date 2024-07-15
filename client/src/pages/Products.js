@@ -52,7 +52,12 @@ function Products() {
     return <div></div>;
   }
 
-  let productComps = products.map((product) => {
+  // Sort products alphanumerically by name in ascending order
+  const sortedProducts = products.slice().sort((a, b) => {
+    return a.name.localeCompare(b.name);
+  });
+
+  let productComps = sortedProducts.map((product) => {
     return (
       <tr key={product.id}>
         <td>
