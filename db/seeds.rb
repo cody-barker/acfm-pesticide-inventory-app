@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user = User.create!(
-    username: "test",
-    password: "test"
+    username: "acfm",
+    password: "1775"
 )
 
 garlon = Product.create!(
