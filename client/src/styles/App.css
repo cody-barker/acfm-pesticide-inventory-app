@@ -324,3 +324,17 @@ button {
 .total-containers {
   margin-top: 3em;
 }
+
+@media (max-width: 500px) {
+  #navbar {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 670px) {
+  .inventory-table th,
+  .inventory-table td {
+    padding: 0.3em; /* Adjust the padding as needed */
+    font-size: 0.7rem;
+  }
+}
