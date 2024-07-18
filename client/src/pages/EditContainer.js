@@ -41,15 +41,18 @@ function EditContainer() {
   }
 
   function handleContentChange(index, key, value) {
-    if (key === "product_id" || key === "concentration") {
-      const updatedContents = [...contents];
+    const updatedContents = [...contents];
+    if (key === "product_id") {
       updatedContents[index][key] = value;
-      setContents(updatedContents);
+    } else if (key === "concentration") {
+      // Handle empty input by setting to null or an empty string
+      updatedContents[index][key] = value === "" ? null : parseFloat(value);
     }
+    setContents(updatedContents);
   }
 
   function handleAddContent() {
-    setContents([...contents, { product_id: "", concentration: 0 }]);
+    setContents([...contents, { product_id: "", concentration: null }]);
   }
 
   function handleExpiresChange(event) {
@@ -164,13 +167,12 @@ function EditContainer() {
               <input
                 type="number"
                 required
-                value={content.concentration}
+                step="any" // Allow decimal values
+                value={
+                  content.concentration === null ? "" : content.concentration
+                } // Handle empty values
                 onChange={(e) =>
-                  handleContentChange(
-                    index,
-                    "concentration",
-                    parseInt(e.target.value)
-                  )
+                  handleContentChange(index, "concentration", e.target.value)
                 }
               />
             </label>

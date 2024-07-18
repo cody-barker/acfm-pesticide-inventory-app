@@ -273,6 +273,7 @@ function Inventory() {
                       <input
                         type="number"
                         placeholder="Concentration"
+                        step="0"
                         value={content.concentration}
                         onChange={(e) => handleContentChange(index, e)}
                         name="concentration"
