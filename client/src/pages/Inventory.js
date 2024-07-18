@@ -330,7 +330,7 @@ function Inventory() {
               <th>Expiration Date</th>
               <th>Shelf</th>
               <th>Row</th>
-              <th colspan={maxContents}>Contents</th>
+              <th colSpan={maxContents}>Contents</th>
             </tr>
           </thead>
           <tbody>{tableRows}</tbody>
