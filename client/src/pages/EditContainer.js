@@ -142,6 +142,7 @@ function EditContainer() {
               Product
               <select
                 value={content.product_id}
+                required
                 onChange={(e) =>
                   handleContentChange(
                     index,
@@ -175,7 +176,11 @@ function EditContainer() {
             </label>
           </div>
         ))}
-        <button type="button" className="add-content-btn" onClick={handleAddContent}>
+        <button
+          type="button"
+          className="add-content-btn"
+          onClick={handleAddContent}
+        >
           Add Content
         </button>
         <button type="submit" className="blue-btn">

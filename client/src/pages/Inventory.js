@@ -225,7 +225,7 @@ function Inventory() {
               <div className="flex-column">
                 <div className="flex-row">
                   <label>
-                    Shelf:
+                    Shelf
                     <select value={shelf} onChange={handleShelfChange} required>
                       {[...Array(10).keys()].map((num) => (
                         <option key={num + 1} value={num + 1}>
@@ -235,7 +235,7 @@ function Inventory() {
                     </select>
                   </label>
                   <label>
-                    Row:
+                    Row
                     <select value={row} onChange={handleRowChange} required>
                       {["A", "B", "C", "D", "E"].map((char) => (
                         <option key={char} value={char}>
@@ -246,7 +246,7 @@ function Inventory() {
                   </label>
                 </div>
                 <label>
-                  Expiration Date:
+                  Expiration Date
                   <input
                     type="date"
                     value={expires}
@@ -329,7 +329,7 @@ function Inventory() {
               <th>Expiration Date</th>
               <th>Shelf</th>
               <th>Row</th>
-              <th>Contents</th>
+              <th colspan={maxContents}>Contents</th>
             </tr>
           </thead>
           <tbody>{tableRows}</tbody>
