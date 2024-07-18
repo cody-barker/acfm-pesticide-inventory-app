@@ -321,6 +321,10 @@ button {
   margin-top: 3em;
 }
 
+.filter-products {
+  margin-bottom: 2em;
+}
+
 @media (max-width: 500px) {
   #navbar {
     font-size: 0.8rem;

@@ -1,12 +1,14 @@
 import { useContext, useState } from "react";
 import { ProductsContext } from "../contexts/ProductsContext";
 import { Link } from "react-router-dom";
+import Error from "../components/Error";
 
 function Products() {
   const { products, setProducts, loading } = useContext(ProductsContext);
   const [vis, setVis] = useState(false);
   const [name, setName] = useState("");
   const [epaReg, setEpaReg] = useState("");
+  const [errors, setErrors] = useState([]);
 
   if (loading) {
     return <div>Loading products...</div>;
@@ -30,22 +32,16 @@ function Products() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newProduct),
-    })
-      .then((r) => {
-        if (!r.ok) {
-          throw new Error("Failed to add product");
-        }
-        return r.json();
-      })
-      .then((product) => {
-        setProducts((prevProducts) => [...prevProducts, product]);
+    }).then((r) => {
+      if (r.ok) {
+        setProducts((prevProducts) => [...prevProducts, newProduct]);
         setName("");
         setEpaReg("");
         setVis(false);
-      })
-      .catch((error) => {
-        console.error("Error adding product:", error);
-      });
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
   }
 
   if (!products) {
@@ -97,6 +93,9 @@ function Products() {
                   onChange={handleEpaRegChange}
                 ></input>
               </label>
+              {errors.map((err) => (
+                <Error key={err}>{err}</Error>
+              ))}
               <button type="submit" className="blue-btn">
                 Submit Product
               </button>
