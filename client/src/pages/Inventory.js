@@ -2,10 +2,12 @@ import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { ProductsContext } from "../contexts/ProductsContext";
 import { NavLink } from "react-router-dom";
+import Error from "../components/Error";
 
 function Inventory() {
   const { user, setUser } = useContext(UserContext);
   const { products } = useContext(ProductsContext);
+  const [errors, setErrors] = useState([]);
   const [vis, setVis] = useState(false);
   const [shelf, setShelf] = useState(1); // Default shelf selection
   const [row, setRow] = useState("A"); // Default row selection
@@ -100,24 +102,28 @@ function Inventory() {
       },
       body: JSON.stringify({ container }),
     })
-      .then((r) => {
-        if (!r.ok) {
-          throw new Error("Failed to add container");
-        }
-        return r.json();
-      })
+      // .then((r) => {
+      //   if (!r.ok) {
+      //     throw new Error("Failed to add container");
+      //   }
+      //   return r.json();
+      // })
       .then((container) => {
-        // Update the expires state in user.containers
-        container.expires = formattedDate;
+        if (container.ok) {
+          // Update the expires state in user.containers
+          container.expires = formattedDate;
 
-        setUser((prevUser) => ({
-          ...prevUser,
-          containers: [...prevUser.containers, container],
-        }));
-        setShelf(1); // Reset to default after submission
-        setRow("A"); // Reset to default after submission
-        setContents([{ product_id: "", concentration: "" }]);
-        setVis(false);
+          setUser((prevUser) => ({
+            ...prevUser,
+            containers: [...prevUser.containers, container],
+          }));
+          setShelf(1); // Reset to default after submission
+          setRow("A"); // Reset to default after submission
+          setContents([{ product_id: "", concentration: "" }]);
+          setVis(false);
+        } else {
+          container.json().then((err) => setErrors(err.errors));
+        }
       })
       .catch((error) => {
         console.error("Error adding container:", error);
@@ -260,7 +266,7 @@ function Inventory() {
                       value={content.product_id}
                       onChange={(e) => handleContentChange(index, e)}
                       name="product_id"
-                      required
+                      // required
                     >
                       <option value="">Select a product</option>
                       {sortedProducts.map((product) => (
@@ -277,7 +283,7 @@ function Inventory() {
                         value={content.concentration}
                         onChange={(e) => handleContentChange(index, e)}
                         name="concentration"
-                        required
+                        // required
                       />
                     </label>
                     {/* Disable remove button if it's the last content field */}
@@ -299,6 +305,9 @@ function Inventory() {
                   Add More Contents
                 </button>
               </div>
+              {errors.map((err) => (
+                <Error key={err}>{err}</Error>
+              ))}
               <button type="submit" className="blue-btn container-submit">
                 Submit Container
               </button>

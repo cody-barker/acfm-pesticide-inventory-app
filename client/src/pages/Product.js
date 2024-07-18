@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext} from "react";
 import { ProductsContext } from "../contexts/ProductsContext";
 import { useNavigate, Link, useParams } from "react-router-dom";
 
 function Product() {
   const navigate = useNavigate();
+
   let { id } = useParams();
   id = parseInt(id);
   const { products, setProducts } = useContext(ProductsContext);

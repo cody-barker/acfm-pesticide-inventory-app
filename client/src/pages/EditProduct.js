@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { ProductsContext } from "../contexts/ProductsContext";
 import { useParams, useNavigate } from "react-router-dom";
+import Error from "../components/Error";
 
 function EditProduct() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ function EditProduct() {
 
   const [name, setName] = useState(product.name);
   const [epaReg, setEpaReg] = useState(product.epa_reg);
+  const [errors, setErrors] = useState([]);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -32,23 +34,27 @@ function EditProduct() {
       },
       body: JSON.stringify(updatedProduct),
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to update product");
-        }
-        return response.json();
-      })
+      // .then((response) => {
+      //   if (!response.ok) {
+      //     throw new Error("Failed to update product");
+      //   }
+      //   return response.json();
+      // })
       .then((data) => {
-        const updatedProducts = products.map((p) =>
-          p.id === updatedProduct.id ? updatedProduct : p
-        );
-        setProducts(updatedProducts);
-        navigate("/products");
-      })
-      .catch((error) => {
-        console.error("Error updating product:", error);
-        // Handle error (e.g., show a notification to the user)
+        if (data.ok) {
+          const updatedProducts = products.map((p) =>
+            p.id === updatedProduct.id ? updatedProduct : p
+          );
+          setProducts(updatedProducts);
+          navigate("/products");
+        } else {
+          data.json().then((err) => setErrors(err.errors));
+        }
       });
+    // .catch((error) => {
+    //   console.error("Error updating product:", error);
+    //   // Handle error (e.g., show a notification to the user)
+    // });
   };
 
   return (
@@ -62,6 +68,9 @@ function EditProduct() {
           EPA Reg
           <input type="text" value={epaReg} onChange={handleEpaRegChange} />
         </label>
+        {errors.map((err) => (
+          <Error key={err}>{err}</Error>
+        ))}
         <button type="submit" className="blue-btn">
           Submit
         </button>

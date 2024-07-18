@@ -22,27 +22,30 @@ function Products() {
     setEpaReg(e.target.value);
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const newProduct = { name, epa_reg: epaReg };
+ function handleSubmit(e) {
+   e.preventDefault();
+   const newProduct = { name, epa_reg: epaReg };
 
-    fetch("/products", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newProduct),
-    }).then((r) => {
-      if (r.ok) {
-        setProducts((prevProducts) => [...prevProducts, newProduct]);
-        setName("");
-        setEpaReg("");
-        setVis(false);
-      } else {
-        r.json().then((err) => setErrors(err.errors));
-      }
-    });
-  }
+   fetch("/products", {
+     method: "POST",
+     headers: {
+       "Content-Type": "application/json",
+     },
+     body: JSON.stringify(newProduct),
+   }).then((r) => {
+     if (r.ok) {
+       r.json().then((createdProduct) => {
+         setProducts((prevProducts) => [...prevProducts, createdProduct]);
+         setName("");
+         setEpaReg("");
+         setVis(false);
+       });
+     } else {
+       r.json().then((err) => setErrors(err.errors));
+     }
+   });
+ }
+
 
   if (!products) {
     return <div></div>;
