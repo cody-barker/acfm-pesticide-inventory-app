@@ -5,6 +5,17 @@
   font-family: "Manrope", sans-serif;
 }
 
+body {
+  height: 85svh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
 body,
 h1,
 h2,
@@ -323,6 +334,15 @@ button {
 
 .filter-products {
   margin-bottom: 2em;
+}
+
+.product-submit {
+  margin-top: 1em;
+}
+
+footer {
+  margin-left: 2em;
+  border: 0;
 }
 
 @media (max-width: 500px) {

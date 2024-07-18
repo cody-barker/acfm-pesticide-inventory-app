@@ -11,6 +11,7 @@ import Product from "./Product";
 import EditProduct from "./EditProduct";
 import Container from "./Container";
 import EditContainer from "./EditContainer";
+import Footer from "../components/Footer";
 
 function App() {
   const { user, loading: userLoading } = useContext(UserContext);
@@ -29,16 +30,19 @@ function App() {
       <header className="header">
         <NavBar />
       </header>
-      <main>
-        <Routes>
-          <Route path="/" element={<Inventory />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<Product />} />
-          <Route path="/products/:id/edit" element={<EditProduct />} />
-          <Route path="/containers/:id" element={<Container />} />
-          <Route path="/containers/:id/edit" element={<EditContainer />} />
-        </Routes>
-      </main>
+      <body>
+        <main>
+          <Routes>
+            <Route path="/" element={<Inventory />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/:id" element={<Product />} />
+            <Route path="/products/:id/edit" element={<EditProduct />} />
+            <Route path="/containers/:id" element={<Container />} />
+            <Route path="/containers/:id/edit" element={<EditContainer />} />
+          </Routes>
+        </main>
+      </body>
+      <Footer />
     </>
   );
 }

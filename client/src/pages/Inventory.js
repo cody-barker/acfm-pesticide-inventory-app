@@ -297,6 +297,9 @@ function Inventory() {
                     </button>
                   </div>
                 ))}
+                {errors.map((err) => (
+                  <Error key={err}>{err}</Error>
+                ))}
                 <button
                   className="grey-button margin-top-small"
                   type="button"
@@ -305,9 +308,6 @@ function Inventory() {
                   Add More Contents
                 </button>
               </div>
-              {errors.map((err) => (
-                <Error key={err}>{err}</Error>
-              ))}
               <button type="submit" className="blue-btn container-submit">
                 Submit Container
               </button>
