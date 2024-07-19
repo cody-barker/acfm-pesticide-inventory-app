@@ -188,6 +188,7 @@ footer {
 .table {
   max-width: 600px;
   margin: 0 auto;
+  padding: 1em;
   border-collapse: collapse;
   border: 1px solid black;
   box-shadow: 1.5px 1.5px 1px rgb(173, 190, 195);
@@ -205,7 +206,6 @@ footer {
 }
 
 .inventory-table {
-  max-width: 1200px;
   margin: 0 auto;
   border-collapse: collapse;
   border: 1px solid black;
