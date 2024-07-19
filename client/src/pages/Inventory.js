@@ -217,121 +217,130 @@ function Inventory() {
 
   return (
     <>
-      <div className="total-containers flex-row">
-        <p>
-          <b>{user.containers.length}</b> Containers in Inventory
-        </p>
-      </div>
-      <div className="center margin-3em">
-        <button onClick={handleVis} className="blue-btn">
-          {vis ? "Cancel" : "Add a Container"}
-        </button>
-        <div>
-          {vis ? (
-            <form onSubmit={handleSubmit}>
-              <div className="flex-column">
-                <div className="flex-row">
-                  <label>
-                    Shelf
-                    <select value={shelf} onChange={handleShelfChange} required>
-                      {[...Array(10).keys()].map((num) => (
-                        <option key={num + 1} value={num + 1}>
-                          {num + 1}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <label>
-                    Row
-                    <select value={row} onChange={handleRowChange} required>
-                      {["A", "B", "C", "D", "E"].map((char) => (
-                        <option key={char} value={char}>
-                          {char}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                </div>
-                <label>
-                  Expiration Date
-                  <input
-                    type="date"
-                    value={expires}
-                    onChange={(e) => setExpires(e.target.value)}
-                    required
-                  />
-                </label>
-                {contents.map((content, index) => (
-                  <div className="flex-row" key={index}>
-                    <select
-                      value={content.product_id}
-                      onChange={(e) => handleContentChange(index, e)}
-                      name="product_id"
-                      // required
-                    >
-                      <option value="">Select a product</option>
-                      {sortedProducts.map((product) => (
-                        <option key={product.id} value={product.id}>
-                          {product.name}
-                        </option>
-                      ))}
-                    </select>
-                    <label>
-                      <input
-                        type="number"
-                        placeholder="Concentration"
-                        step="0"
-                        value={content.concentration}
-                        onChange={(e) => handleContentChange(index, e)}
-                        name="concentration"
-                        // required
-                      />
-                    </label>
-                    {/* Disable remove button if it's the last content field */}
-                    <button
-                      className="grey-button  remove-btn"
-                      type="button"
-                      onClick={() => removeContentField(index)}
-                      disabled={contents.length === 1}
-                    >
-                      Remove
-                    </button>
-                  </div>
-                ))}
-                {errors.map((err) => (
-                  <Error key={err}>{err}</Error>
-                ))}
-                <button
-                  className="grey-button margin-top-small"
-                  type="button"
-                  onClick={addContentField}
-                >
-                  Add More Contents
-                </button>
-              </div>
-              <button type="submit" className="blue-btn container-submit">
-                Submit Container
-              </button>
-            </form>
-          ) : null}
+      <div>
+        <div className="total-containers flex-row">
+          <p>
+            <b>{user.containers.length}</b>
+            {user.containers.length > 1 || user.containers.length === 0
+              ? " Containers in Inventory"
+              : " Container in Inventory"}
+          </p>
         </div>
-      </div>
-      <div className="flex-row filter-products">
-        <label>
-          Filter by Product:
-          <select
-            value={selectedProduct}
-            onChange={handleProductFilterChange}
-            className="margin-left"
-          >
-            <option value="">All Products</option>
-            {sortedProducts.map((product) => (
-              <option key={product.id} value={product.id}>
-                {product.name}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div className="center margin-3em">
+          <button onClick={handleVis} className="blue-btn">
+            {vis ? "Cancel" : "Add a Container"}
+          </button>
+          <div>
+            {vis ? (
+              <form onSubmit={handleSubmit}>
+                <div className="flex-column">
+                  <div className="flex-row">
+                    <label>
+                      Shelf
+                      <select
+                        value={shelf}
+                        onChange={handleShelfChange}
+                        required
+                      >
+                        {[...Array(10).keys()].map((num) => (
+                          <option key={num + 1} value={num + 1}>
+                            {num + 1}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                    <label>
+                      Row
+                      <select value={row} onChange={handleRowChange} required>
+                        {["A", "B", "C", "D", "E"].map((char) => (
+                          <option key={char} value={char}>
+                            {char}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  </div>
+                  <label>
+                    Expiration Date
+                    <input
+                      type="date"
+                      value={expires}
+                      onChange={(e) => setExpires(e.target.value)}
+                      required
+                    />
+                  </label>
+                  {contents.map((content, index) => (
+                    <div className="flex-row" key={index}>
+                      <select
+                        value={content.product_id}
+                        onChange={(e) => handleContentChange(index, e)}
+                        name="product_id"
+                        // required
+                      >
+                        <option value="">Select a product</option>
+                        {sortedProducts.map((product) => (
+                          <option key={product.id} value={product.id}>
+                            {product.name}
+                          </option>
+                        ))}
+                      </select>
+                      <label>
+                        <input
+                          type="number"
+                          placeholder="Concentration"
+                          step="0"
+                          value={content.concentration}
+                          onChange={(e) => handleContentChange(index, e)}
+                          name="concentration"
+                          // required
+                        />
+                      </label>
+                      {/* Disable remove button if it's the last content field */}
+                      <button
+                        className="grey-button  remove-btn"
+                        type="button"
+                        onClick={() => removeContentField(index)}
+                        disabled={contents.length === 1}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                  {errors.map((err) => (
+                    <Error key={err}>{err}</Error>
+                  ))}
+                  <button
+                    className="grey-button margin-top-small"
+                    type="button"
+                    onClick={addContentField}
+                  >
+                    Add More Contents
+                  </button>
+                </div>
+                <button type="submit" className="blue-btn container-submit">
+                  Submit Container
+                </button>
+              </form>
+            ) : null}
+          </div>
+        </div>
+        <div className="flex-row filter-products">
+          <label>
+            Filter by Product:
+            <select
+              value={selectedProduct}
+              onChange={handleProductFilterChange}
+              className="margin-left"
+            >
+              <option value="">All Products</option>
+              {sortedProducts.map((product) => (
+                <option key={product.id} value={product.id}>
+                  {product.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
       </div>
       <div className="center">
         <table className="inventory-table">
