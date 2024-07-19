@@ -102,25 +102,21 @@ function Inventory() {
       },
       body: JSON.stringify({ container }),
     })
-      // .then((r) => {
-      //   if (!r.ok) {
-      //     throw new Error("Failed to add container");
-      //   }
-      //   return r.json();
-      // })
-      .then((container) => {
-        if (container.ok) {
+      .then((r) => {
+        if (r.ok) {
           // Update the expires state in user.containers
-          container.expires = formattedDate;
-
-          setUser((prevUser) => ({
-            ...prevUser,
-            containers: [...prevUser.containers, container],
-          }));
-          setShelf(1); // Reset to default after submission
-          setRow("A"); // Reset to default after submission
-          setContents([{ product_id: "", concentration: "" }]);
-          setVis(false);
+          r.json().then((container) => {
+            container.expires = formattedDate;
+            console.log(container);
+            setUser((prevUser) => ({
+              ...prevUser,
+              containers: [...prevUser.containers, container],
+            }));
+            setShelf(1); // Reset to default after submission
+            setRow("A"); // Reset to default after submission
+            setContents([{ product_id: "", concentration: "" }]);
+            setVis(false);
+          });
         } else {
           container.json().then((err) => setErrors(err.errors));
         }
