@@ -4,6 +4,7 @@ import { ProductsContext } from "../contexts/ProductsContext";
 import { NavLink } from "react-router-dom";
 import Error from "../components/Error";
 
+
 function Inventory() {
   const { user, setUser } = useContext(UserContext);
   const { products } = useContext(ProductsContext);
@@ -118,7 +119,7 @@ function Inventory() {
             setVis(false);
           });
         } else {
-          container.json().then((err) => setErrors(err.errors));
+          r.json().then((err) => setErrors(err.errors));
         }
       })
       .catch((error) => {
