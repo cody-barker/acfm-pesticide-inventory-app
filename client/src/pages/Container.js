@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { ProductsContext } from "../contexts/ProductsContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Container() {
   const navigate = useNavigate();
@@ -13,6 +15,10 @@ function Container() {
   const container = user.containers.find(
     (container) => container.id === parseInt(id)
   );
+
+  const showToastMessage = () => {
+    toast("Container removed!");
+  };
 
   useEffect(() => {
     if (container) {
@@ -53,8 +59,11 @@ function Container() {
         const updatedContainers = user.containers.filter(
           (container) => container.id !== parseInt(id)
         );
-        setUser({ ...user, containers: updatedContainers });
-        navigate("/");
+        showToastMessage();
+        setTimeout(() => {
+          setUser({ ...user, containers: updatedContainers });
+          navigate("/");
+        }, 2000);
       })
       .catch((error) => {
         console.error("Error deleting container:", error);
@@ -104,6 +113,7 @@ function Container() {
           </button>
         </div>
       </div>
+      <ToastContainer autoClose={2000} />
     </div>
   );
 }
