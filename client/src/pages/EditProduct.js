@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { ProductsContext } from "../contexts/ProductsContext";
 import { useParams, useNavigate } from "react-router-dom";
 import Error from "../components/Error";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function EditProduct() {
   const navigate = useNavigate();
@@ -13,6 +15,11 @@ function EditProduct() {
   const [name, setName] = useState(product.name);
   const [epaReg, setEpaReg] = useState(product.epa_reg);
   const [errors, setErrors] = useState([]);
+
+  const showToastMessage = () => {
+    toast("Product updated!");
+  };
+
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -33,28 +40,20 @@ function EditProduct() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(updatedProduct),
-    })
-      // .then((response) => {
-      //   if (!response.ok) {
-      //     throw new Error("Failed to update product");
-      //   }
-      //   return response.json();
-      // })
-      .then((data) => {
-        if (data.ok) {
-          const updatedProducts = products.map((p) =>
-            p.id === updatedProduct.id ? updatedProduct : p
-          );
-          setProducts(updatedProducts);
+    }).then((data) => {
+      if (data.ok) {
+        const updatedProducts = products.map((p) =>
+          p.id === updatedProduct.id ? updatedProduct : p
+        );
+        setProducts(updatedProducts);
+        showToastMessage();
+        setTimeout(() => {
           navigate("/products");
-        } else {
-          data.json().then((err) => setErrors(err.errors));
-        }
-      });
-    // .catch((error) => {
-    //   console.error("Error updating product:", error);
-    //   // Handle error (e.g., show a notification to the user)
-    // });
+        }, 2000);
+      } else {
+        data.json().then((err) => setErrors(err.errors));
+      }
+    });
   };
 
   return (
@@ -75,6 +74,7 @@ function EditProduct() {
           Submit
         </button>
       </form>
+      <ToastContainer autoClose={2000} />
     </div>
   );
 }

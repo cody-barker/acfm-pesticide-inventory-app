@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { ProductsContext } from "../contexts/ProductsContext";
 import { Link } from "react-router-dom";
 import Error from "../components/Error";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Products() {
   const { products, setProducts, loading } = useContext(ProductsContext);
@@ -9,6 +11,9 @@ function Products() {
   const [name, setName] = useState("");
   const [epaReg, setEpaReg] = useState("");
   const [errors, setErrors] = useState([]);
+  const showToastMessage = () => {
+    toast("Product added!");
+  };
 
   if (loading) {
     return <div>Loading products...</div>;
@@ -39,6 +44,7 @@ function Products() {
           setName("");
           setEpaReg("");
           setVis(false);
+          showToastMessage();
         });
       } else {
         r.json().then((err) => setErrors(err.errors));
@@ -114,6 +120,7 @@ function Products() {
         </thead>
         <tbody>{productComps}</tbody>
       </table>
+      <ToastContainer autoClose={2000} />
     </div>
   );
 }

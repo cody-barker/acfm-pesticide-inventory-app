@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { ProductsContext } from "../contexts/ProductsContext";
 import { useNavigate, Link, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Product() {
   const navigate = useNavigate();
@@ -9,6 +11,10 @@ function Product() {
   id = parseInt(id);
   const { products, setProducts } = useContext(ProductsContext);
   const product = products.find((product) => product.id === parseInt(id));
+
+  const showToastMessage = () => {
+    toast(`Product removed!`);
+  };
 
   if (!product) {
     return <p>Product not found</p>;
@@ -29,8 +35,11 @@ function Product() {
       })
       .then(() => {
         const updatedProducts = products.filter((product) => product.id !== id);
-        setProducts(updatedProducts);
-        navigate("/products");
+        showToastMessage();
+        setTimeout(() => {
+          setProducts(updatedProducts);
+          navigate("/products");
+        }, 2000);
       })
       .catch((error) => {
         console.error("Error deleting product:", error);
@@ -59,6 +68,7 @@ function Product() {
           </p>
         </div>
       </div>
+      <ToastContainer autoClose={2000} />
     </div>
   );
 }
