@@ -351,6 +351,10 @@ footer {
   border: 0;
 }
 
+.edit-button {
+  color: white;
+}
+
 @media (max-width: 600px) {
   #navbar {
     font-size: 0.9em;
