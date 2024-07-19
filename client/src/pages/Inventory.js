@@ -3,7 +3,8 @@ import { UserContext } from "../contexts/UserContext";
 import { ProductsContext } from "../contexts/ProductsContext";
 import { NavLink } from "react-router-dom";
 import Error from "../components/Error";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Inventory() {
   const { user, setUser } = useContext(UserContext);
@@ -18,6 +19,9 @@ function Inventory() {
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState(""); // State for filtering by product
   const [expires, setExpires] = useState(""); // State for expiration date
+  const showToastMessage = () => {
+    toast("Container added!");
+  };
 
   useEffect(() => {
     if (user && user.containers) {
@@ -117,6 +121,7 @@ function Inventory() {
             setRow("A"); // Reset to default after submission
             setContents([{ product_id: "", concentration: "" }]);
             setVis(false);
+            showToastMessage();
           });
         } else {
           r.json().then((err) => setErrors(err.errors));
@@ -342,6 +347,7 @@ function Inventory() {
           <tbody>{tableRows}</tbody>
         </table>
       </div>
+      <ToastContainer autoClose={2000} />
     </>
   );
 }

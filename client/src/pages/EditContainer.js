@@ -2,6 +2,8 @@ import { useContext, useState, useEffect } from "react";
 import { ProductsContext } from "../contexts/ProductsContext";
 import { UserContext } from "../contexts/UserContext";
 import { useParams, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function EditContainer() {
   const navigate = useNavigate();
@@ -17,6 +19,10 @@ function EditContainer() {
   const [row, setRow] = useState(container?.row || "");
   const [contents, setContents] = useState(container?.contents || []);
   const [expires, setExpires] = useState(container?.expires || "");
+
+  const showToastMessage = () => {
+    toast("Container updated!");
+  };
 
   useEffect(() => {
     if (container) {
@@ -93,7 +99,10 @@ function EditContainer() {
           c.id === id ? updatedContainer : c
         );
         setUser({ ...user, containers: updatedContainers });
-        navigate("/");
+        showToastMessage();
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       })
       .catch((error) => {
         console.error("Error updating container:", error);
@@ -189,6 +198,7 @@ function EditContainer() {
           Submit
         </button>
       </form>
+      <ToastContainer autoClose={2000} />
     </div>
   );
 }
