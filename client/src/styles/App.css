@@ -240,8 +240,15 @@ footer {
   margin-top: 3em; /* Adjust margin as needed */
 }
 
-.product-options {
+.product-options-wrapper {
+  width: 50%;
   margin: 0 auto;
+}
+
+.product-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .product-options > button {
@@ -347,8 +354,8 @@ button {
 }
 
 footer {
-  margin-left: 2em;
   border: 0;
+  text-align: center;
 }
 
 .edit-button {

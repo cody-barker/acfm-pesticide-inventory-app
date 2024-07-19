@@ -94,13 +94,15 @@ function Container() {
           </tr>
         </tbody>
       </table>
-      <div className="product-options">
-        <button className="blue-btn edit-btn">
-          <Link to={`/containers/${id}/edit`}>Edit</Link>
-        </button>
-        <button className="remove-btn" onClick={handleDelete}>
-          Remove
-        </button>
+      <div className="product-options-wrapper">
+        <div className="product-options">
+          <button className="blue-btn edit-btn button-width">
+            <Link to={`/containers/${id}/edit`}>Edit</Link>
+          </button>
+          <button className="remove-btn" onClick={handleDelete}>
+            Remove
+          </button>
+        </div>
       </div>
     </div>
   );

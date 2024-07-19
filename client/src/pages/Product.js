@@ -1,4 +1,4 @@
-import { useContext} from "react";
+import { useContext } from "react";
 import { ProductsContext } from "../contexts/ProductsContext";
 import { useNavigate, Link, useParams } from "react-router-dom";
 
@@ -44,13 +44,15 @@ function Product() {
         {/* Apply 'product' class here */}
         <h1>{product.name}</h1>
         <p>EPA Reg: {product.epa_reg}</p>
-        <div className="product-options">
-          <button className="blue-btn button-width">
-            <Link to={`/products/${id}/edit`}>Edit</Link>
-          </button>
-          <button className="remove-btn button-width" onClick={handleDelete}>
-            Remove
-          </button>
+        <div className="product-options-wrapper">
+          <div className="product-options">
+            <button className="blue-btn button-width">
+              <Link to={`/products/${id}/edit`}>Edit</Link>
+            </button>
+            <button className="remove-btn button-width" onClick={handleDelete}>
+              Remove
+            </button>
+          </div>
           <p className="errors">
             Warning: Removing a product will remove it from all containers with
             that product.
