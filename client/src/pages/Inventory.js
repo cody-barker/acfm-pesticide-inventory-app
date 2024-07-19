@@ -112,7 +112,6 @@ function Inventory() {
           // Update the expires state in user.containers
           r.json().then((container) => {
             container.expires = formattedDate;
-            console.log(container);
             setUser((prevUser) => ({
               ...prevUser,
               containers: [...prevUser.containers, container],
