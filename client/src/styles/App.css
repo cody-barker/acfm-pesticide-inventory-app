@@ -80,7 +80,8 @@ a:visited {
 
 #navbar {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  margin: 0 1em;
   align-items: center;
   padding-top: 2em;
   font-size: 1.2rem;
