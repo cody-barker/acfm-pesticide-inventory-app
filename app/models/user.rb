@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :containers
-  # has_many :contents, through: :containers
   validates :username, presence: true, length: {minimum: 2}
   validates :username, uniqueness: true
   validates :username, format: {without: /\s/, message: "cannot contain spaces"}

@@ -187,7 +187,7 @@ footer {
 
 .table {
   max-width: 600px;
-  margin: 0 auto;
+  margin: 0 1em;
   padding: 1em;
   border-collapse: collapse;
   border: 1px solid black;
@@ -206,7 +206,7 @@ footer {
 }
 
 .inventory-table {
-  margin: 0 auto;
+  margin: 0 1em;
   border-collapse: collapse;
   border: 1px solid black;
   box-shadow: 1.5px 1.5px 1px rgb(173, 190, 195);
@@ -231,6 +231,10 @@ footer {
 
 .table-container {
   margin-top: 3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .product {
