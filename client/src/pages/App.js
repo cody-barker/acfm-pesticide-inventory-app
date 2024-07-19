@@ -30,7 +30,6 @@ function App() {
       <header className="header">
         <NavBar />
       </header>
-      <body>
         <main>
           <Routes>
             <Route path="/" element={<Inventory />} />
@@ -41,7 +40,6 @@ function App() {
             <Route path="/containers/:id/edit" element={<EditContainer />} />
           </Routes>
         </main>
-      </body>
       <Footer />
     </>
   );
