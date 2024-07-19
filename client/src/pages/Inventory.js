@@ -43,7 +43,7 @@ function Inventory() {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p></p>;
   }
 
   const handleVis = () => {
