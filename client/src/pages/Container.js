@@ -74,8 +74,8 @@ function Container() {
   const numContents = container.contents.length;
 
   return (
-    <div>
-      <table className="inventory-table margin-top-4em table">
+    <div className="flex-column-center">
+      <table className="table inventory-table margin-top-4em">
         <thead>
           <tr>
             <th>Expires</th>

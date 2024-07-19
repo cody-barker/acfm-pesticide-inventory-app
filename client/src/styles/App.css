@@ -247,7 +247,7 @@ footer {
 }
 
 .product-options-wrapper {
-  width: 50%;
+  width: 40%;
   margin: 0 auto;
 }
 
@@ -366,6 +366,13 @@ footer {
 
 .edit-button {
   color: white;
+}
+
+.flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 600px) {
