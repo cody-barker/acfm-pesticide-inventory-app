@@ -59,6 +59,11 @@ ul {
   box-shadow: 1.5px 1.5px 1px rgb(173, 190, 195);
 }
 
+.remove-btn:hover {
+  opacity: 0.7;
+  transition-duration: 0.5s;
+}
+
 a {
   text-decoration: none;
   color: black;
@@ -302,6 +307,7 @@ button {
   border-radius: 2em;
   padding: 0.5em 1em;
   border: 1px solid black;
+  box-shadow: 1.5px 1.5px 1px rgb(173, 190, 195);
 }
 
 .margin-top {
@@ -345,16 +351,22 @@ footer {
   border: 0;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   #navbar {
-    font-size: 0.8rem;
+    font-size: 0.9em;
+  }
+  .inventory-table th,
+  .inventory-table td {
+    padding: 0.2em; /* Adjust the padding as needed */
+    /* font-size: 0.7rem; */
+    font-size: 0.75em;
   }
 }
 
-@media (max-width: 670px) {
+@media (max-width: 750px) {
   .inventory-table th,
   .inventory-table td {
     padding: 0.3em; /* Adjust the padding as needed */
-    font-size: 0.7rem;
+    /* font-size: 0.7rem; */
   }
 }
