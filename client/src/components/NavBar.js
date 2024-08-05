@@ -19,23 +19,29 @@ function NavBar() {
   }
 
   return (
-    <nav id="navbar">
-      <NavLink to="/">
-        <img className="logo-img" src="/assets/acfm-logo.svg" alt="logo"></img>
-      </NavLink>
-      <NavLink to="/">
-        <h2 className="logo">ACFM Pesticide Inventory</h2>
-      </NavLink>
-      <NavLink className="nav-btn" to={`/`}>
-        Inventory
-      </NavLink>
-      <NavLink className="nav-btn" to="/products">
-        Products
-      </NavLink>
-      <NavLink onClick={handleLogout} className="nav-btn" to="/">
-        Logout
-      </NavLink>
-    </nav>
+    <div className="nav-container">
+      <nav id="navbar">
+        <NavLink to="/">
+          <img
+            className="logo-img"
+            src="/assets/acfm-logo.svg"
+            alt="logo"
+          ></img>
+        </NavLink>
+        <NavLink to="/">
+          <h2 className="logo">ACFM Pesticide Inventory</h2>
+        </NavLink>
+        <NavLink className="nav-btn" to={`/`}>
+          Inventory
+        </NavLink>
+        <NavLink className="nav-btn" to="/products">
+          Products
+        </NavLink>
+        <NavLink onClick={handleLogout} className="nav-btn" to="/">
+          Logout
+        </NavLink>
+      </nav>
+    </div>
   );
 }
 
