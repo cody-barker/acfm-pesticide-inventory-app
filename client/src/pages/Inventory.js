@@ -18,6 +18,7 @@ function Inventory() {
   ]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState(""); // State for filtering by product
+  const [selectedConcentration, setSelectedConcentration] = useState(""); // State for filtering by concentration
   const [expires, setExpires] = useState(""); // State for expiration date
   const showToastMessage = () => {
     toast("Container added!");
@@ -135,14 +136,20 @@ function Inventory() {
     setSelectedProduct(e.target.value);
   };
 
-  // Filter containers based on selected product
-  const filteredContainers = selectedProduct
-    ? user.containers.filter((container) =>
-        container.contents.some(
-          (content) => content.product_id === parseInt(selectedProduct)
-        )
-      )
-    : user.containers;
+  const handleConcentrationFilterChange = (e) => {
+    setSelectedConcentration(e.target.value);
+  };
+
+  // Filter containers based on selected product and concentration
+  const filteredContainers = user.containers.filter((container) =>
+    container.contents.some(
+      (content) =>
+        (!selectedProduct ||
+          content.product_id === parseInt(selectedProduct)) &&
+        (!selectedConcentration ||
+          content.concentration === parseInt(selectedConcentration))
+    )
+  );
 
   // Sorting containers alphanumerically by shelf and row
   const sortedContainers = filteredContainers.slice().sort((a, b) => {
@@ -158,6 +165,15 @@ function Inventory() {
   const sortedProducts = products
     .slice()
     .sort((a, b) => a.name.localeCompare(b.name));
+
+  // Extract unique concentrations from user containers
+  const uniqueConcentrations = [
+    ...new Set(
+      user.containers.flatMap((container) =>
+        container.contents.map((content) => content.concentration)
+      )
+    ),
+  ].sort((a, b) => a - b);
 
   // Calculate the maximum number of contents in any container
   const maxContents = Math.max(
@@ -317,20 +333,21 @@ function Inventory() {
                     Add More Contents
                   </button>
                 </div>
-                <button type="submit" className="blue-btn container-submit">
+                <button type="submit" className="blue-btn">
                   Submit Container
                 </button>
+                {errors.length > 0 && <Error errors={errors} />}
               </form>
             ) : null}
           </div>
         </div>
-        <div className="flex-row filter-products">
+        <div className="margin-3em">
           <label>
             Filter by Product:
             <select
               value={selectedProduct}
               onChange={handleProductFilterChange}
-              className="margin-left"
+              className="blue-btn"
             >
               <option value="">All Products</option>
               {sortedProducts.map((product) => (
@@ -340,22 +357,39 @@ function Inventory() {
               ))}
             </select>
           </label>
+          <label>
+            Filter by Concentration:
+            <select
+              value={selectedConcentration}
+              onChange={handleConcentrationFilterChange}
+              className="blue-btn"
+            >
+              <option value="">All Concentrations</option>
+              {uniqueConcentrations.map((concentration) => (
+                <option key={concentration} value={concentration}>
+                  {concentration}%
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
+        <div className="inventory-table-container margin-3em">
+          <table className="inventory-table">
+            <thead>
+              <tr>
+                <th>Expires</th>
+                <th>Shelf</th>
+                <th>Row</th>
+                {[...Array(maxContents).keys()].map((index) => (
+                  <th key={index}>Content {index + 1}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>{tableRows}</tbody>
+          </table>
+        </div>
+        <ToastContainer />
       </div>
-      <div className="center">
-        <table className="inventory-table">
-          <thead>
-            <tr>
-              <th>Expiration Date</th>
-              <th>Shelf</th>
-              <th>Row</th>
-              <th colSpan={maxContents}>Contents</th>
-            </tr>
-          </thead>
-          <tbody>{tableRows}</tbody>
-        </table>
-      </div>
-      <ToastContainer autoClose={2000} />
     </>
   );
 }

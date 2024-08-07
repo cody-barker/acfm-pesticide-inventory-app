@@ -31,7 +31,7 @@ function NavBar() {
         <NavLink to="/">
           <h2 className="logo">ACFM Pesticide Inventory</h2>
         </NavLink>
-        <NavLink className="nav-btn" to={`/`}>
+        <NavLink className="nav-btn" to="/">
           Inventory
         </NavLink>
         <NavLink className="nav-btn" to="/products">

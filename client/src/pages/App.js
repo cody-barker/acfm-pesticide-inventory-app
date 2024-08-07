@@ -30,16 +30,16 @@ function App() {
       <header className="header">
         <NavBar />
       </header>
-        <main>
-          <Routes>
-            <Route path="/" element={<Inventory />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/:id" element={<Product />} />
-            <Route path="/products/:id/edit" element={<EditProduct />} />
-            <Route path="/containers/:id" element={<Container />} />
-            <Route path="/containers/:id/edit" element={<EditContainer />} />
-          </Routes>
-        </main>
+      <main>
+        <Routes>
+          <Route path="/" element={<Inventory />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<Product />} />
+          <Route path="/products/:id/edit" element={<EditProduct />} />
+          <Route path="/containers/:id" element={<Container />} />
+          <Route path="/containers/:id/edit" element={<EditContainer />} />
+        </Routes>
+      </main>
       <Footer />
     </>
   );
