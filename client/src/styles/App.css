@@ -154,7 +154,6 @@ label {
 select {
   box-shadow: 1.5px 1.5px 1px rgb(173, 190, 195);
   font-size: 1rem;
-  text-align: center;
 }
 
 select:hover {
