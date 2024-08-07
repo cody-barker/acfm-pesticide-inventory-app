@@ -234,14 +234,6 @@ function Inventory() {
   return (
     <>
       <div>
-        <div className="total-containers flex-row">
-          <p>
-            <b>{user.containers.length}</b>
-            {user.containers.length > 1 || user.containers.length === 0
-              ? " Containers in Inventory"
-              : " Container in Inventory"}
-          </p>
-        </div>
         <div className="center margin-3em">
           <button onClick={handleVis} className="blue-btn">
             {vis ? "Cancel" : "Add a Container"}
@@ -333,7 +325,7 @@ function Inventory() {
                     Add More Contents
                   </button>
                 </div>
-                <button type="submit" className="blue-btn">
+                <button type="submit" className="blue-btn margin-top-2em">
                   Submit Container
                 </button>
                 {errors.length > 0 && <Error errors={errors} />}
@@ -357,7 +349,7 @@ function Inventory() {
               ))}
             </select>
           </label>
-          <label>
+          <label className="margin-top-1em">
             Filter by Concentration:
             <select
               value={selectedConcentration}
@@ -372,6 +364,12 @@ function Inventory() {
               ))}
             </select>
           </label>
+        </div>
+        <div>
+          <p className="flex-column">
+            <b>All Inventory: {user.containers.length} Containers</b>
+            <b>Selected Inventory: {tableRows.length} Containers</b>
+          </p>
         </div>
         <div className="inventory-table-container margin-3em">
           <table className="inventory-table">
