@@ -246,6 +246,7 @@ function Inventory() {
                     <label>
                       Shelf
                       <select
+                        className="blue-btn"
                         value={shelf}
                         onChange={handleShelfChange}
                         required
@@ -259,7 +260,12 @@ function Inventory() {
                     </label>
                     <label>
                       Row
-                      <select value={row} onChange={handleRowChange} required>
+                      <select
+                        className="blue-btn"
+                        value={row}
+                        onChange={handleRowChange}
+                        required
+                      >
                         {["A", "B", "C", "D", "E"].map((char) => (
                           <option key={char} value={char}>
                             {char}
@@ -280,6 +286,7 @@ function Inventory() {
                   {contents.map((content, index) => (
                     <div className="flex-row" key={index}>
                       <select
+                        className="blue-btn"
                         value={content.product_id}
                         onChange={(e) => handleContentChange(index, e)}
                         name="product_id"
