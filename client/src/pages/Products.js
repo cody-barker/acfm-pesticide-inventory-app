@@ -111,7 +111,7 @@ function Products() {
           ) : null}
         </div>
       </div>
-      <table className="table">
+      <table className="inventory-table">
         <thead>
           <tr className="table-header-row">
             <th>Name</th>

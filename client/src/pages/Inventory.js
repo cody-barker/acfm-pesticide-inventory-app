@@ -235,7 +235,7 @@ function Inventory() {
     <>
       <div>
         <div className="center margin-3em">
-          <button onClick={handleVis} className="blue-btn">
+          <button onClick={handleVis} className="blue-btn margin-top-2em">
             {vis ? "Cancel" : "Add a Container"}
           </button>
           <div>

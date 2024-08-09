@@ -411,6 +411,10 @@ footer {
   select {
     font-size: 0.75em;
   }
+
+  .logo {
+    display: none;
+  }
 }
 
 @media (max-width: 750px) {
@@ -418,5 +422,9 @@ footer {
   .inventory-table td {
     padding: 0.3em; /* Adjust the padding as needed */
     /* font-size: 0.7rem; */
+  }
+
+  .logo {
+    display: none;
   }
 }
