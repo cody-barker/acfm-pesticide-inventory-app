@@ -379,19 +379,25 @@ function Inventory() {
           </p>
         </div>
         <div className="inventory-table-container margin-3em">
-          <table className="inventory-table">
-            <thead>
-              <tr>
-                <th>Expires</th>
-                <th>Shelf</th>
-                <th>Row</th>
-                {[...Array(maxContents).keys()].map((index) => (
-                  <th key={index}>Product {index + 1}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>{tableRows}</tbody>
-          </table>
+          {filteredContainers.length > 0 ? (
+            <table className="inventory-table">
+              <thead>
+                <tr>
+                  <th>Expires</th>
+                  <th>Shelf</th>
+                  <th>Row</th>
+                  {[...Array(maxContents).keys()].map((index) => (
+                    <th key={index}>Product {index + 1}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>{tableRows}</tbody>
+            </table>
+          ) : (
+            <p className="errors">
+              There are no containers in inventory with that prescription.
+            </p>
+          )}
         </div>
         <ToastContainer />
       </div>
