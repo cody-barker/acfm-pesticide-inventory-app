@@ -375,7 +375,7 @@ function Inventory() {
         <div>
           <p className="flex-column">
             <b>Total Inventory: {user.containers.length} Containers</b>
-            <b>Selected Inventory: {tableRows.length} Containers</b>
+            <b>Selected Prescription: {tableRows.length} Containers</b>
           </p>
         </div>
         <div className="inventory-table-container margin-3em">
