@@ -23,8 +23,13 @@ function Concentrates() {
     });
   });
 
+  // Sort products by name in ascending alphabetical order
+  const sortedProducts = [...products].sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+
   // Map over all products to create table rows
-  const concentrateComps = products.map((product) => (
+  const concentrateComps = sortedProducts.map((product) => (
     <tr key={product.id}>
       <td>{product.name}</td>
       <td>{productCounts[product.id]}</td>
