@@ -386,7 +386,7 @@ function Inventory() {
                 <th>Shelf</th>
                 <th>Row</th>
                 {[...Array(maxContents).keys()].map((index) => (
-                  <th key={index}>Content {index + 1}</th>
+                  <th key={index}>Product {index + 1}</th>
                 ))}
               </tr>
             </thead>

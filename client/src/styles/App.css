@@ -49,6 +49,10 @@ ul {
   transition-duration: 0.5s;
 }
 
+.blue {
+  color: rgba(0, 81, 255, 0.77);
+}
+
 .remove-btn {
   background: red;
   color: white;

@@ -4,7 +4,8 @@ function Footer() {
   return (
     <footer>
       <Link to="https://github.com/cody-barker">
-        <p>Developed by Cody Barker 2024</p>
+        <span>Developed by </span>
+        <span className="blue">Cody Barker 2024</span>
       </Link>
     </footer>
   );
