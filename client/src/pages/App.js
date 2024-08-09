@@ -12,6 +12,7 @@ import EditProduct from "./EditProduct";
 import Container from "./Container";
 import EditContainer from "./EditContainer";
 import Footer from "../components/Footer";
+import Concentrates from "./Concentrates";
 
 function App() {
   const { user, loading: userLoading } = useContext(UserContext);
@@ -38,6 +39,7 @@ function App() {
           <Route path="/products/:id/edit" element={<EditProduct />} />
           <Route path="/containers/:id" element={<Container />} />
           <Route path="/containers/:id/edit" element={<EditContainer />} />
+          <Route path="/concentrates" element={<Concentrates />} />
         </Routes>
       </main>
       <Footer />
