@@ -34,6 +34,9 @@ function NavBar() {
         <NavLink className="nav-btn" to="/">
           Inventory
         </NavLink>
+        <NavLink className="nav-btn" to="/concentrates">
+          Concentrates
+        </NavLink>
         <NavLink className="nav-btn" to="/products">
           Products
         </NavLink>
