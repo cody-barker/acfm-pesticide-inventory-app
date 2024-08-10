@@ -75,7 +75,7 @@ function Container() {
 
   return (
     <div className="flex-column-center">
-      <table className="table inventory-table margin-top-4em">
+      <table className="inventory-table margin-top-4em">
         <thead>
           <tr>
             <th>Expires</th>
