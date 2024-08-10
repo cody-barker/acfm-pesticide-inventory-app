@@ -11,7 +11,6 @@ function Inventory() {
   const { user, setUser } = useContext(UserContext);
   const { products } = useContext(ProductsContext);
   const [errors, setErrors] = useState([]);
-  const [vis, setVis] = useState(false);
   const [shelf, setShelf] = useState(1); // Default shelf selection
   const [row, setRow] = useState("A"); // Default row selection
   const [contents, setContents] = useState([
@@ -49,10 +48,6 @@ function Inventory() {
   if (loading) {
     return <p></p>;
   }
-
-  const handleVis = () => {
-    setVis(!vis);
-  };
 
   const handleShelfChange = (e) => {
     setShelf(parseInt(e.target.value));
