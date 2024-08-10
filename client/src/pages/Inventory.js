@@ -239,9 +239,6 @@ function Inventory() {
     <>
       <div>
         <div className="center margin-3em">
-          {/* <button onClick={handleVis} className="blue-btn margin-top-2em">
-            {vis ? "Cancel" : "Add a Container"}
-          </button> */}
           <button
             onClick={handleModalToggle}
             className="blue-btn margin-top-2em"
@@ -249,7 +246,6 @@ function Inventory() {
             {isModalOpen ? "Cancel" : "Add a Container"}
           </button>
           <div>
-            {/* {vis ? ( */}
             <Modal isOpen={isModalOpen} onClose={handleModalToggle}>
               <form onSubmit={handleSubmit}>
                 <div className="flex-column">
@@ -301,7 +297,6 @@ function Inventory() {
                         value={content.product_id}
                         onChange={(e) => handleContentChange(index, e)}
                         name="product_id"
-                        // required
                       >
                         <option value="">Select a product</option>
                         {sortedProducts.map((product) => (
@@ -318,7 +313,6 @@ function Inventory() {
                           value={content.concentration}
                           onChange={(e) => handleContentChange(index, e)}
                           name="concentration"
-                          // required
                         />
                       </label>
                       {/* Disable remove button if it's the last content field */}
@@ -348,7 +342,6 @@ function Inventory() {
                 </button>
                 {errors.length > 0 && <Error errors={errors} />}
               </form>
-              {/* ) : null} */}
             </Modal>
           </div>
         </div>

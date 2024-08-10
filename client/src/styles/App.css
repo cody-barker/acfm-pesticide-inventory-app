@@ -456,3 +456,7 @@ footer {
     display: none;
   }
 }
+
+@media (min-width: 751px) {
+  
+}
