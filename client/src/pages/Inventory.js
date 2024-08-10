@@ -345,7 +345,7 @@ function Inventory() {
             </Modal>
           </div>
         </div>
-        <div className="margin-3em">
+        <div className="margin-3em filter-container">
           <label>
             Filter by Product:
             <select
@@ -361,7 +361,7 @@ function Inventory() {
               ))}
             </select>
           </label>
-          <label className="margin-top-1em">
+          <label className="filter">
             Filter by Concentration:
             <select
               value={selectedConcentration}

@@ -458,5 +458,9 @@ footer {
 }
 
 @media (min-width: 751px) {
-  
+  .filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
