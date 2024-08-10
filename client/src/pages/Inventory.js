@@ -347,7 +347,7 @@ function Inventory() {
         </div>
         <div className="margin-3em filter-container">
           <label>
-            Filter by Product:
+            Filter by Product
             <select
               value={selectedProduct}
               onChange={handleProductFilterChange}
@@ -362,7 +362,7 @@ function Inventory() {
             </select>
           </label>
           <label className="filter">
-            Filter by Concentration:
+            Filter by Concentration
             <select
               value={selectedConcentration}
               onChange={handleConcentrationFilterChange}
