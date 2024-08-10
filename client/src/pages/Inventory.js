@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import Error from "../components/Error";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Modal from "../components/Modal"; // Import your new Modal component
 
 function Inventory() {
   const { user, setUser } = useContext(UserContext);
@@ -23,6 +24,8 @@ function Inventory() {
   const showToastMessage = () => {
     toast("Container added!");
   };
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+  const handleModalToggle = () => setIsModalOpen(!isModalOpen);
 
   useEffect(() => {
     if (user && user.containers) {
@@ -120,7 +123,8 @@ function Inventory() {
             setShelf(1); // Reset to default after submission
             setRow("A"); // Reset to default after submission
             setContents([{ product_id: "", concentration: "" }]);
-            setVis(false);
+            setIsModalOpen(false); // Close modal on successful submit
+            // setVis(false);
             showToastMessage();
           });
         } else {
@@ -235,11 +239,18 @@ function Inventory() {
     <>
       <div>
         <div className="center margin-3em">
-          <button onClick={handleVis} className="blue-btn margin-top-2em">
+          {/* <button onClick={handleVis} className="blue-btn margin-top-2em">
             {vis ? "Cancel" : "Add a Container"}
+          </button> */}
+          <button
+            onClick={handleModalToggle}
+            className="blue-btn margin-top-2em"
+          >
+            {isModalOpen ? "Cancel" : "Add a Container"}
           </button>
           <div>
-            {vis ? (
+            {/* {vis ? ( */}
+            <Modal isOpen={isModalOpen} onClose={handleModalToggle}>
               <form onSubmit={handleSubmit}>
                 <div className="flex-column">
                   <div className="flex-row">
@@ -337,7 +348,8 @@ function Inventory() {
                 </button>
                 {errors.length > 0 && <Error errors={errors} />}
               </form>
-            ) : null}
+              {/* ) : null} */}
+            </Modal>
           </div>
         </div>
         <div className="margin-3em">
