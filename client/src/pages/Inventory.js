@@ -296,7 +296,7 @@ function Inventory() {
                     <label>
                       <input
                         type="number"
-                        placeholder="Concentration"
+                        placeholder="Concentration %"
                         step="0"
                         value={content.concentration}
                         onChange={(e) => handleContentChange(index, e)}
@@ -340,7 +340,6 @@ function Inventory() {
             {isModalOpen ? "Cancel" : "Add a Container"}
           </button>
           <label>
-            Filter by Product
             <select
               value={selectedProduct}
               onChange={handleProductFilterChange}
@@ -355,7 +354,6 @@ function Inventory() {
             </select>
           </label>
           <label className="filter">
-            Filter by Concentration
             <select
               value={selectedConcentration}
               onChange={handleConcentrationFilterChange}
