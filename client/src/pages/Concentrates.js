@@ -38,7 +38,7 @@ function Concentrates() {
 
   return (
     <div className="table-container">
-      <table className="inventory-table margin-top-2em">
+      <table className="table margin-top-2em">
         <thead>
           <tr className="table-header-row">
             <th>Product</th>

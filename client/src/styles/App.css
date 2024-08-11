@@ -423,15 +423,10 @@ button {
   #navbar {
     font-size: 0.9em;
   }
-  .inventory-table th,
-  .inventory-table td {
+  .inventory-table  th,
+  .inventory-table  td {
     padding: 0.2em; /* Adjust the padding as needed */
     /* font-size: 0.7rem; */
-    font-size: 0.75em;
-  }
-
-  button,
-  select {
     font-size: 0.75em;
   }
 
