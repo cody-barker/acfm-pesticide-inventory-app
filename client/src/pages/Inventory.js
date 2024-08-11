@@ -233,114 +233,112 @@ function Inventory() {
   return (
     <>
       <div>
-        <div className="center margin-3em">
+        <div>
+          <Modal isOpen={isModalOpen} onClose={handleModalToggle}>
+            <form onSubmit={handleSubmit}>
+              <div className="flex-column">
+                <div className="flex-row">
+                  <label>
+                    Shelf
+                    <select
+                      className="blue-btn"
+                      value={shelf}
+                      onChange={handleShelfChange}
+                      required
+                    >
+                      {[...Array(10).keys()].map((num) => (
+                        <option key={num + 1} value={num + 1}>
+                          {num + 1}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label>
+                    Row
+                    <select
+                      className="blue-btn"
+                      value={row}
+                      onChange={handleRowChange}
+                      required
+                    >
+                      {["A", "B", "C", "D", "E"].map((char) => (
+                        <option key={char} value={char}>
+                          {char}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+                <label>
+                  Expiration Date
+                  <input
+                    type="date"
+                    value={expires}
+                    onChange={(e) => setExpires(e.target.value)}
+                    required
+                  />
+                </label>
+                {contents.map((content, index) => (
+                  <div className="flex-row" key={index}>
+                    <select
+                      className="blue-btn"
+                      value={content.product_id}
+                      onChange={(e) => handleContentChange(index, e)}
+                      name="product_id"
+                    >
+                      <option value="">Select a product</option>
+                      {sortedProducts.map((product) => (
+                        <option key={product.id} value={product.id}>
+                          {product.name}
+                        </option>
+                      ))}
+                    </select>
+                    <label>
+                      <input
+                        type="number"
+                        placeholder="Concentration"
+                        step="0"
+                        value={content.concentration}
+                        onChange={(e) => handleContentChange(index, e)}
+                        name="concentration"
+                      />
+                    </label>
+                    {/* Disable remove button if it's the last content field */}
+                    <button
+                      className="grey-button  remove-btn"
+                      type="button"
+                      onClick={() => removeContentField(index)}
+                      disabled={contents.length === 1}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+                {errors.map((err) => (
+                  <Error key={err}>{err}</Error>
+                ))}
+                <button
+                  className="grey-button margin-top-small"
+                  type="button"
+                  onClick={addContentField}
+                >
+                  Add More Contents
+                </button>
+              </div>
+              <button type="submit" className="blue-btn margin-top-2em">
+                Submit Container
+              </button>
+              {errors.length > 0 && <Error errors={errors} />}
+            </form>
+          </Modal>
+        </div>
+        <div className="filter-container">
           <button
             onClick={handleModalToggle}
-            className="blue-btn margin-top-2em"
+            className="blue-btn add-container"
           >
             {isModalOpen ? "Cancel" : "Add a Container"}
           </button>
-          <div>
-            <Modal isOpen={isModalOpen} onClose={handleModalToggle}>
-              <form onSubmit={handleSubmit}>
-                <div className="flex-column">
-                  <div className="flex-row">
-                    <label>
-                      Shelf
-                      <select
-                        className="blue-btn"
-                        value={shelf}
-                        onChange={handleShelfChange}
-                        required
-                      >
-                        {[...Array(10).keys()].map((num) => (
-                          <option key={num + 1} value={num + 1}>
-                            {num + 1}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                    <label>
-                      Row
-                      <select
-                        className="blue-btn"
-                        value={row}
-                        onChange={handleRowChange}
-                        required
-                      >
-                        {["A", "B", "C", "D", "E"].map((char) => (
-                          <option key={char} value={char}>
-                            {char}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                  </div>
-                  <label>
-                    Expiration Date
-                    <input
-                      type="date"
-                      value={expires}
-                      onChange={(e) => setExpires(e.target.value)}
-                      required
-                    />
-                  </label>
-                  {contents.map((content, index) => (
-                    <div className="flex-row" key={index}>
-                      <select
-                        className="blue-btn"
-                        value={content.product_id}
-                        onChange={(e) => handleContentChange(index, e)}
-                        name="product_id"
-                      >
-                        <option value="">Select a product</option>
-                        {sortedProducts.map((product) => (
-                          <option key={product.id} value={product.id}>
-                            {product.name}
-                          </option>
-                        ))}
-                      </select>
-                      <label>
-                        <input
-                          type="number"
-                          placeholder="Concentration"
-                          step="0"
-                          value={content.concentration}
-                          onChange={(e) => handleContentChange(index, e)}
-                          name="concentration"
-                        />
-                      </label>
-                      {/* Disable remove button if it's the last content field */}
-                      <button
-                        className="grey-button  remove-btn"
-                        type="button"
-                        onClick={() => removeContentField(index)}
-                        disabled={contents.length === 1}
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  ))}
-                  {errors.map((err) => (
-                    <Error key={err}>{err}</Error>
-                  ))}
-                  <button
-                    className="grey-button margin-top-small"
-                    type="button"
-                    onClick={addContentField}
-                  >
-                    Add More Contents
-                  </button>
-                </div>
-                <button type="submit" className="blue-btn margin-top-2em">
-                  Submit Container
-                </button>
-                {errors.length > 0 && <Error errors={errors} />}
-              </form>
-            </Modal>
-          </div>
-        </div>
-        <div className="margin-3em filter-container">
           <label>
             Filter by Product
             <select

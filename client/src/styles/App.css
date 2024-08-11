@@ -315,10 +315,6 @@ button {
   color: white;
 }
 
-.filter-container {
-  margin: 3em;
-}
-
 .flex-column {
   display: flex;
   justify-content: center;
@@ -412,19 +408,29 @@ button {
 
 .modal-close {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0px;
+  right: 12px;
   background: none;
   border: none;
-  font-size: 1.5em;
+  font-size: 2.5em;
+}
+
+.add-container {
+  margin-top: 2em;
+  padding: 0.57em 1em;
+  max-width: fit-content;
+}
+
+.filter-container {
+  margin: 1.5rem;
 }
 
 @media (max-width: 600px) {
   #navbar {
     font-size: 0.9em;
   }
-  .inventory-table  th,
-  .inventory-table  td {
+  .inventory-table th,
+  .inventory-table td {
     padding: 0.2em; /* Adjust the padding as needed */
     /* font-size: 0.7rem; */
     font-size: 0.75em;
@@ -445,11 +451,19 @@ button {
   .logo {
     display: none;
   }
+
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 @media (min-width: 751px) {
   .filter-container {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
   }
