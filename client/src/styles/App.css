@@ -52,6 +52,15 @@ ul {
   box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
 }
 
+a {
+  color: #d4c9c1;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #d4c9c1;
+}
+
 .blue-btn:visited {
   color: white;
 }
@@ -80,18 +89,13 @@ ul {
   transition-duration: 0.15s;
 }
 
-a {
+a:visited {
+  color: #d4c9c1;
   text-decoration: none;
-  color: #3e4437;
 }
 
 td > a:visited {
   color: #3e4437;
-}
-
-a:visited {
-  color: inherit;
-  text-decoration: none;
 }
 
 .nav-container {
@@ -376,6 +380,10 @@ button {
 
 .margin-top-small {
   margin-top: 1em;
+}
+
+.margin-1em {
+  margin: 1.5em;
 }
 
 .button-width {

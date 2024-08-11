@@ -194,7 +194,7 @@ function EditContainer() {
         ))}
         <button
           type="button"
-          className="add-content-btn"
+          className="grey-button margin-1em"
           onClick={handleAddContent}
         >
           Add More Contents
