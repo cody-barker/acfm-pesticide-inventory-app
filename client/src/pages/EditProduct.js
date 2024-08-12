@@ -20,7 +20,6 @@ function EditProduct() {
     toast("Product updated!");
   };
 
-
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -70,7 +69,7 @@ function EditProduct() {
         {errors.map((err) => (
           <Error key={err}>{err}</Error>
         ))}
-        <button type="submit" className="blue-btn">
+        <button type="submit" className="btn">
           Submit
         </button>
       </form>

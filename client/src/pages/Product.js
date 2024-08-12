@@ -55,7 +55,7 @@ function Product() {
         <p>EPA Reg: {product.epa_reg}</p>
         <div className="product-options-wrapper">
           <div className="product-options">
-            <button className="blue-btn button-width">
+            <button className="btn button-width">
               <Link to={`/products/${id}/edit`}>Edit</Link>
             </button>
             <button className="remove-btn button-width" onClick={handleDelete}>

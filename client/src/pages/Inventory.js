@@ -19,6 +19,8 @@ function Inventory() {
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState(""); // State for filtering by product
   const [selectedConcentration, setSelectedConcentration] = useState(""); // State for filtering by concentration
+  const [selectedProduct2, setSelectedProduct2] = useState(""); // State for filtering by product
+  const [selectedConcentration2, setSelectedConcentration2] = useState(""); // State for filtering by concentration
   const [expires, setExpires] = useState(""); // State for expiration date
   const showToastMessage = () => {
     toast("Container added!");
@@ -139,16 +141,34 @@ function Inventory() {
     setSelectedConcentration(e.target.value);
   };
 
-  // Filter containers based on selected product and concentration
-  const filteredContainers = user.containers.filter((container) =>
-    container.contents.some(
+  const handleProductFilterChange2 = (e) => {
+    setSelectedProduct2(e.target.value);
+  };
+
+  const handleConcentrationFilterChange2 = (e) => {
+    setSelectedConcentration2(e.target.value);
+  };
+
+  // Filter containers based on selected products and concentrations
+  const filteredContainers = user.containers.filter((container) => {
+    const firstFilterMatch = container.contents.some(
       (content) =>
         (!selectedProduct ||
           content.product_id === parseInt(selectedProduct)) &&
         (!selectedConcentration ||
           content.concentration === parseInt(selectedConcentration))
-    )
-  );
+    );
+
+    const secondFilterMatch = container.contents.some(
+      (content) =>
+        (!selectedProduct2 ||
+          content.product_id === parseInt(selectedProduct2)) &&
+        (!selectedConcentration2 ||
+          content.concentration === parseInt(selectedConcentration2))
+    );
+
+    return firstFilterMatch && secondFilterMatch;
+  });
 
   // Sorting containers alphanumerically by shelf and row
   const sortedContainers = filteredContainers.slice().sort((a, b) => {
@@ -241,7 +261,7 @@ function Inventory() {
                   <label>
                     Shelf
                     <select
-                      className="blue-btn"
+                      className="btn"
                       value={shelf}
                       onChange={handleShelfChange}
                       required
@@ -256,7 +276,7 @@ function Inventory() {
                   <label>
                     Row
                     <select
-                      className="blue-btn"
+                      className="btn"
                       value={row}
                       onChange={handleRowChange}
                       required
@@ -281,7 +301,7 @@ function Inventory() {
                 {contents.map((content, index) => (
                   <div className="flex-row" key={index}>
                     <select
-                      className="blue-btn"
+                      className="btn"
                       value={content.product_id}
                       onChange={(e) => handleContentChange(index, e)}
                       name="product_id"
@@ -325,7 +345,7 @@ function Inventory() {
                   Add More Contents
                 </button>
               </div>
-              <button type="submit" className="blue-btn margin-top-2em">
+              <button type="submit" className="btn margin-top-2em">
                 Submit Container
               </button>
               {errors.length > 0 && <Error errors={errors} />}
@@ -333,17 +353,14 @@ function Inventory() {
           </Modal>
         </div>
         <div className="filter-container">
-          <button
-            onClick={handleModalToggle}
-            className="blue-btn add-container"
-          >
+          <button onClick={handleModalToggle} className="btn add-container">
             {isModalOpen ? "Cancel" : "Add a Container"}
           </button>
           <label>
             <select
               value={selectedProduct}
               onChange={handleProductFilterChange}
-              className="blue-btn"
+              className="btn"
             >
               <option value="">All Products</option>
               {sortedProducts.map((product) => (
@@ -357,7 +374,35 @@ function Inventory() {
             <select
               value={selectedConcentration}
               onChange={handleConcentrationFilterChange}
-              className="blue-btn"
+              className="btn"
+            >
+              <option value="">All Concentrations</option>
+              {uniqueConcentrations.map((concentration) => (
+                <option key={concentration} value={concentration}>
+                  {concentration}%
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <select
+              value={selectedProduct2}
+              onChange={handleProductFilterChange2}
+              className="btn"
+            >
+              <option value="">All Products</option>
+              {sortedProducts.map((product) => (
+                <option key={product.id} value={product.id}>
+                  {product.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="filter">
+            <select
+              value={selectedConcentration2}
+              onChange={handleConcentrationFilterChange2}
+              className="btn"
             >
               <option value="">All Concentrations</option>
               {uniqueConcentrations.map((concentration) => (

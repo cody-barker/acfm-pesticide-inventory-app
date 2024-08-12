@@ -79,7 +79,7 @@ function Products() {
   return (
     <div className="table-container">
       <div className="center margin-3em">
-        <button onClick={handleVis} className="blue-btn">
+        <button onClick={handleVis} className="btn">
           {vis ? "Cancel" : "Add a Product"}
         </button>
         <div>
@@ -104,7 +104,7 @@ function Products() {
               {errors.map((err) => (
                 <Error key={err}>{err}</Error>
               ))}
-              <button type="submit" className="blue-btn product-submit">
+              <button type="submit" className="btn product-submit">
                 Submit Product
               </button>
             </form>

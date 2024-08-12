@@ -119,11 +119,7 @@ function EditContainer() {
         <div className="flex-row">
           <label>
             Shelf
-            <select
-              className="blue-btn"
-              value={shelf}
-              onChange={handleShelfChange}
-            >
+            <select className="btn" value={shelf} onChange={handleShelfChange}>
               {[...Array(10).keys()].map((i) => (
                 <option key={i + 1} value={i + 1}>
                   {i + 1}
@@ -133,7 +129,7 @@ function EditContainer() {
           </label>
           <label>
             Row
-            <select className="blue-btn" value={row} onChange={handleRowChange}>
+            <select className="btn" value={row} onChange={handleRowChange}>
               {["A", "B", "C", "D", "E"].map((r) => (
                 <option key={r} value={r}>
                   {r}
@@ -157,7 +153,7 @@ function EditContainer() {
             <label>
               Product
               <select
-                className="blue-btn"
+                className="btn"
                 value={content.product_id}
                 required
                 onChange={(e) =>
@@ -199,7 +195,7 @@ function EditContainer() {
         >
           Add More Contents
         </button>
-        <button type="submit" className="blue-btn">
+        <button type="submit" className="btn">
           Submit
         </button>
       </form>

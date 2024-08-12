@@ -51,7 +51,7 @@ function LoginForm() {
         ></input>
       </label>
 
-      <button className="blue-btn" type="submit">
+      <button className="btn" type="submit">
         {isLoading ? "Loading..." : "Login"}
       </button>
 
