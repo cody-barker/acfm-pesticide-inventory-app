@@ -23,7 +23,13 @@ function App() {
   }
 
   if (!user) {
-    return <Login />;
+    return (
+      <div className="page-container">
+        <div className="content-wrap">
+          <Login />
+        </div>
+      </div>
+    );
   }
 
   return (
