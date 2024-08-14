@@ -315,8 +315,9 @@ function Inventory() {
                     </select>
                     <label>
                       <input
+                        className="concentration-input"
                         type="number"
-                        placeholder="Concentration %"
+                        placeholder="%"
                         step="0"
                         value={content.concentration}
                         onChange={(e) => handleContentChange(index, e)}

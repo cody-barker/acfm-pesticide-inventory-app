@@ -52,6 +52,14 @@ ul {
   box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
 }
 
+td > a {
+  color: #3e4437;
+}
+
+td > a:visited {
+  color: #3e4437;
+}
+
 a {
   color: #d4c9c1;
   text-decoration: none;
@@ -59,6 +67,7 @@ a {
 
 a:visited {
   color: #d4c9c1;
+  text-decoration: none;
 }
 
 .blue-btn:visited {
@@ -87,15 +96,6 @@ a:visited {
 .remove-btn:hover {
   opacity: 0.8;
   transition-duration: 0.15s;
-}
-
-a:visited {
-  color: #d4c9c1;
-  text-decoration: none;
-}
-
-td > a:visited {
-  color: #3e4437;
 }
 
 .nav-container {
@@ -127,11 +127,6 @@ td > a:visited {
   padding: 0 1em;
 }
 
-.logo {
-  font-size: 1.1rem;
-  padding-right: 10px;
-}
-
 .logo-img {
   display: flex;
   justify-content: flex-start;
@@ -158,6 +153,15 @@ input {
 input:focus {
   outline: none;
   opacity: 90%;
+}
+
+.concentration-input::placeholder {
+  text-align: right;
+  margin-right: 1em;
+}
+
+.concentration-input {
+  min-width: 5em;
 }
 
 ::placeholder {
@@ -285,10 +289,11 @@ table tr:nth-of-type(even) {
   align-items: center;
   text-align: center; /* Optional: Center text inside the container */
   margin-top: 3em; /* Adjust margin as needed */
+  width: 100%;
 }
 
 .product-options-wrapper {
-  width: 40%;
+  width: 60%;
   margin: 0 auto;
 }
 
@@ -463,6 +468,12 @@ b {
   color: #3e4437;
 }
 
+@media (max-width: 400px) {
+  .modal-close {
+    right: 50px;
+  }
+}
+
 @media (max-width: 600px) {
   #navbar {
     font-size: 0.9em;
@@ -474,8 +485,16 @@ b {
     font-size: 0.75em;
   }
 
-  .logo {
-    display: none;
+  select,
+  input,
+  button,
+  span,
+  label {
+    font-size: 0.9em;
+  }
+
+  form {
+    padding: 0;
   }
 }
 
@@ -489,10 +508,6 @@ table th {
   .inventory-table td {
     padding: 0.3em; /* Adjust the padding as needed */
     /* font-size: 0.7rem; */
-  }
-
-  .logo {
-    display: none;
   }
 }
 

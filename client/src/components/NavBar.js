@@ -28,8 +28,8 @@ function NavBar() {
             alt="logo"
           ></img>
         </NavLink>
-        <NavLink to="/">
-          <h2 className="logo">ACFM Pesticide Inventory</h2>
+        <NavLink className="nav-btn" to="/">
+          Inventory
         </NavLink>
         <NavLink className="nav-btn" to="/concentrates">
           Concentrates
