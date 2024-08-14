@@ -52,6 +52,10 @@ ul {
   box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
 }
 
+td {
+  color: #3e4437;
+}
+
 td > a {
   color: #3e4437;
 }
@@ -132,8 +136,8 @@ a:visited {
   justify-content: flex-start;
   align-items: center;
   width: 3em;
-  height: 1.75em;
-  padding: 0 10px;
+  height: 2.5em;
+  padding: 0;
 }
 
 input {
@@ -471,6 +475,12 @@ b {
 @media (max-width: 400px) {
   .modal-close {
     right: 50px;
+  }
+}
+
+@media (max-width: 500px) {
+  .nav-btn {
+    padding: 0.5em;
   }
 }
 
