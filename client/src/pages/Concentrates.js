@@ -40,6 +40,11 @@ function Concentrates() {
     <div className="table-container">
       <table className="table margin-top-2em">
         <thead>
+          <tr>
+            <th colSpan="2" className="table-title">
+              Concentrates
+            </th>
+          </tr>
           <tr className="table-header-row">
             <th>Product</th>
             <th>Quantity</th>

@@ -241,6 +241,10 @@ select:hover {
   box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
 }
 
+.table .table-title {
+  text-align: center;
+}
+
 .table th,
 .table td {
   padding: 1em;
