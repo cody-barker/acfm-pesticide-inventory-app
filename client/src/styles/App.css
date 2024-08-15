@@ -469,6 +469,12 @@ button {
   color: #3e4437;
 }
 
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .add-container {
   padding: 0.57em 1em;
   max-width: fit-content;

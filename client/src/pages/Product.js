@@ -1,11 +1,13 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ProductsContext } from "../contexts/ProductsContext";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import Modal from "../components/Modal"; // Import the Modal component
 import "react-toastify/dist/ReactToastify.css";
 
 function Product() {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
 
   let { id } = useParams();
   id = parseInt(id);
@@ -49,8 +51,6 @@ function Product() {
   return (
     <div className="container">
       <div className="product">
-        {" "}
-        {/* Apply 'product' class here */}
         <h1>{product.name}</h1>
         <p>EPA Reg: {product.epa_reg}</p>
         <div className="product-options-wrapper">
@@ -58,16 +58,36 @@ function Product() {
             <button className="btn button-width">
               <Link to={`/products/${id}/edit`}>Edit</Link>
             </button>
-            <button className="remove-btn button-width" onClick={handleDelete}>
+            <button
+              className="remove-btn button-width"
+              onClick={() => setIsModalOpen(true)} // Open the modal
+            >
               Remove
             </button>
           </div>
-          <p className="errors">
-            Warning: Removing a product will remove it from all containers with
-            that product.
-          </p>
         </div>
       </div>
+
+      {/* Modal for delete confirmation */}
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <h2>Are you sure you want to remove this product?</h2>
+        <p className="errors">
+          Warning: This action will remove the product from all containers that
+          include it.
+        </p>
+        <div className="modal-buttons">
+          <button className="btn" onClick={handleDelete}>
+            Yes
+          </button>
+          <button
+            className="btn"
+            onClick={() => setIsModalOpen(false)} // Close the modal on No
+          >
+            No
+          </button>
+        </div>
+      </Modal>
+
       <ToastContainer autoClose={2000} />
     </div>
   );
