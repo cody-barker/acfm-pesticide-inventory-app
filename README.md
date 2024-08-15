@@ -16,13 +16,13 @@ In the project directory, you can run:
 
 ### Backend
 
--bundle install
--rails s
+- bundle install
+- rails s
 
 ### Frontend
 
--npm install --prefix client
--npm start --prefix client
+- npm install --prefix client
+- npm start --prefix client
 
 ## Support
 
