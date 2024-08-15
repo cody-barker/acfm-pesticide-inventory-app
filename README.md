@@ -9,6 +9,7 @@ This app allows employees to:
 - view all of the premixed containers and concentrates in inventory and their quantities
 - search for specific premixes with up to 2 different products and concentrations
 - add, remove, and update products and premixed containers in inventory
+- see when a premix is soon to expire
 
 ## Available Scripts
 
