@@ -9,3 +9,30 @@ This app allows employees to:
 - view all of the premixed containers and concentrates in inventory and their quantities
 - search for specific premixes with up to 2 different products and concentrations
 - add, remove, and update products and premixed containers in inventory
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### Backend
+
+bundle install
+rails s
+Runs a local server to host the data.
+
+### Frontend
+
+npm install --prefix client
+npm start --prefix client
+
+## Support
+
+e: codybarker.or@gmail.com
+
+## Project Status
+
+Unlicensed
+
+## Author
+
+Cody Barker https://codybarker.dev
