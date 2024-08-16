@@ -201,6 +201,11 @@ function Inventory() {
   );
 
   const tableRows = sortedContainers.map((container) => {
+    // Sort the contents of each container by concentration in descending order
+    const sortedContents = container.contents.slice().sort((a, b) => {
+      return b.concentration - a.concentration;
+    });
+
     // Calculate 3 months from today
     const today = new Date();
     const threeMonthsFromNow = new Date(
@@ -235,7 +240,7 @@ function Inventory() {
             {container.row}
           </NavLink>
         </td>
-        {container.contents.map((content, index) => (
+        {sortedContents.map((content, index) => (
           <td key={index}>
             <NavLink to={`/containers/${container.id}`} className="navlink">
               {content.concentration}%{" "}

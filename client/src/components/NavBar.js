@@ -37,6 +37,9 @@ function NavBar() {
         <NavLink className="nav-btn" to="/products">
           Products
         </NavLink>
+        <NavLink className="nav-btn" to="/help">
+          Help
+        </NavLink>
         <NavLink onClick={handleLogout} className="nav-btn" to="/">
           Logout
         </NavLink>

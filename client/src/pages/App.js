@@ -13,6 +13,7 @@ import Container from "./Container";
 import EditContainer from "./EditContainer";
 import Footer from "../components/Footer";
 import Concentrates from "./Concentrates";
+import Help from "./Help";
 
 function App() {
   const { user, loading: userLoading } = useContext(UserContext);
@@ -47,6 +48,7 @@ function App() {
             <Route path="/containers/:id" element={<Container />} />
             <Route path="/containers/:id/edit" element={<EditContainer />} />
             <Route path="/concentrates" element={<Concentrates />} />
+            <Route path="/help" element={<Help />} />
           </Routes>
         </main>
       </div>
