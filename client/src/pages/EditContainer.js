@@ -29,12 +29,10 @@ function EditContainer() {
       setShelf(container.shelf);
       setRow(container.row);
       setContents(
-        container.contents
-          .map((content) => ({
-            ...content,
-            id: content.id || null,
-          }))
-          .sort((a, b) => b.concentration - a.concentration) // Sort by concentration
+        container.contents.map((content) => ({
+          ...content,
+          id: content.id || null,
+        }))
       );
       setExpires(container.expires); // Prefill expires with current container's expires
     }
@@ -56,17 +54,11 @@ function EditContainer() {
       // Handle empty input by setting to null or an empty string
       updatedContents[index][key] = value === "" ? null : parseFloat(value);
     }
-    setContents(
-      updatedContents.sort((a, b) => b.concentration - a.concentration) // Resort contents on change
-    );
+    setContents(updatedContents);
   }
 
   function handleAddContent() {
-    setContents(
-      [...contents, { product_id: "", concentration: null }].sort(
-        (a, b) => b.concentration - a.concentration
-      ) // Resort contents after adding new one
-    );
+    setContents([...contents, { product_id: "", concentration: null }]);
   }
 
   function handleExpiresChange(event) {
@@ -148,7 +140,7 @@ function EditContainer() {
           <label>
             Expires:
             <input
-              type="date" // Use type "date" for date-only input
+              type="date" // Use type "date" for date only input
               value={expires}
               onChange={handleExpiresChange}
               name="expires"
