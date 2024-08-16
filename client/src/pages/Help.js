@@ -5,17 +5,17 @@ function Help() {
 
   const topics = [
     {
-      title: "How do I find premix or concentrate in the chem shed?",
+      title: "How do I find containers in the chem shed?",
       content:
         "Inventory -> All Products -> Select a Product -> All Concentrations (optional) -> Select a Concentration (optional). You may select a second product and concentration if the prescription contains more than one pesticide. Cross reference the Shelving Layout image at the bottom of the page with the container's shelf and row to find its location.",
     },
     {
-      title: "How do I add premix or concentrate to the chem shed?",
-      content: "Inventory -> Add a Container.",
+      title: "How do I add a container to the chem shed?",
+      content:
+        "Inventory -> Add a Container. By default, the expiration date is set 2 years from today.",
     },
     {
-      title:
-        "How do I remove premix from the chem shed for a spray trailer/small spray setup?",
+      title: "How do I remove containers from the chem shed for use?",
       content:
         "Inventory -> Click anywhere on a container's row in the table -> Remove. When removing a container, push the rest of the containers in that row to the back, so that others can see which rows have space for more containers.",
     },

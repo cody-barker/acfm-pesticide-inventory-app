@@ -5,7 +5,6 @@ import { UserContext } from "../contexts/UserContext";
 function NavBar() {
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
-  // const { id } = user;
 
   function handleLogout() {
     fetch("/logout", {
@@ -24,7 +23,7 @@ function NavBar() {
         <NavLink to="/">
           <img
             className="logo-img"
-            src="/assets/acfm-logo.svg"
+            src="/assets/acfm_logo_transparent.svg"
             alt="logo"
           ></img>
         </NavLink>
