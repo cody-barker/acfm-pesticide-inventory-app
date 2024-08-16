@@ -533,8 +533,7 @@ span {
 }
 
 .shelving-img {
-  max-width: 35%;
-  min-width: 350px;
+  width: 350px;
   height: auto;
   margin-top: 2em;
 }
