@@ -18,6 +18,7 @@ ul {
   padding: 0;
 }
 
+
 .page-container {
   display: flex;
   flex-direction: column;
@@ -510,6 +511,12 @@ span {
   color: #3e4437;
 }
 
+.help-wrapper {
+  width: 98%;
+  margin: 0 auto;
+  height: auto;
+}
+
 .help-topic {
   cursor: pointer;
   padding: 10px;
@@ -521,7 +528,6 @@ span {
 .help-content {
   padding: 10px;
   /* background-color: #ffffff; */
-  border-left: 0.25em solid #ccc;
   margin-left: 10px;
 }
 
