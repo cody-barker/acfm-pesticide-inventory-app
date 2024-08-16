@@ -41,6 +41,14 @@ ul {
   color: #d4c9c1;
 }
 
+.footer span {
+  color: #d4c9c1;
+}
+
+.footer .link {
+  color: #a2ac94;
+}
+
 .btn {
   background: #404c24;
   color: #d4c9c1;
@@ -604,6 +612,7 @@ table th {
     flex-direction: row;
     justify-content: space-between;
   }
+
   .nav-links {
     display: none;
     flex-direction: column;
