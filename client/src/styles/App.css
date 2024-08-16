@@ -528,6 +528,7 @@ span {
   select,
   input,
   button,
+  .link-button,
   span,
   label {
     font-size: 0.9em;
