@@ -12,7 +12,7 @@ This app allows employees to:
 - see when a premix is soon to expire
 
 <video width="1920" height="1080" controls>
-  <source src="assets/demo_video.mp4" type="video/mp4">
+  <source src="https://youtu.be/Yj-KRJet66A" type="video/mp4">
 </video>
 
 ## Available Scripts
