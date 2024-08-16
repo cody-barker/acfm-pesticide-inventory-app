@@ -13,7 +13,16 @@ This app allows employees to:
 
 ## Demo
 
-Watch the demo video on [YouTube](https://youtu.be/Yj-KRJet66A).
+  <iframe
+          className="demo-video"
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/Yj-KRJet66A?si=j6hYEBCETdSe3szX"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+          referrerPolicy="strict-origin-when-cross-origin"
+        ></iframe>
 
 ## Available Scripts
 
