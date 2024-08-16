@@ -5,6 +5,18 @@ function Help() {
 
   const topics = [
     {
+      title: "How is the chem shed organized?",
+      content: (
+        <div className="shelving-img-wrapper">
+          <img
+            className="shelving-img"
+            src="assets/shelving.png"
+            alt="Shelving Layout"
+          />
+        </div>
+      ),
+    },
+    {
       title: "How do I find containers in the chem shed?",
       content:
         "Inventory -> All Products -> Select a Product -> All Concentrations (optional) -> Select a Concentration (optional). You may select a second product and concentration if the prescription contains more than one pesticide. Cross reference the Shelving Layout image at the bottom of the page with the container's shelf and row to find its location.",
@@ -60,19 +72,23 @@ function Help() {
               <strong>{topic.title}</strong>
             </div>
             {expandedRows.includes(index) && (
-              <div className="help-content">
-                <p>{topic.content}</p>
-              </div>
+              <div className="help-content">{topic.content}</div>
             )}
           </div>
         ))}
       </div>
-      <div className="shelving-img-wrapper">
-        <img
-          className="shelving-img"
-          src="assets/shelving.png"
-          alt="Shelving Layout"
-        />
+      <div className="video-wrapper">
+        <h2>Video Tutorial</h2>
+        <iframe
+          className="demo-video"
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/Yj-KRJet66A?si=j6hYEBCETdSe3szX"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+          referrerPolicy="strict-origin-when-cross-origin"
+        ></iframe>
       </div>
     </div>
   );

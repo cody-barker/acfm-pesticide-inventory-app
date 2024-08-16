@@ -539,6 +539,14 @@ span {
   margin-top: 2em;
 }
 
+.video-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
+}
+
 @media (max-width: 400px) {
   .modal-close {
     right: 50px;
