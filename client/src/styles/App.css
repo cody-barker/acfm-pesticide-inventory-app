@@ -502,6 +502,35 @@ span {
   color: #3e4437;
 }
 
+.help-topic {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #a2ac94;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+.help-content {
+  padding: 10px;
+  /* background-color: #ffffff; */
+  border-left: 0.25em solid #ccc;
+  margin-left: 10px;
+}
+
+.shelving-img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.shelving-img {
+  max-width: 35%;
+  min-width: 350px;
+  height: auto;
+  margin-top: 2em;
+}
+
 @media (max-width: 400px) {
   .modal-close {
     right: 50px;
