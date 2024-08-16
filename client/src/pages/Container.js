@@ -73,6 +73,11 @@ function Container() {
   // Calculate the number of contents in the container
   const numContents = container.contents.length;
 
+  // Sort the contents by concentration in descending order
+  const sortedContents = container.contents
+    .slice()
+    .sort((a, b) => b.concentration - a.concentration);
+
   return (
     <div className="flex-column-center">
       <table className="inventory-table margin-top-4em">
@@ -91,7 +96,7 @@ function Container() {
             </td>
             <td>{container.shelf}</td>
             <td>{container.row}</td>
-            {container.contents.map((content, index) => (
+            {sortedContents.map((content, index) => (
               <td key={index}>
                 {content.concentration}% {""}
                 {
