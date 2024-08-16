@@ -11,6 +11,10 @@ This app allows employees to:
 - add, remove, and update products and premixed containers in inventory
 - see when a premix is soon to expire
 
+<video width="1920" height="1080" controls>
+  <source src="assets/demo_video.mp4" type="video/mp4">
+</video>
+
 ## Available Scripts
 
 In the project directory, you can run:
