@@ -52,6 +52,11 @@ ul {
   box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
 }
 
+.btn:hover {
+  opacity: 0.8;
+  transition-duration: 0.15s;
+}
+
 td {
   color: #3e4437;
 }
@@ -306,13 +311,15 @@ table tr:nth-of-type(even) {
 }
 
 .product-options-wrapper {
+  display: flex;
   width: 60%;
-  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-options {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
@@ -391,6 +398,12 @@ button {
 .grey-button:hover {
   opacity: 0.8;
   transition-duration: 0.15s;
+}
+
+.link-button {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
 }
 
 .margin-top {
@@ -484,7 +497,8 @@ button {
   margin: 1.5rem;
 }
 
-b {
+b,
+span {
   color: #3e4437;
 }
 

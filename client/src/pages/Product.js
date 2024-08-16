@@ -55,9 +55,9 @@ function Product() {
         <p>EPA Reg: {product.epa_reg}</p>
         <div className="product-options-wrapper">
           <div className="product-options">
-            <button className="btn button-width">
-              <Link to={`/products/${id}/edit`}>Edit</Link>
-            </button>
+            <Link to={`/products/${id}/edit`}>
+              <button className="btn button-width link-button">Edit</button>
+            </Link>
             <button
               className="remove-btn button-width"
               onClick={() => setIsModalOpen(true)} // Open the modal
