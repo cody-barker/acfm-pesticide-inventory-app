@@ -12,17 +12,10 @@ This app allows employees to:
 - see when a premix is soon to expire
 
 ## Demo
+## Demo
 
-  <iframe
-          className="demo-video"
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/Yj-KRJet66A?si=j6hYEBCETdSe3szX"
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-          referrerPolicy="strict-origin-when-cross-origin"
-        ></iframe>
+[![Watch the video](https://img.youtube.com/vi/Yj-KRJet66A/maxresdefault.jpg)](https://www.youtube.com/watch?v=Yj-KRJet66A)
+
 
 ## Available Scripts
 
