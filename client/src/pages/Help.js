@@ -12,7 +12,7 @@ function Help() {
     {
       title: "How do I add a container to the chem shed?",
       content:
-        "Inventory -> Add a Container. By default, the expiration date is set 2 years from today.",
+        "Inventory -> Add a Container. By default, the expiration date is set 2 years from today, and the date will turn red if the product expires within 3 months.",
     },
     {
       title: "How do I remove containers from the chem shed for use?",
