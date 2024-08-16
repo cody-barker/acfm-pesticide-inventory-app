@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 
 function NavBar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
 
@@ -17,6 +18,14 @@ function NavBar() {
     });
   }
 
+  function toggleMenu() {
+    setIsMenuOpen(!isMenuOpen);
+  }
+
+  function closeMenu() {
+    setIsMenuOpen(false);
+  }
+
   return (
     <div className="nav-container">
       <nav id="navbar">
@@ -25,23 +34,36 @@ function NavBar() {
             className="logo-img"
             src="/assets/acfm_logo_transparent.svg"
             alt="logo"
-          ></img>
+          />
         </NavLink>
-        <NavLink className="nav-btn" to="/">
-          Inventory
-        </NavLink>
-        <NavLink className="nav-btn" to="/concentrates">
-          Concentrates
-        </NavLink>
-        <NavLink className="nav-btn" to="/products">
-          Products
-        </NavLink>
-        <NavLink className="nav-btn" to="/help">
-          Help
-        </NavLink>
-        <NavLink onClick={handleLogout} className="nav-btn" to="/">
-          Logout
-        </NavLink>
+        <button className="menu-toggle" onClick={toggleMenu}>
+          <span className="hamburger-icon">&#9776;</span>{" "}
+          {/* Simple hamburger icon */}
+        </button>
+        <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
+          <NavLink className="nav-btn" to="/" onClick={closeMenu}>
+            Inventory
+          </NavLink>
+          <NavLink className="nav-btn" to="/concentrates" onClick={closeMenu}>
+            Concentrates
+          </NavLink>
+          <NavLink className="nav-btn" to="/products" onClick={closeMenu}>
+            Products
+          </NavLink>
+          <NavLink className="nav-btn" to="/help" onClick={closeMenu}>
+            Help
+          </NavLink>
+          <NavLink
+            className="nav-btn"
+            to="/"
+            onClick={() => {
+              handleLogout();
+              closeMenu();
+            }}
+          >
+            Logout
+          </NavLink>
+        </div>
       </nav>
     </div>
   );
