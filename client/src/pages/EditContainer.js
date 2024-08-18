@@ -202,7 +202,7 @@ function EditContainer() {
                 </label>
                 <button
                   type="button"
-                  className="btn"
+                  className="btn remove-btn edit-remove-btn"
                   onClick={() => handleRemoveContent(index)}
                 >
                   Remove
