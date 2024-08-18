@@ -156,7 +156,7 @@ function Inventory() {
         (!selectedProduct ||
           content.product_id === parseInt(selectedProduct)) &&
         (!selectedConcentration ||
-          content.concentration === parseInt(selectedConcentration))
+          content.concentration === parseFloat(selectedConcentration))
     );
 
     const secondFilterMatch = container.contents.some(
@@ -164,7 +164,7 @@ function Inventory() {
         (!selectedProduct2 ||
           content.product_id === parseInt(selectedProduct2)) &&
         (!selectedConcentration2 ||
-          content.concentration === parseInt(selectedConcentration2))
+          content.concentration === parseFloat(selectedConcentration2))
     );
 
     return firstFilterMatch && secondFilterMatch;
