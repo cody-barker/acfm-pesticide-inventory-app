@@ -13,7 +13,7 @@ function EditContainer() {
   const { user, setUser } = useContext(UserContext);
   const { products } = useContext(ProductsContext);
 
-  const container = user.containers.find((container) => container.id === id);
+  let container = user.containers.find((container) => container.id === id);
 
   const [shelf, setShelf] = useState(container?.shelf || "");
   const [row, setRow] = useState(container?.row || "");
@@ -51,7 +51,6 @@ function EditContainer() {
     if (key === "product_id") {
       updatedContents[index][key] = value;
     } else if (key === "concentration") {
-      // Handle empty input by setting to null or an empty string
       updatedContents[index][key] = value === "" ? null : parseFloat(value);
     }
     setContents(updatedContents);
@@ -59,6 +58,13 @@ function EditContainer() {
 
   function handleAddContent() {
     setContents([...contents, { product_id: "", concentration: null }]);
+  }
+
+  function handleRemoveContent(index) {
+    const updatedContents = contents.map((content, idx) =>
+      idx === index ? { ...content, _destroy: true } : content
+    );
+    setContents(updatedContents);
   }
 
   function handleExpiresChange(event) {
@@ -74,7 +80,7 @@ function EditContainer() {
       row,
       expires, // Include updated expires date for the entire container
       contents_attributes: contents.map((content) => {
-        if (content.id && !content.product_id) {
+        if (content._destroy || (!content.product_id && content.id)) {
           return { ...content, _destroy: true };
         }
         return content;
@@ -148,46 +154,62 @@ function EditContainer() {
           </label>
         </div>
 
-        {contents.map((content, index) => (
-          <div key={index} className="flex-row">
-            <label>
-              Product
-              <select
-                className="btn"
-                value={content.product_id}
-                required
-                onChange={(e) =>
-                  handleContentChange(
-                    index,
-                    "product_id",
-                    parseInt(e.target.value)
-                  )
-                }
-              >
-                <option value="">Select a product</option>
-                {products.map((product) => (
-                  <option key={product.id} value={product.id}>
-                    {product.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Concentration
-              <input
-                type="number"
-                required
-                step="any" // Allow decimal values
-                value={
-                  content.concentration === null ? "" : content.concentration
-                } // Handle empty values
-                onChange={(e) =>
-                  handleContentChange(index, "concentration", e.target.value)
-                }
-              />
-            </label>
-          </div>
-        ))}
+        {contents.map(
+          (content, index) =>
+            !content._destroy && (
+              <div key={index} className="flex-row">
+                <label>
+                  Product
+                  <select
+                    className="btn"
+                    value={content.product_id}
+                    required
+                    onChange={(e) =>
+                      handleContentChange(
+                        index,
+                        "product_id",
+                        parseInt(e.target.value)
+                      )
+                    }
+                  >
+                    <option value="">Select a product</option>
+                    {products.map((product) => (
+                      <option key={product.id} value={product.id}>
+                        {product.name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Concentration
+                  <input
+                    type="number"
+                    required
+                    step="any" // Allow decimal values
+                    value={
+                      content.concentration === null
+                        ? ""
+                        : content.concentration
+                    } // Handle empty values
+                    onChange={(e) =>
+                      handleContentChange(
+                        index,
+                        "concentration",
+                        e.target.value
+                      )
+                    }
+                  />
+                </label>
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => handleRemoveContent(index)}
+                >
+                  Remove
+                </button>
+              </div>
+            )
+        )}
         <button
           type="button"
           className="grey-button margin-1em"
