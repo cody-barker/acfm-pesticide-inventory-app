@@ -526,7 +526,6 @@ span {
 
 .help-content {
   padding: 10px;
-  /* background-color: #ffffff; */
   margin-left: 10px;
 }
 
@@ -553,6 +552,12 @@ span {
 
 .edit-remove-btn {
   margin-top: 1.8em;
+}
+
+.not-found {
+  text-align: center;
+  padding: 4em;
+  color: rgb(62, 68, 55);
 }
 
 @media (max-width: 400px) {

@@ -14,6 +14,7 @@ import EditContainer from "./EditContainer";
 import Footer from "../components/Footer";
 import Concentrates from "./Concentrates";
 import Help from "./Help";
+import NotFound from "./NotFound"; // Import the NotFound component
 
 function App() {
   const { user, loading: userLoading } = useContext(UserContext);
@@ -49,6 +50,7 @@ function App() {
             <Route path="/containers/:id/edit" element={<EditContainer />} />
             <Route path="/concentrates" element={<Concentrates />} />
             <Route path="/help" element={<Help />} />
+            <Route path="*" element={<NotFound />} /> {/* 404 Route */}
           </Routes>
         </main>
       </div>
