@@ -79,13 +79,13 @@ function Products() {
   return (
     <div className="table-container">
       <div className="center margin-3em">
-        <button onClick={handleVis} className="btn">
+        <button onClick={handleVis} className="button">
           {vis ? "Cancel" : "Add a Product"}
         </button>
         <div>
           {vis ? (
-            <form onSubmit={handleSubmit}>
-              <label>
+            <form className="form" onSubmit={handleSubmit}>
+              <label className="form__label">
                 Product Name
                 <input
                   type="text"
@@ -93,7 +93,7 @@ function Products() {
                   onChange={handleNameChange}
                 ></input>
               </label>
-              <label>
+              <label className="form__label">
                 EPA Reg #
                 <input
                   type="text"
@@ -104,7 +104,7 @@ function Products() {
               {errors.map((err) => (
                 <Error key={err}>{err}</Error>
               ))}
-              <button type="submit" className="btn product-submit">
+              <button type="submit" className="button button--submit">
                 Submit Product
               </button>
             </form>

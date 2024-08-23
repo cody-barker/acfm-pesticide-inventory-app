@@ -41,20 +41,24 @@ function NavBar() {
           {/* Simple hamburger icon */}
         </button>
         <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
-          <NavLink className="nav-btn" to="/" onClick={closeMenu}>
+          <NavLink className="nav-button" to="/" onClick={closeMenu}>
             Inventory
           </NavLink>
-          <NavLink className="nav-btn" to="/concentrates" onClick={closeMenu}>
+          <NavLink
+            className="nav-button"
+            to="/concentrates"
+            onClick={closeMenu}
+          >
             Concentrates
           </NavLink>
-          <NavLink className="nav-btn" to="/products" onClick={closeMenu}>
+          <NavLink className="nav-button" to="/products" onClick={closeMenu}>
             Products
           </NavLink>
-          <NavLink className="nav-btn" to="/help" onClick={closeMenu}>
+          <NavLink className="nav-button" to="/help" onClick={closeMenu}>
             Help
           </NavLink>
           <NavLink
-            className="nav-btn"
+            className="nav-button"
             to="/"
             onClick={() => {
               handleLogout();

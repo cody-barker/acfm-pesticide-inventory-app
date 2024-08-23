@@ -110,10 +110,13 @@ function Container() {
       </table>
       <div className="product-options-wrapper">
         <div className="product-options">
-          <Link to={`/containers/${id}/edit`} className="btn button-width link-button">
+          <Link
+            to={`/containers/${id}/edit`}
+            className="button button-width link-button"
+          >
             Edit
           </Link>
-          <button className="remove-btn" onClick={handleDelete}>
+          <button className="button--remove" onClick={handleDelete}>
             Remove
           </button>
         </div>

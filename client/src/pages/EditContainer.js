@@ -120,12 +120,16 @@ function EditContainer() {
   }
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
-        <div className="flex-row">
-          <label>
+    <div className="edit-container">
+      <form className="edit-container__form" onSubmit={handleSubmit}>
+        <div className="edit-container__form-row">
+          <label className="edit-container__label">
             Shelf
-            <select className="btn" value={shelf} onChange={handleShelfChange}>
+            <select
+              className="edit-container__select button"
+              value={shelf}
+              onChange={handleShelfChange}
+            >
               {[...Array(10).keys()].map((i) => (
                 <option key={i + 1} value={i + 1}>
                   {i + 1}
@@ -133,9 +137,13 @@ function EditContainer() {
               ))}
             </select>
           </label>
-          <label>
+          <label className="edit-container__label">
             Row
-            <select className="btn" value={row} onChange={handleRowChange}>
+            <select
+              className="edit-container__select  button"
+              value={row}
+              onChange={handleRowChange}
+            >
               {["A", "B", "C", "D", "E"].map((r) => (
                 <option key={r} value={r}>
                   {r}
@@ -143,10 +151,11 @@ function EditContainer() {
               ))}
             </select>
           </label>
-          <label>
+          <label className="edit-container__label">
             Expires:
             <input
-              type="date" // Use type "date" for date only input
+              className="edit-container__input"
+              type="date"
               value={expires}
               onChange={handleExpiresChange}
               name="expires"
@@ -157,11 +166,11 @@ function EditContainer() {
         {contents.map(
           (content, index) =>
             !content._destroy && (
-              <div key={index} className="flex-row">
-                <label>
+              <div key={index} className="edit-container__form-row">
+                <label className="edit-container__label">
                   Product
                   <select
-                    className="btn"
+                    className="edit-container__select button"
                     value={content.product_id}
                     required
                     onChange={(e) =>
@@ -180,17 +189,18 @@ function EditContainer() {
                     ))}
                   </select>
                 </label>
-                <label>
+                <label className="edit-container__label">
                   Concentration
                   <input
+                    className="edit-container__input"
                     type="number"
                     required
-                    step="any" // Allow decimal values
+                    step="any"
                     value={
                       content.concentration === null
                         ? ""
                         : content.concentration
-                    } // Handle empty values
+                    }
                     onChange={(e) =>
                       handleContentChange(
                         index,
@@ -202,7 +212,7 @@ function EditContainer() {
                 </label>
                 <button
                   type="button"
-                  className="btn remove-btn edit-remove-btn"
+                  className="edit-container__button button--remove"
                   onClick={() => handleRemoveContent(index)}
                 >
                   Remove
@@ -212,12 +222,12 @@ function EditContainer() {
         )}
         <button
           type="button"
-          className="grey-button margin-1em"
+          className="edit-container__button button button--remove"
           onClick={handleAddContent}
         >
           Add More Contents
         </button>
-        <button type="submit" className="btn">
+        <button type="submit" className="edit-container__button button">
           Submit
         </button>
       </form>

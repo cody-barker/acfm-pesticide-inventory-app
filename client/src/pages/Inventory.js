@@ -260,13 +260,13 @@ function Inventory() {
       <div>
         <div>
           <Modal isOpen={isModalOpen} onClose={handleModalToggle}>
-            <form onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleSubmit}>
               <div className="flex-column">
                 <div className="flex-row">
-                  <label>
+                  <label className="form__label">
                     Shelf
                     <select
-                      className="btn"
+                      className="button"
                       value={shelf}
                       onChange={handleShelfChange}
                       required
@@ -278,10 +278,10 @@ function Inventory() {
                       ))}
                     </select>
                   </label>
-                  <label>
+                  <label className="form__label">
                     Row
                     <select
-                      className="btn"
+                      className="button"
                       value={row}
                       onChange={handleRowChange}
                       required
@@ -294,7 +294,7 @@ function Inventory() {
                     </select>
                   </label>
                 </div>
-                <label>
+                <label className="form__label">
                   Expiration Date
                   <input
                     type="date"
@@ -306,7 +306,7 @@ function Inventory() {
                 {contents.map((content, index) => (
                   <div className="flex-row" key={index}>
                     <select
-                      className="btn"
+                      className="button"
                       value={content.product_id}
                       onChange={(e) => handleContentChange(index, e)}
                       name="product_id"
@@ -318,7 +318,7 @@ function Inventory() {
                         </option>
                       ))}
                     </select>
-                    <label>
+                    <label className="form__label">
                       <input
                         className="concentration-input"
                         type="number"
@@ -331,7 +331,7 @@ function Inventory() {
                     </label>
                     {/* Disable remove button if it's the last content field */}
                     <button
-                      className="grey-button  remove-btn"
+                      className="button button--remove"
                       type="button"
                       onClick={() => removeContentField(index)}
                       disabled={contents.length === 1}
@@ -344,14 +344,14 @@ function Inventory() {
                   <Error key={err}>{err}</Error>
                 ))}
                 <button
-                  className="grey-button margin-top-small"
+                  className="button button--remove"
                   type="button"
                   onClick={addContentField}
                 >
                   Add More Contents
                 </button>
               </div>
-              <button type="submit" className="btn margin-top-2em">
+              <button type="submit" className="button margin-top-2em">
                 Submit Container
               </button>
               {errors.length > 0 && <Error errors={errors} />}
@@ -359,14 +359,14 @@ function Inventory() {
           </Modal>
         </div>
         <div className="filter-container">
-          <button onClick={handleModalToggle} className="btn add-container">
+          <button onClick={handleModalToggle} className="button add-container">
             {isModalOpen ? "Cancel" : "Add a Container"}
           </button>
           <label>
             <select
               value={selectedProduct}
               onChange={handleProductFilterChange}
-              className="btn"
+              className="button"
             >
               <option value="">All Products</option>
               {sortedProducts.map((product) => (
@@ -380,7 +380,7 @@ function Inventory() {
             <select
               value={selectedConcentration}
               onChange={handleConcentrationFilterChange}
-              className="btn"
+              className="button"
             >
               <option value="">All Concentrations</option>
               {uniqueConcentrations.map((concentration) => (
@@ -394,7 +394,7 @@ function Inventory() {
             <select
               value={selectedProduct2}
               onChange={handleProductFilterChange2}
-              className="btn"
+              className="button"
             >
               <option value="">All Products</option>
               {sortedProducts.map((product) => (
@@ -408,7 +408,7 @@ function Inventory() {
             <select
               value={selectedConcentration2}
               onChange={handleConcentrationFilterChange2}
-              className="btn"
+              className="button"
             >
               <option value="">All Concentrations</option>
               {uniqueConcentrations.map((concentration) => (

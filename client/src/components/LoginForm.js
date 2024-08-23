@@ -29,8 +29,8 @@ function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form className="form" onSubmit={handleSubmit}>
+      <label className="form__label">
         Username
         <input
           name="username"
@@ -40,7 +40,7 @@ function LoginForm() {
           onChange={(e) => setUsername(e.target.value)}
         ></input>
       </label>
-      <label>
+      <label className="form__label">
         Password
         <input
           name="password"
@@ -51,7 +51,7 @@ function LoginForm() {
         ></input>
       </label>
 
-      <button className="btn" type="submit">
+      <button className="button" type="submit">
         {isLoading ? "Loading..." : "Login"}
       </button>
 

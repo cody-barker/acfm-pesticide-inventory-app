@@ -56,10 +56,10 @@ function Product() {
         <div className="product-options-wrapper">
           <div className="product-options">
             <Link to={`/products/${id}/edit`}>
-              <button className="btn button-width link-button">Edit</button>
+              <button className="button button-width link-button">Edit</button>
             </Link>
             <button
-              className="remove-btn button-width"
+              className="button button--remove button-width"
               onClick={() => setIsModalOpen(true)} // Open the modal
             >
               Remove
@@ -76,11 +76,11 @@ function Product() {
           include it.
         </p>
         <div className="modal-buttons">
-          <button className="btn" onClick={handleDelete}>
+          <button className="button" onClick={handleDelete}>
             Yes
           </button>
           <button
-            className="btn"
+            className="button button--remove"
             onClick={() => setIsModalOpen(false)} // Close the modal on No
           >
             No

@@ -49,7 +49,7 @@ ul {
   color: #a2ac94;
 }
 
-.btn {
+.button {
   background: #404c24;
   color: #d4c9c1;
   padding: 0.5em 1.25em;
@@ -58,9 +58,44 @@ ul {
   border-radius: 3em;
   cursor: pointer;
   box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
+  font-size: 1rem;
 }
 
-.btn:hover {
+.button:hover {
+  opacity: 0.8;
+  transition-duration: 0.15s;
+  cursor: pointer;
+}
+
+.button--remove {
+  background-color: #a2ac94;
+  color: #3e4437;
+  margin: 0.5em;
+  border: 1px solid #3e4437;
+  border-radius: 3em;
+  cursor: pointer;
+  box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
+  font-size: 1rem;
+}
+
+.button--submit {
+  margin-top: 1em;
+}
+
+.button--remove:hover {
+  opacity: 0.8;
+  transition-duration: 0.15s;
+}
+
+.button--grey {
+  background-color: #a2ac94;
+  border-radius: 2em;
+  padding: 0.5em 1em;
+  border: 1px solid #3e4437;
+  box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
+}
+
+.button--grey:hover {
   opacity: 0.8;
   transition-duration: 0.15s;
 }
@@ -100,21 +135,6 @@ a:visited {
   color: #a2ac94;
 }
 
-.remove-btn {
-  background-color: #a2ac94;
-  color: #3e4437;
-  margin: 0.5em;
-  border: 1px solid #3e4437;
-  border-radius: 3em;
-  cursor: pointer;
-  box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
-}
-
-.remove-btn:hover {
-  opacity: 0.8;
-  transition-duration: 0.15s;
-}
-
 .nav-container {
   display: flex;
   justify-content: center;
@@ -135,7 +155,7 @@ a:visited {
   color: #d4c9c1;
 }
 
-.nav-btn {
+.nav-button {
   cursor: pointer;
   font-weight: bolder;
   border: 0px #3e4437 solid;
@@ -144,7 +164,7 @@ a:visited {
   padding: 0 1em;
 }
 
-.nav-btn:visited {
+.nav-button:visited {
   color: #d4c9c1;
 }
 
@@ -178,18 +198,17 @@ input:focus {
 
 .concentration-input::placeholder {
   text-align: right;
-  margin-right: 1em;
 }
 
 .concentration-input {
-  min-width: 5em;
+  min-width: 4em;
 }
 
 ::placeholder {
   color: #d4c9c1;
 }
 
-form {
+.form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -198,7 +217,7 @@ form {
   color: rgb(27, 49, 15);
 }
 
-label {
+.form__label {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -295,7 +314,42 @@ table tr:nth-of-type(even) {
   background-color: #f2f2f2; /* Optional: Adds a background color to the header */
 }
 
-.container {
+.edit-container {
+  margin-top: 3em;
+  display: flex;
+  justify-content: center;
+}
+
+.edit-container__form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0.75em;
+  color: rgb(27, 49, 15);
+}
+
+.edit-container__form-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.edit-container__label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-right: 1em;
+}
+
+.edit-container__button {
+  margin-top: 1.8em;
+  padding: 0.5em 1em;
+}
+
+.edit-container .container {
   margin-top: 3em;
   display: flex;
   justify-content: center;
@@ -356,14 +410,6 @@ table tr:nth-of-type(even) {
   margin-top: 1em;
 }
 
-button:hover {
-  cursor: pointer;
-}
-
-button {
-  font-size: 1rem;
-}
-
 .navlink {
   text-decoration: none;
   color: #3e4437;
@@ -393,19 +439,6 @@ button {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-}
-
-.grey-button {
-  background-color: #a2ac94;
-  border-radius: 2em;
-  padding: 0.5em 1em;
-  border: 1px solid #3e4437;
-  box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
-}
-
-.grey-button:hover {
-  opacity: 0.8;
-  transition-duration: 0.15s;
 }
 
 .link-button {
@@ -480,7 +513,7 @@ button {
   position: relative;
 }
 
-.modal__btn--close {
+.modal__button--close {
   position: absolute;
   top: 0px;
   right: 12px;
@@ -488,6 +521,10 @@ button {
   border: none;
   font-size: 2.5em;
   color: #3e4437;
+}
+
+.modal__button--close:hover {
+  cursor: pointer;
 }
 
 .add-container {
@@ -544,10 +581,6 @@ span {
   margin-top: 2em;
 }
 
-.edit-remove-btn {
-  margin-top: 1.8em;
-}
-
 .not-found {
   text-align: center;
   padding: 4em;
@@ -561,7 +594,7 @@ span {
 }
 
 @media (max-width: 500px) {
-  .nav-btn {
+  .nav-button {
     padding: 0.5em;
   }
 }
@@ -578,15 +611,21 @@ span {
   }
 
   select,
+  .input,
   input,
-  button,
+  .button,
+  .button,
+  .button--remove,
   .link-button,
   span,
-  label {
+  .form__label,
+  .edit-container__label,
+  .edit-container__input,
+  .concentration-input {
     font-size: 0.9em;
   }
 
-  form {
+  .form {
     padding: 0;
   }
 }

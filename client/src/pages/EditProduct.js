@@ -56,20 +56,20 @@ function EditProduct() {
   };
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
-        <label>
+    <div className="edit-container">
+      <form className="form" onSubmit={handleSubmit}>
+        <label className="form__label">
           Name
           <input type="text" value={name} onChange={handleNameChange} />
         </label>
-        <label>
+        <label className="form__label">
           EPA Reg
           <input type="text" value={epaReg} onChange={handleEpaRegChange} />
         </label>
         {errors.map((err) => (
           <Error key={err}>{err}</Error>
         ))}
-        <button type="submit" className="btn">
+        <button type="submit" className="button button--submit">
           Submit
         </button>
       </form>
