@@ -425,8 +425,7 @@ function Inventory() {
             <button onClick={handleModalToggle} className="button button--add">
               {isModalOpen ? "Cancel" : "Add a Container"}
             </button>
-            <span>Total Inventory: {user.containers.length} Containers</span>
-            <span>Selected Prescription: {tableRows.length} Containers</span>
+            <span className="flex-column__span">Selected Prescription: {tableRows.length} Containers</span>
           </p>
         </div>
         <div className="inventory-table-container margin-3em">

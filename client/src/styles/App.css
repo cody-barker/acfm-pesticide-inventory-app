@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap");
 
+:root {
+  --color--one: #3e4437;
+  --color--two: #404c24;
+  --color--three: #d4c9c1;
+  --color--four: #a2ac94;
+}
+
 * {
   box-sizing: border-box;
   font-family: "Manrope", sans-serif;
@@ -27,7 +34,7 @@ ul {
 .page__content {
   flex: 1;
   padding-bottom: 2.5rem;
-  background-color: #d4c9c1;
+  background-color: var(--color--three);
 }
 
 .footer {
@@ -35,26 +42,26 @@ ul {
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  border-top: 1px solid #3e4437;
+  border-top: 1px solid var(--color--one);
   height: 2.5rem;
-  background-color: #3e4437;
-  color: #d4c9c1;
+  background-color: var(--color--one);
+  color: var(--color--three);
 }
 
 .footer__span {
-  color: #d4c9c1;
+  color: var(--color--three);
 }
 
 .footer__link {
-  color: #a2ac94;
+  color: var(--color--four);
 }
 
 .button {
-  background: #404c24;
-  color: #d4c9c1;
+  background: var(--color--two);
+  color: var(--color--three);
   padding: 0.5em 1.25em;
   margin: 0.5em;
-  border: 1px solid #3e4437;
+  border: 1px solid var(--color--one);
   border-radius: 3em;
   cursor: pointer;
   box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
@@ -68,10 +75,10 @@ ul {
 }
 
 .button--remove {
-  background-color: #a2ac94;
-  color: #3e4437;
+  background-color: var(--color--four);
+  color: var(--color--one);
   margin: 0.5em;
-  border: 1px solid #3e4437;
+  border: 1px solid var(--color--one);
   border-radius: 3em;
   cursor: pointer;
   box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
@@ -86,7 +93,9 @@ ul {
   border: none;
   border-radius: 0;
   box-shadow: none;
-  background-color: #3e4437;
+  background-color: var(--color--four);
+  color: var(--color--one);
+  font-weight: 600;
   padding: 0;
 }
 
@@ -96,10 +105,10 @@ ul {
 }
 
 .button--grey {
-  background-color: #a2ac94;
+  background-color: var(--color--four);
   border-radius: 2em;
   padding: 0.5em 1em;
-  border: 1px solid #3e4437;
+  border: 1px solid var(--color--one);
   box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
 }
 
@@ -109,28 +118,28 @@ ul {
 }
 
 .button--add {
-  margin-bottom: 1em;
+  margin: 0.5em 0;
 }
 
 td {
-  color: #3e4437;
+  color: var(--color--one);
 }
 
 td > a {
-  color: #3e4437;
+  color: var(--color--one);
 }
 
 td > a:visited {
-  color: #3e4437;
+  color: var(--color--one);
 }
 
 a {
-  color: #d4c9c1;
+  color: var(--color--three);
   text-decoration: none;
 }
 
 a:visited {
-  color: #d4c9c1;
+  color: var(--color--three);
   text-decoration: none;
 }
 
@@ -144,14 +153,14 @@ a:visited {
 }
 
 .link {
-  color: #a2ac94;
+  color: var(--color--four);
 }
 
 .nav-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #3e4437;
+  background-color: var(--color--one);
   border-bottom: 1px solid rgb(143, 143, 143);
 }
 
@@ -162,20 +171,20 @@ a:visited {
   padding: 1em;
   max-width: 1000px;
   font-size: 1.1rem;
-  color: #d4c9c1;
+  color: var(--color--three);
 }
 
 .nav-button {
   cursor: pointer;
   font-weight: bolder;
-  border: 0px #3e4437 solid;
+  border: 0px var(--color--one) solid;
   background-color: transparent;
-  color: #d4c9c1;
+  color: var(--color--three);
   padding: 0 1em;
 }
 
 .nav-button:visited {
-  color: #d4c9c1;
+  color: var(--color--three);
 }
 
 .logo-img {
@@ -188,8 +197,8 @@ a:visited {
 }
 
 input {
-  background-color: #3e4437;
-  color: #d4c9c1;
+  background-color: var(--color--one);
+  color: var(--color--three);
   font-family: "Manrope", sans-serif;
   display: flex;
   justify-content: center;
@@ -215,7 +224,7 @@ input:focus {
 }
 
 ::placeholder {
-  color: #d4c9c1;
+  color: var(--color--three);
 }
 
 .form {
@@ -264,7 +273,7 @@ select:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #d4c9c1;
+  background-color: var(--color--three);
 }
 
 .center {
@@ -274,12 +283,17 @@ select:hover {
   flex-direction: column;
 }
 
+.h2 {
+  margin-top: 2em;
+  color: var(--color--one);
+}
+
 .table {
   max-width: 600px;
   margin: 0 1em;
   padding: 1em;
   border-collapse: collapse;
-  border: 1px solid #3e4437;
+  border: 1px solid var(--color--one);
   box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
 }
 
@@ -294,7 +308,7 @@ select:hover {
 }
 
 table tr:nth-of-type(even) {
-  background-color: #a2ac94;
+  background-color: var(--color--four);
 }
 
 .table thead {
@@ -309,14 +323,14 @@ table tr:nth-of-type(even) {
 .inventory-table {
   margin: 0 1em;
   border-collapse: collapse;
-  border: 1px solid #3e4437;
+  border: 1px solid var(--color--one);
   box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
 }
 
 .inventory-table th,
 .inventory-table td {
   padding: 1em;
-  /* border: 1px solid #3e4437; */
+  /* border: 1px solid var(--color--one); */
   text-align: center; /* or center, or right based on your preference */
 }
 
@@ -422,11 +436,11 @@ table tr:nth-of-type(even) {
 
 .navlink {
   text-decoration: none;
-  color: #3e4437;
+  color: var(--color--one);
 }
 
 .navlink:visited {
-  color: #3e4437;
+  color: var(--color--one);
 }
 
 .blue-btn:visited {
@@ -438,6 +452,10 @@ table tr:nth-of-type(even) {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+}
+
+.flex-column__span {
+  margin: 0.5em auto;
 }
 
 .flex-row {
@@ -513,7 +531,7 @@ table tr:nth-of-type(even) {
 }
 
 .modal__content {
-  background: #d4c9c1;
+  background: var(--color--three);
   padding: 20px;
   border-radius: 5px;
   position: relative;
@@ -526,7 +544,7 @@ table tr:nth-of-type(even) {
   background: none;
   border: none;
   font-size: 2.5em;
-  color: #3e4437;
+  color: var(--color--one);
 }
 
 .modal__button--close:hover {
@@ -540,7 +558,7 @@ table tr:nth-of-type(even) {
 
 .filter-container {
   margin: 0;
-  background-color: #3e4437;
+  background-color: var(--color--four);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -550,7 +568,7 @@ table tr:nth-of-type(even) {
 
 b,
 span {
-  color: #3e4437;
+  color: var(--color--one);
 }
 
 .help-wrapper {
@@ -562,14 +580,16 @@ span {
 .help-topic {
   cursor: pointer;
   padding: 10px;
-  background-color: #a2ac94;
+  background-color: var(--color--four);
   margin: 5px 0;
   border-radius: 5px;
+  color: var(--color--one);
 }
 
 .help-content {
   padding: 10px;
   margin-left: 10px;
+  color: var(--color--one);
 }
 
 .shelving-img-wrapper {
@@ -644,8 +664,8 @@ span {
 }
 
 table th {
-  background-color: #404c24;
-  color: #d4c9c1;
+  background-color: var(--color--two);
+  color: var(--color--three);
 }
 
 /* Base styles for nav container */
@@ -668,7 +688,7 @@ table th {
 }
 
 .hamburger-icon {
-  color: #d4c9c1;
+  color: var(--color--three);
 }
 
 /* Responsive styles */
@@ -687,7 +707,7 @@ table th {
     top: 100%;
     left: 0;
     right: 0;
-    background-color: #3e4437; /* Or any other background color */
+    background-color: var(--color--one); /* Or any other background color */
     padding: 1em;
   }
 
