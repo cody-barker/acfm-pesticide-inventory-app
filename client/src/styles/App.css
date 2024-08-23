@@ -249,7 +249,7 @@ input:focus {
   align-items: center;
   flex-direction: column;
   margin: 10px;
-  color: rgb(255, 72, 81);
+  color: rgb(202, 11, 11);
 }
 
 select {
@@ -492,7 +492,7 @@ table tr:nth-of-type(even) {
 }
 
 .text-red {
-  color: red;
+  color: rgb(202, 11, 11);
 }
 
 .total-containers {
