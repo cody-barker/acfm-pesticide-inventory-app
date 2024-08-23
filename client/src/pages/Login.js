@@ -3,8 +3,10 @@ import LoginForm from "../components/LoginForm";
 function Login() {
   return (
     <div className="wrapper">
-      <h1>ACFM Pesticide Inventory</h1>
-      <LoginForm />
+      <div className="wrapper__form">
+        <h1 className="wrapper__title">ACFM Pesticide Inventory</h1>
+        <LoginForm />
+      </div>
     </div>
   );
 }

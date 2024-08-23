@@ -5,6 +5,7 @@
   --color--two: #404c24;
   --color--three: #d4c9c1;
   --color--four: #a2ac94;
+  --box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
 }
 
 * {
@@ -28,7 +29,7 @@ ul {
 .page {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100svh;
 }
 
 .page__content {
@@ -64,7 +65,7 @@ ul {
   border: 1px solid var(--color--one);
   border-radius: 3em;
   cursor: pointer;
-  box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
+  box-shadow: var(--box-shadow);
   font-size: 1rem;
 }
 
@@ -81,7 +82,7 @@ ul {
   border: 1px solid var(--color--one);
   border-radius: 3em;
   cursor: pointer;
-  box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
+  box-shadow: var(--box-shadow);
   font-size: 1rem;
 }
 
@@ -109,7 +110,7 @@ ul {
   border-radius: 2em;
   padding: 0.5em 1em;
   border: 1px solid var(--color--one);
-  box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
+  box-shadow: var(--box-shadow);
 }
 
 .button--grey:hover {
@@ -119,6 +120,11 @@ ul {
 
 .button--add {
   margin: 0.5em 0;
+}
+
+.button--login {
+  margin-top: 2em;
+  margin-bottom: 0;
 }
 
 td {
@@ -241,6 +247,11 @@ input:focus {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  color: black;
+}
+
+.form--login {
+  margin-top: 1em;
 }
 
 .error {
@@ -254,7 +265,7 @@ input:focus {
 
 select {
   background-color: transparent;
-  box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
+  box-shadow: var(--box-shadow);
   font-size: 1rem;
 }
 
@@ -276,6 +287,19 @@ select:hover {
   background-color: var(--color--three);
 }
 
+.wrapper__form {
+  padding: 2.5em;
+  border: 1px solid black;
+  border-radius: 2em;
+  box-shadow: var(--box-shadow);
+  background-color: var(--color--four);
+  color: black;
+}
+
+.wrapper__title {
+  text-align: center;
+}
+
 .center {
   display: flex;
   justify-content: center;
@@ -294,7 +318,7 @@ select:hover {
   padding: 1em;
   border-collapse: collapse;
   border: 1px solid var(--color--one);
-  box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
+  box-shadow: var(--box-shadow);
 }
 
 .table .table-title {
@@ -324,7 +348,7 @@ table tr:nth-of-type(even) {
   margin: 0 1em;
   border-collapse: collapse;
   border: 1px solid var(--color--one);
-  box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
+  box-shadow: var(--box-shadow);
 }
 
 .inventory-table th,
@@ -436,7 +460,6 @@ table tr:nth-of-type(even) {
 
 .navlink {
   text-decoration: none;
-  color: var(--color--one);
 }
 
 .navlink:visited {
@@ -564,7 +587,7 @@ table tr:nth-of-type(even) {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
+  box-shadow: var(--box-shadow);
 }
 
 b,
@@ -618,6 +641,14 @@ span {
   text-align: center;
   padding: 4em;
   color: rgb(62, 68, 55);
+}
+
+.video-wrapper {
+  color: var(--color--one);
+}
+
+.demo-video {
+  margin-top: 2em;
 }
 
 @media (max-width: 400px) {

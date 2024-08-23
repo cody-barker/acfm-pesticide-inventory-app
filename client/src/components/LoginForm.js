@@ -29,7 +29,7 @@ function LoginForm() {
   }
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className="form form--login" onSubmit={handleSubmit}>
       <label className="form__label">
         Username
         <input
@@ -51,7 +51,7 @@ function LoginForm() {
         ></input>
       </label>
 
-      <button className="button" type="submit">
+      <button className="button button--login" type="submit">
         {isLoading ? "Loading..." : "Login"}
       </button>
 
