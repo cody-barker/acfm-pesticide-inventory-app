@@ -359,68 +359,72 @@ function Inventory() {
           </Modal>
         </div>
         <div className="filter-container">
-          <button onClick={handleModalToggle} className="button add-container">
-            {isModalOpen ? "Cancel" : "Add a Container"}
-          </button>
-          <label>
-            <select
-              value={selectedProduct}
-              onChange={handleProductFilterChange}
-              className="button"
-            >
-              <option value="">All Products</option>
-              {sortedProducts.map((product) => (
-                <option key={product.id} value={product.id}>
-                  {product.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="filter">
-            <select
-              value={selectedConcentration}
-              onChange={handleConcentrationFilterChange}
-              className="button"
-            >
-              <option value="">All Concentrations</option>
-              {uniqueConcentrations.map((concentration) => (
-                <option key={concentration} value={concentration}>
-                  {concentration}%
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <select
-              value={selectedProduct2}
-              onChange={handleProductFilterChange2}
-              className="button"
-            >
-              <option value="">All Products</option>
-              {sortedProducts.map((product) => (
-                <option key={product.id} value={product.id}>
-                  {product.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="filter">
-            <select
-              value={selectedConcentration2}
-              onChange={handleConcentrationFilterChange2}
-              className="button"
-            >
-              <option value="">All Concentrations</option>
-              {uniqueConcentrations.map((concentration) => (
-                <option key={concentration} value={concentration}>
-                  {concentration}%
-                </option>
-              ))}
-            </select>
-          </label>
+          <div className="filter-container__filter-group">
+            <label>
+              <select
+                value={selectedProduct}
+                onChange={handleProductFilterChange}
+                className="button button--filter"
+              >
+                <option value="">All Products</option>
+                {sortedProducts.map((product) => (
+                  <option key={product.id} value={product.id}>
+                    {product.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="filter">
+              <select
+                value={selectedConcentration}
+                onChange={handleConcentrationFilterChange}
+                className="button button--filter"
+              >
+                <option value="">All Concentrations</option>
+                {uniqueConcentrations.map((concentration) => (
+                  <option key={concentration} value={concentration}>
+                    {concentration}%
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <div className="filter-container__filter-group">
+            <label>
+              <select
+                value={selectedProduct2}
+                onChange={handleProductFilterChange2}
+                className="button button--filter"
+              >
+                <option value="">All Products</option>
+                {sortedProducts.map((product) => (
+                  <option key={product.id} value={product.id}>
+                    {product.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="filter">
+              <select
+                value={selectedConcentration2}
+                onChange={handleConcentrationFilterChange2}
+                className="button button--filter"
+              >
+                <option value="">All Concentrations</option>
+                {uniqueConcentrations.map((concentration) => (
+                  <option key={concentration} value={concentration}>
+                    {concentration}%
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
         </div>
         <div>
           <p className="flex-column">
+            <button onClick={handleModalToggle} className="button button--add">
+              {isModalOpen ? "Cancel" : "Add a Container"}
+            </button>
             <span>Total Inventory: {user.containers.length} Containers</span>
             <span>Selected Prescription: {tableRows.length} Containers</span>
           </p>
