@@ -461,7 +461,7 @@ button {
   align-items: center;
 }
 
-.modal-overlay {
+.modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -473,14 +473,14 @@ button {
   justify-content: center;
 }
 
-.modal-content {
+.modal__content {
   background: #d4c9c1;
   padding: 20px;
   border-radius: 5px;
   position: relative;
 }
 
-.modal-close {
+.modal__btn--close {
   position: absolute;
   top: 0px;
   right: 12px;
@@ -488,12 +488,6 @@ button {
   border: none;
   font-size: 2.5em;
   color: #3e4437;
-}
-
-.modal-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .add-container {
