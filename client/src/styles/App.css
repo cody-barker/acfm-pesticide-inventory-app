@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap");
 
 :root {
-  --color--one: #3e4437;
+  --color--one: #394131;
   --color--two: #404c24;
   --color--three: #d4c9c1;
   --color--four: #a2ac94;
@@ -456,6 +456,7 @@ table tr:nth-of-type(even) {
 
 .flex-column__span {
   margin: 0.5em auto;
+  font-weight: 600;
 }
 
 .flex-row {

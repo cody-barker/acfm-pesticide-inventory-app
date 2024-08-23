@@ -430,7 +430,7 @@ function Inventory() {
             </span>
           </p>
         </div>
-        <div className="inventory-table-container margin-3em">
+        <div className="inventory-table-container">
           {filteredContainers.length > 0 ? (
             <table className="inventory-table">
               <thead>
