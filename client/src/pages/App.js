@@ -35,9 +35,9 @@ function App() {
   }
 
   return (
-    <div className="page-container">
-      <div className="content-wrap">
-        <header className="header">
+    <div className="page">
+      <div className="page__content">
+        <header className="page__header">
           <NavBar />
         </header>
         <main>
