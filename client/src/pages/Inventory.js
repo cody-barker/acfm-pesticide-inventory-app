@@ -441,7 +441,7 @@ function Inventory() {
               <tbody>{tableRows}</tbody>
             </table>
           ) : (
-            <p className="errors">
+            <p className="error">
               There are no containers in inventory with that prescription.
             </p>
           )}
