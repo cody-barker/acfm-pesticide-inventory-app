@@ -98,6 +98,7 @@ ul {
   color: var(--color--one);
   font-weight: 600;
   padding: 0;
+  margin: 0.5em 0;
 }
 
 .button--remove:hover {
@@ -588,6 +589,10 @@ table tr:nth-of-type(even) {
   align-items: center;
   justify-content: center;
   box-shadow: var(--box-shadow);
+}
+
+.filter-container__filter-group {
+  margin: 0 1em;
 }
 
 .filter__option {
