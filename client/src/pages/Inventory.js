@@ -341,9 +341,7 @@ function Inventory() {
                     </button>
                   </div>
                 ))}
-                {errors.map((err) => (
-                  <Error key={err}>{err}</Error>
-                ))}
+
                 <button
                   className="button button--remove"
                   type="button"
@@ -352,10 +350,12 @@ function Inventory() {
                   Add More Contents
                 </button>
               </div>
-              <button type="submit" className="button margin-top-2em">
+              <button type="submit" className="button">
                 Submit Container
               </button>
-              {errors.length > 0 && <Error errors={errors} />}
+              {errors.map((err) => (
+                <Error key={err}>{err}</Error>
+              ))}
             </form>
           </Modal>
         </div>
