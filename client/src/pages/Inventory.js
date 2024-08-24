@@ -349,6 +349,7 @@ function Inventory() {
                 value={selectedConcentration}
                 onChange={handleConcentrationFilterChange}
                 className="button button--filter filter__option"
+                name="select-concentration-1"
               >
                 <option value="">All Concentrations</option>
                 {uniqueConcentrations.map((concentration) => (
@@ -363,6 +364,7 @@ function Inventory() {
                 value={selectedProduct}
                 onChange={handleProductFilterChange}
                 className="button button--filter"
+                name="select-product-1"
               >
                 <option value="">All Products</option>
                 {sortedProducts.map((product) => (
@@ -379,6 +381,7 @@ function Inventory() {
                 value={selectedConcentration2}
                 onChange={handleConcentrationFilterChange2}
                 className="button button--filter filter__option"
+                name="select-concentration-2"
               >
                 <option value="">All Concentrations</option>
                 {uniqueConcentrations.map((concentration) => (
@@ -393,6 +396,7 @@ function Inventory() {
                 value={selectedProduct2}
                 onChange={handleProductFilterChange2}
                 className="button button--filter"
+                name="select-product-2"
               >
                 <option value="">All Products</option>
                 {sortedProducts.map((product) => (
