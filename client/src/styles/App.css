@@ -259,7 +259,7 @@ input:focus {
   margin-top: 1em;
 }
 
-#background-image {
+.background-image {
   background-image: url("/public/assets/forest_background.jpg");
   background-size: cover;
   background-position: center;
