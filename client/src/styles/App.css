@@ -590,6 +590,10 @@ table tr:nth-of-type(even) {
   box-shadow: var(--box-shadow);
 }
 
+.filter__option {
+  text-align: right;
+}
+
 b,
 span {
   color: var(--color--one);

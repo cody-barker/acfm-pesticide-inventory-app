@@ -360,6 +360,22 @@ function Inventory() {
         </div>
         <div className="filter-container">
           <div className="filter-container__filter-group">
+            <label className="filter">
+              <select
+                value={selectedConcentration}
+                onChange={handleConcentrationFilterChange}
+                className="button button--filter filter__option"
+              >
+                <option value="">
+                  All Concentrations
+                </option>
+                {uniqueConcentrations.map((concentration) => (
+                  <option key={concentration} value={concentration}>
+                    {concentration}%
+                  </option>
+                ))}
+              </select>
+            </label>
             <label>
               <select
                 value={selectedProduct}
@@ -374,13 +390,17 @@ function Inventory() {
                 ))}
               </select>
             </label>
+          </div>
+          <div className="filter-container__filter-group">
             <label className="filter">
               <select
-                value={selectedConcentration}
-                onChange={handleConcentrationFilterChange}
-                className="button button--filter"
+                value={selectedConcentration2}
+                onChange={handleConcentrationFilterChange2}
+                className="button button--filter filter__option"
               >
-                <option value="">All Concentrations</option>
+                <option value="">
+                  All Concentrations
+                </option>
                 {uniqueConcentrations.map((concentration) => (
                   <option key={concentration} value={concentration}>
                     {concentration}%
@@ -388,8 +408,6 @@ function Inventory() {
                 ))}
               </select>
             </label>
-          </div>
-          <div className="filter-container__filter-group">
             <label>
               <select
                 value={selectedProduct2}
@@ -400,20 +418,6 @@ function Inventory() {
                 {sortedProducts.map((product) => (
                   <option key={product.id} value={product.id}>
                     {product.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="filter">
-              <select
-                value={selectedConcentration2}
-                onChange={handleConcentrationFilterChange2}
-                className="button button--filter"
-              >
-                <option value="">All Concentrations</option>
-                {uniqueConcentrations.map((concentration) => (
-                  <option key={concentration} value={concentration}>
-                    {concentration}%
                   </option>
                 ))}
               </select>
