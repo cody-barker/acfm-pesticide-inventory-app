@@ -5,27 +5,27 @@ import { useNavigate } from "react-router-dom";
 import Error from "../components/Error";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Modal from "../components/Modal"; // Import your new Modal component
+import Modal from "../components/Modal";
 
 function Inventory() {
   const { user, setUser } = useContext(UserContext);
   const { products } = useContext(ProductsContext);
   const [errors, setErrors] = useState([]);
-  const [shelf, setShelf] = useState(1); // Default shelf selection
-  const [row, setRow] = useState("A"); // Default row selection
+  const [shelf, setShelf] = useState(1);
+  const [row, setRow] = useState("A");
   const [contents, setContents] = useState([
     { product_id: "", concentration: "" },
   ]);
   const [loading, setLoading] = useState(true);
-  const [selectedProduct, setSelectedProduct] = useState(""); // State for filtering by product
-  const [selectedConcentration, setSelectedConcentration] = useState(""); // State for filtering by concentration
-  const [selectedProduct2, setSelectedProduct2] = useState(""); // State for filtering by product
-  const [selectedConcentration2, setSelectedConcentration2] = useState(""); // State for filtering by concentration
-  const [expires, setExpires] = useState(""); // State for expiration date
+  const [selectedProduct, setSelectedProduct] = useState("");
+  const [selectedConcentration, setSelectedConcentration] = useState("");
+  const [selectedProduct2, setSelectedProduct2] = useState("");
+  const [selectedConcentration2, setSelectedConcentration2] = useState("");
+  const [expires, setExpires] = useState("");
   const showToastMessage = () => {
     toast("Container added!");
   };
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const handleModalToggle = () => setIsModalOpen(!isModalOpen);
   const navigate = useNavigate();
   const handleResetFilters = () => {
@@ -33,8 +33,8 @@ function Inventory() {
     setSelectedConcentration("");
     setSelectedProduct2("");
     setSelectedConcentration2("");
-    setShelf(1); // Reset shelf to default
-    setRow("A"); // Reset row to default
+    setShelf(1);
+    setRow("A");
   };
 
   useEffect(() => {
@@ -44,14 +44,12 @@ function Inventory() {
   }, [user]);
 
   useEffect(() => {
-    // Calculate 2 years from today
     const today = new Date();
     const twoYearsFromNow = new Date(
       today.getFullYear() + 2,
       today.getMonth(),
       today.getDate()
     );
-    // Format the date as YYYY-MM-DD for the input field
     const formattedDate = twoYearsFromNow.toISOString().slice(0, 10);
     setExpires(formattedDate);
   }, []);
@@ -80,7 +78,6 @@ function Inventory() {
   };
 
   const removeContentField = (index) => {
-    // Check if this is the last content field, if so, disable removal
     if (contents.length === 1) {
       return;
     }
@@ -92,22 +89,20 @@ function Inventory() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Calculate 2 years from today
     const today = new Date();
     const twoYearsFromNow = new Date(
       today.getFullYear() + 2,
       today.getMonth(),
       today.getDate()
     );
-    // Format the date as YYYY-MM-DD for the input field
     const formattedDate = twoYearsFromNow.toISOString().slice(0, 10);
 
     const container = {
       user_id: user.id,
       shelf: shelf,
       row: row,
-      expires: formattedDate, // Update expires to formattedDate
-      contents_attributes: contents, // Ensure contents are correctly nested
+      expires: formattedDate,
+      contents_attributes: contents,
     };
 
     fetch("/containers", {
@@ -119,18 +114,16 @@ function Inventory() {
     })
       .then((r) => {
         if (r.ok) {
-          // Update the expires state in user.containers
           r.json().then((container) => {
             container.expires = formattedDate;
             setUser((prevUser) => ({
               ...prevUser,
               containers: [...prevUser.containers, container],
             }));
-            setShelf(1); // Reset to default after submission
-            setRow("A"); // Reset to default after submission
+            setShelf(1);
+            setRow("A");
             setContents([{ product_id: "", concentration: "" }]);
-            setIsModalOpen(false); // Close modal on successful submit
-            // setVis(false);
+            setIsModalOpen(false);
             showToastMessage();
           });
         } else {
@@ -158,7 +151,6 @@ function Inventory() {
     setSelectedConcentration2(e.target.value);
   };
 
-  // Filter containers based on selected products and concentrations
   const filteredContainers = user.containers.filter((container) => {
     const firstFilterMatch = container.contents.some(
       (content) =>
@@ -179,22 +171,17 @@ function Inventory() {
     return firstFilterMatch && secondFilterMatch;
   });
 
-  // Sorting containers alphanumerically by shelf and row
   const sortedContainers = filteredContainers.slice().sort((a, b) => {
-    // Sort by shelf first
     if (a.shelf !== b.shelf) {
       return a.shelf - b.shelf;
     }
-    // Then sort by row alphabetically
     return a.row.localeCompare(b.row);
   });
 
-  // Sort products alphabetically by name
   const sortedProducts = products
     .slice()
     .sort((a, b) => a.name.localeCompare(b.name));
 
-  // Extract unique concentrations from user containers
   const uniqueConcentrations = [
     ...new Set(
       user.containers.flatMap((container) =>
@@ -203,19 +190,16 @@ function Inventory() {
     ),
   ].sort((a, b) => a - b);
 
-  // Calculate the maximum number of contents in any container
   const maxContents = Math.max(
     ...user.containers.map((container) => container.contents.length),
     0
   );
 
   const tableRows = sortedContainers.map((container) => {
-    // Sort the contents of each container by concentration in descending order
     const sortedContents = container.contents.slice().sort((a, b) => {
       return b.concentration - a.concentration;
     });
 
-    // Calculate 3 months from today
     const today = new Date();
     const threeMonthsFromNow = new Date(
       today.getFullYear(),
@@ -330,7 +314,6 @@ function Inventory() {
                         name="concentration"
                       />
                     </label>
-                    {/* Disable remove button if it's the last content field */}
                     <button
                       className="button button--remove"
                       type="button"
