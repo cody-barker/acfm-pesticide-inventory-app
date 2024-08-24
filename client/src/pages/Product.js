@@ -49,8 +49,8 @@ function Product() {
   }
 
   return (
-    <div className="container">
-      <div className="product">
+    <div className="wrapper wrapper--product">
+      <div className="wrapper__form wrapper__form--product">
         <h1>{product.name}</h1>
         <p>EPA Reg: {product.epa_reg}</p>
         <div className="product-options-wrapper">
@@ -59,7 +59,7 @@ function Product() {
               <button className="button button-width link-button">Edit</button>
             </Link>
             <button
-              className="button button--remove button-width"
+              className="button button--remove-product"
               onClick={() => setIsModalOpen(true)} // Open the modal
             >
               Remove
@@ -87,7 +87,6 @@ function Product() {
           </button>
         </div>
       </Modal>
-
       <ToastContainer autoClose={2000} />
     </div>
   );
