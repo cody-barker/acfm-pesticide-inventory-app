@@ -420,8 +420,16 @@ function Inventory() {
               </select>
             </label>
           </div>
-          <button onClick={handleResetFilters} className="reset-button">
-            <img className="reset-button__image" src="/assets/reset-icon.svg" />
+          <button
+            onClick={handleResetFilters}
+            className="reset-button"
+            alt="reset button"
+          >
+            <img
+              className="reset-button__image"
+              src="/assets/reset-icon.svg"
+              alt="reset button"
+            />
           </button>
         </div>
         <div>

@@ -2,8 +2,8 @@ import LoginForm from "../components/LoginForm";
 
 function Login() {
   return (
-    <div className="wrapper">
-      <div className="wrapper__form">
+    <div id="background-image" className="wrapper">
+      <div className="wrapper__form wrapper__form--login">
         <h1 className="wrapper__title">ACFM Pesticide Inventory</h1>
         <LoginForm />
       </div>
