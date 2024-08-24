@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { ProductsContext } from "../contexts/ProductsContext";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Error from "../components/Error";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,6 +27,7 @@ function Inventory() {
   };
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
   const handleModalToggle = () => setIsModalOpen(!isModalOpen);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user && user.containers) {
@@ -215,40 +216,32 @@ function Inventory() {
     );
 
     return (
-      <tr key={container.id}>
+      <tr
+        key={container.id}
+        onClick={() => navigate(`/containers/${container.id}`)}
+        className="clickable-row"
+      >
         <td>
-          <NavLink to={`/containers/${container.id}`} className="navlink">
-            <span
-              style={{
-                color:
-                  new Date(container.expires) < threeMonthsFromNow
-                    ? " rgb(202, 11, 11)"
-                    : "inherit",
-              }}
-            >
-              {container.expires.slice(0, 10)}
-            </span>
-          </NavLink>
+          <span
+            style={{
+              color:
+                new Date(container.expires) < threeMonthsFromNow
+                  ? "rgb(202, 11, 11)"
+                  : "inherit",
+            }}
+          >
+            {container.expires.slice(0, 10)}
+          </span>
         </td>
-        <td>
-          <NavLink to={`/containers/${container.id}`} className="navlink">
-            {container.shelf}
-          </NavLink>
-        </td>
-        <td>
-          <NavLink to={`/containers/${container.id}`} className="navlink">
-            {container.row}
-          </NavLink>
-        </td>
+        <td>{container.shelf}</td>
+        <td>{container.row}</td>
         {sortedContents.map((content, index) => (
           <td key={index}>
-            <NavLink to={`/containers/${container.id}`} className="navlink">
-              {content.concentration}%{" "}
-              {
-                products.find((product) => product.id === content.product_id)
-                  ?.name
-              }
-            </NavLink>
+            {content.concentration}%{" "}
+            {
+              products.find((product) => product.id === content.product_id)
+                ?.name
+            }
           </td>
         ))}
       </tr>
@@ -366,9 +359,7 @@ function Inventory() {
                 onChange={handleConcentrationFilterChange}
                 className="button button--filter filter__option"
               >
-                <option value="">
-                  All Concentrations
-                </option>
+                <option value="">All Concentrations</option>
                 {uniqueConcentrations.map((concentration) => (
                   <option key={concentration} value={concentration}>
                     {concentration}%
@@ -398,9 +389,7 @@ function Inventory() {
                 onChange={handleConcentrationFilterChange2}
                 className="button button--filter filter__option"
               >
-                <option value="">
-                  All Concentrations
-                </option>
+                <option value="">All Concentrations</option>
                 {uniqueConcentrations.map((concentration) => (
                   <option key={concentration} value={concentration}>
                     {concentration}%

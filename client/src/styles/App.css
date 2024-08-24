@@ -322,6 +322,10 @@ select:hover {
   box-shadow: var(--box-shadow);
 }
 
+.clickable-row {
+  cursor: pointer;
+}
+
 .table .table-title {
   text-align: center;
 }
