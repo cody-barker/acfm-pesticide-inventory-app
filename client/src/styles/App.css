@@ -499,6 +499,7 @@ table tr:nth-of-type(even) {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin: 2em;
 }
 
 .flex-column__span {
