@@ -101,7 +101,6 @@ ul {
   box-shadow: none;
   background-color: var(--color--four);
   color: var(--color--one);
-  font-weight: 600;
   padding: 0;
   margin: 0.5em 0;
 }
@@ -505,7 +504,6 @@ table tr:nth-of-type(even) {
 
 .flex-column__span {
   margin: 0.5em auto;
-  font-weight: 600;
 }
 
 .flex-row {
