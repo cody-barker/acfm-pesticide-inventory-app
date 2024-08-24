@@ -736,6 +736,20 @@ table th {
   color: var(--color--three);
 }
 
+.reset-button {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 1em 0;
+}
+
+.reset-button__image {
+  width: 18px;
+}
+
 /* Responsive styles */
 @media (max-width: 700px) {
   #navbar {

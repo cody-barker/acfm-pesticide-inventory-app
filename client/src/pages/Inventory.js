@@ -28,6 +28,14 @@ function Inventory() {
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
   const handleModalToggle = () => setIsModalOpen(!isModalOpen);
   const navigate = useNavigate();
+  const handleResetFilters = () => {
+    setSelectedProduct("");
+    setSelectedConcentration("");
+    setSelectedProduct2("");
+    setSelectedConcentration2("");
+    setShelf(1); // Reset shelf to default
+    setRow("A"); // Reset row to default
+  };
 
   useEffect(() => {
     if (user && user.containers) {
@@ -412,6 +420,9 @@ function Inventory() {
               </select>
             </label>
           </div>
+          <button onClick={handleResetFilters} className="reset-button">
+            <img className="reset-button__image" src="/assets/reset-icon.svg" />
+          </button>
         </div>
         <div>
           <p className="flex-column">
