@@ -23,7 +23,10 @@ function Inventory() {
   const [selectedConcentration2, setSelectedConcentration2] = useState("");
   const [expires, setExpires] = useState("");
   const showToastMessage = () => {
-    toast("Container added!");
+    toast("Container added!", {
+      className:"custom-toast",
+      progressClassName: "Toastify__progress-bar"
+    });
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleModalToggle = () => setIsModalOpen(!isModalOpen);
