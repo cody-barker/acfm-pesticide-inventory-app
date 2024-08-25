@@ -254,6 +254,7 @@ function Inventory() {
                   <label className="form__label">
                     Shelf
                     <select
+                      name="shelf"
                       className="button"
                       value={shelf}
                       onChange={handleShelfChange}
@@ -269,6 +270,7 @@ function Inventory() {
                   <label className="form__label">
                     Row
                     <select
+                      name="row"
                       className="button"
                       value={row}
                       onChange={handleRowChange}
@@ -284,6 +286,7 @@ function Inventory() {
                   <label className="form__label">
                     Expiration Date
                     <input
+                      name="expiration_date"
                       type="date"
                       value={expires}
                       onChange={(e) => setExpires(e.target.value)}
