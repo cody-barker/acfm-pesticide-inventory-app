@@ -224,7 +224,7 @@ input {
 
 input:focus {
   outline: none;
-  opacity: 90%;
+  opacity: 0.9;
 }
 
 .concentration-input::placeholder {
@@ -782,6 +782,10 @@ table th {
   justify-content: center;
   cursor: pointer;
   margin: 1em 0;
+}
+
+.reset-button:hover {
+  opacity: 0.8;
 }
 
 .reset-button__image {
