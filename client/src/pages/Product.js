@@ -13,9 +13,11 @@ function Product() {
   id = parseInt(id);
   const { products, setProducts } = useContext(ProductsContext);
   const product = products.find((product) => product.id === parseInt(id));
-
   const showToastMessage = () => {
-    toast(`Product removed!`);
+    toast("Product removed!", {
+      className: "custom-toast",
+      progressClassName: "Toastify__progress-bar",
+    });
   };
 
   if (!product) {

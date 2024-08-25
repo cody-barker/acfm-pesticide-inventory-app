@@ -12,7 +12,10 @@ function Products() {
   const [epaReg, setEpaReg] = useState("");
   const [errors, setErrors] = useState([]);
   const showToastMessage = () => {
-    toast("Product added!");
+    toast("Product added!", {
+      className: "custom-toast",
+      progressClassName: "Toastify__progress-bar",
+    });
   };
 
   if (loading) {

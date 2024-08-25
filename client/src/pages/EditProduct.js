@@ -17,7 +17,10 @@ function EditProduct() {
   const [errors, setErrors] = useState([]);
 
   const showToastMessage = () => {
-    toast("Product updated!");
+    toast("Product updated!", {
+      className: "custom-toast",
+      progressClassName: "Toastify__progress-bar",
+    });
   };
 
   const handleNameChange = (e) => {

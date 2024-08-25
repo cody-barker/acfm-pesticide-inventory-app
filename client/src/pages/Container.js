@@ -17,9 +17,11 @@ function Container() {
   );
 
   const showToastMessage = () => {
-    toast("Container removed!");
+    toast("Container removed!", {
+      className: "custom-toast",
+      progressClassName: "Toastify__progress-bar",
+    });
   };
-
   useEffect(() => {
     if (container) {
       const today = new Date();

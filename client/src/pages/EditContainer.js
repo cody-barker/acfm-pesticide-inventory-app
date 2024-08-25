@@ -21,7 +21,10 @@ function EditContainer() {
   const [expires, setExpires] = useState(container?.expires || "");
 
   const showToastMessage = () => {
-    toast("Container updated!");
+    toast("Container updated!", {
+      className: "custom-toast",
+      progressClassName: "Toastify__progress-bar",
+    });
   };
 
   useEffect(() => {
