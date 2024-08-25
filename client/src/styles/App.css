@@ -261,14 +261,6 @@ input:focus {
   color: var(--color--five);
 }
 
-.form__label input {
-  margin: 1em;
-}
-
-.form__label select {
-  margin-right: 1em;
-}
-
 .form--login {
   margin-top: 1em;
 }
