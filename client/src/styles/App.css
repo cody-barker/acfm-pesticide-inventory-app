@@ -44,19 +44,24 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 2em;
   border-top: 1px solid var(--color--one);
   height: 2.5rem;
   background-color: var(--color--one);
   color: var(--color--three);
 }
 
+.footer__link {
+  padding: 1em 0;
+  color: var(--color--four);
+}
+
 .footer__span {
   color: var(--color--three);
 }
 
-.footer__link {
-  color: var(--color--four);
+.footer__link--span {
+  padding: 0.25em;
 }
 
 .button {
