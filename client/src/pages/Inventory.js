@@ -24,8 +24,8 @@ function Inventory() {
   const [expires, setExpires] = useState("");
   const showToastMessage = () => {
     toast("Container added!", {
-      className:"custom-toast",
-      progressClassName: "Toastify__progress-bar"
+      className: "custom-toast",
+      progressClassName: "Toastify__progress-bar",
     });
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -281,16 +281,17 @@ function Inventory() {
                       ))}
                     </select>
                   </label>
+                  <label className="form__label">
+                    Expiration Date
+                    <input
+                      type="date"
+                      value={expires}
+                      onChange={(e) => setExpires(e.target.value)}
+                      required
+                    />
+                  </label>
                 </div>
-                <label className="form__label">
-                  Expiration Date
-                  <input
-                    type="date"
-                    value={expires}
-                    onChange={(e) => setExpires(e.target.value)}
-                    required
-                  />
-                </label>
+
                 {contents.map((content, index) => (
                   <div className="flex-row" key={index}>
                     <select
