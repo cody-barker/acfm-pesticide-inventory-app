@@ -66,6 +66,7 @@ function Help() {
   return (
     <div className="help-wrapper">
       <div>
+        <h2 className="h2 h2--help">Help</h2>
         {topics.map((topic, index) => (
           <div key={index}>
             <div className="help-topic" onClick={() => toggleRow(index)}>
@@ -78,7 +79,7 @@ function Help() {
         ))}
       </div>
       <div className="video-wrapper">
-        <h2>Video Tutorial</h2>
+        <h2 className="h2 h2--video">Video Tutorial</h2>
         <iframe
           className="demo-video"
           width="560"

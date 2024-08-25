@@ -338,7 +338,15 @@ button.button.button--remove-product {
 
 .h2 {
   margin-top: 2em;
-  color: var(--color--one);
+  color: var(--color--five);
+}
+
+.h2--help {
+  margin: 1em auto;
+}
+
+.h2--video {
+  margin: 1em auto;
 }
 
 .table {
