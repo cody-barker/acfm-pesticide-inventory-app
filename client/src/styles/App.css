@@ -324,6 +324,7 @@ select:hover {
 .wrapper__form--login {
   background-color: var(--color--three);
   box-shadow: none;
+  margin: 1em;
 }
 
 button.button.button--remove-product {
