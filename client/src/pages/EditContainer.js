@@ -66,9 +66,14 @@ function EditContainer() {
   }
 
   function handleRemoveContent(index) {
-    const updatedContents = contents.map((content, idx) =>
-      idx === index ? { ...content, _destroy: true } : content
-    );
+    if (contents.length === 1) {
+      // Prevent removal if only one content is left
+      toast.error("Cannot remove the last content.");
+      return;
+    }
+    const updatedContents = contents
+      .filter((_, idx) => idx !== index) // Remove content by index
+      .map((content, idx) => ({ ...content, id: content.id || null }));
     setContents(updatedContents);
   }
 
@@ -89,6 +94,12 @@ function EditContainer() {
       row,
       expires,
       team_id: team,
+      contents_attributes: contents.map((content) => ({
+        id: content.id || null, // Add ID if it exists; otherwise, set to null
+        product_id: content.product_id,
+        concentration: content.concentration,
+        _destroy: content._destroy || false, // Include _destroy if it exists
+      })),
     };
 
     fetch(`/containers/${id}`, {
@@ -134,7 +145,6 @@ function EditContainer() {
               value={team}
               onChange={handleTeamChange}
             >
-              <option value="">Select a team</option>
               {user.teams.map((t) => (
                 <option key={t.id} value={t.id}>
                   {t.name}
@@ -233,6 +243,7 @@ function EditContainer() {
                   type="button"
                   className="edit-container__button button--remove"
                   onClick={() => handleRemoveContent(index)}
+                  disabled={contents.length === 1 && !content._destroy} // Disable the button if there's only one content that is not marked for destruction
                 >
                   Remove
                 </button>
