@@ -19,7 +19,7 @@ function Help() {
     {
       title: "How do I find containers in the chem shed?",
       content:
-        "Inventory -> All Products -> Select a Product -> All Concentrations (optional) -> Select a Concentration (optional). You may select a second product and concentration if the prescription contains more than one pesticide. Use the container's shelf and row identifiers to find it in the chem shed.",
+        "Shelves -> Filter the results using the Products and Concentrations dropdowns at the top of the page. You may select two products and concentrations if the prescription contains more than one pesticide. Use the container's shelf and row identifiers to find it in the chem shed.",
     },
     {
       title: "How do I add a container to the chem shed?",
