@@ -50,7 +50,9 @@ function Container() {
     })
       .then((r) => {
         if (!r.ok) {
-          throw new Error("Failed to delete container");
+          return r.json().then((error) => {
+            throw new Error(error.error || "Failed to delete container");
+          });
         }
         if (r.status === 204) {
           return {};
