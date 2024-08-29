@@ -22,9 +22,14 @@ function Help() {
         "Shelves -> Filter the results using the Products and Concentrations dropdowns at the top of the page. You may select two products and concentrations if the prescription contains more than one pesticide. Use the container's shelf and row identifiers to find it in the chem shed.",
     },
     {
-      title: "How do I add a container to the chem shed?",
+      title: "How do I add a premix to the chem shed?",
       content:
-        "Shelves -> Add a Container. By default, the expiration date is set 2 years from today, and the date will turn red if the product expires within 3 months.",
+        "Shelves -> Add a Container. Be sure to include the team that created it. By default, the expiration date is set 2 years from today, and the date will turn red if the product expires within 3 months.",
+    },
+    {
+      title: "How do I add a concentrates to the chem shed?",
+      content:
+        "Shelves -> Add a Container. Set the team name to Facilities. By default, the expiration date is set 2 years from today, and the date will turn red if the product expires within 3 months.",
     },
     {
       title: "How do I remove containers from the chem shed for use?",
@@ -56,6 +61,11 @@ function Help() {
     {
       title:
         "How do I see the total number of containers for every premix and/or concentrate?",
+      content:
+        "Totals. Scroll as needed. If you have trouble finding a specific premix, go to the Shelves page and use the Product and Concentration filters to find it.",
+    },
+    {
+      title: "How ",
       content:
         "Totals. Scroll as needed. If you have trouble finding a specific premix, go to the Shelves page and use the Product and Concentration filters to find it.",
     },
