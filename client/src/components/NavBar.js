@@ -42,17 +42,14 @@ function NavBar() {
         </button>
         <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
           <NavLink className="nav-button" to="/" onClick={closeMenu}>
-            Inventory
+            Shelves
           </NavLink>
           <NavLink
             className="nav-button"
-            to="/concentrates"
+            to="/totals"
             onClick={closeMenu}
           >
-            Concentrates
-          </NavLink>
-          <NavLink className="nav-button" to="/premix" onClick={closeMenu}>
-            Premix
+            Totals
           </NavLink>
           <NavLink className="nav-button" to="/teams" onClick={closeMenu}>
             Teams

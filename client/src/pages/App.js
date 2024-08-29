@@ -6,16 +6,15 @@ import Login from "./Login";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Products from "./Products";
-import Inventory from "./Inventory";
+import Shelves from "./Shelves";
 import Product from "./Product";
 import EditProduct from "./EditProduct";
 import Container from "./Container";
 import EditContainer from "./EditContainer";
 import Footer from "../components/Footer";
-import Concentrates from "./Concentrates";
+import Totals from "./Totals";
 import Help from "./Help";
 import NotFound from "./NotFound"; // Import the NotFound component
-import Premix from "./Premix";
 import Teams from "./Teams";
 import Team from "./Team";
 
@@ -45,14 +44,13 @@ function App() {
         </header>
         <main>
           <Routes>
-            <Route path="/" element={<Inventory />} />
+            <Route path="/" element={<Shelves />} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id" element={<Product />} />
             <Route path="/products/:id/edit" element={<EditProduct />} />
             <Route path="/containers/:id" element={<Container />} />
             <Route path="/containers/:id/edit" element={<EditContainer />} />
-            <Route path="/concentrates" element={<Concentrates />} />
-            <Route path="/premix" element={<Premix />} />
+            <Route path="/totals" element={<Totals />} />
             <Route path="/teams" element={<Teams />} />
             <Route path="/teams/:id" element={<Team />} />
             <Route path="/help" element={<Help />} />

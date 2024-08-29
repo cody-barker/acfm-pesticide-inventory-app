@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "../components/Modal";
 
-function Inventory() {
+function Shelves() {
   const { user, setUser } = useContext(UserContext);
   const teams = user.teams || [];
   const { products } = useContext(ProductsContext);
@@ -511,4 +511,4 @@ function Inventory() {
   );
 }
 
-export default Inventory;
+export default Shelves;
