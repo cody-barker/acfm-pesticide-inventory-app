@@ -776,6 +776,15 @@ span {
   margin: 0 0.5em;
 }
 
+.date-picker {
+  width: 12em;
+  margin: 2em;
+}
+
+.date-picker__label {
+  padding-top: 1em;
+}
+
 /* Custom styles for the toast message */
 .custom-toast {
   background-color: #d4c9c1 !important; /* Background color of the toast */
