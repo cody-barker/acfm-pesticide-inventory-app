@@ -1,0 +1,2 @@
+class CreationLogsController < ApplicationController
+end
