@@ -391,11 +391,22 @@ table tr:nth-of-type(even) {
   justify-content: center;
 }
 
+.inventory-table-container--team {
+  margin-top: 1em;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .inventory-table {
   margin: 0 1em;
   border-collapse: collapse;
   border: 1px solid var(--color--one);
   box-shadow: var(--box-shadow);
+}
+
+.inventory-table--team {
+  margin-top: 2em;
 }
 
 .inventory-table th,

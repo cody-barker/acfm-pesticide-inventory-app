@@ -17,6 +17,7 @@ import Help from "./Help";
 import NotFound from "./NotFound"; // Import the NotFound component
 import Premix from "./Premix";
 import Teams from "./Teams";
+import Team from "./Team";
 
 function App() {
   const { user, loading: userLoading } = useContext(UserContext);
@@ -53,6 +54,7 @@ function App() {
             <Route path="/concentrates" element={<Concentrates />} />
             <Route path="/premix" element={<Premix />} />
             <Route path="/teams" element={<Teams />} />
+            <Route path="/teams/:id" element={<Team />} />
             <Route path="/help" element={<Help />} />
             <Route path="*" element={<NotFound />} /> {/* 404 Route */}
           </Routes>
