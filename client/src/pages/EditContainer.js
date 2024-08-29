@@ -66,16 +66,19 @@ function EditContainer() {
   }
 
   function handleRemoveContent(index) {
-    if (contents.length === 1) {
-      // Prevent removal if only one content is left
+    if (contents.length === 1 && !contents[index]._destroy) {
+      // Prevent removal if only one content is left and it's not marked for destruction
       toast.error("Cannot remove the last content.");
       return;
     }
-    const updatedContents = contents
-      .filter((_, idx) => idx !== index) // Remove content by index
-      .map((content, idx) => ({ ...content, id: content.id || null }));
+
+    // Mark the content for deletion if it is not already marked
+    const updatedContents = contents.map((content, idx) =>
+      idx === index ? { ...content, _destroy: true } : content
+    );
     setContents(updatedContents);
   }
+
 
   function handleExpiresChange(event) {
     setExpires(event.target.value);
@@ -129,6 +132,7 @@ function EditContainer() {
         console.error("Error updating container:", error);
       });
   }
+
 
   if (!container) {
     return <p>Loading...</p>;

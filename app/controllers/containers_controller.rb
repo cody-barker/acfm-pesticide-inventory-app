@@ -26,15 +26,17 @@ class ContainersController < ApplicationController
     end
   end
 
-  def update
-    team = params[:container][:team_id].present? ? Team.find(params[:container][:team_id]) : nil
+ def update
+  @container = Container.find(params[:id])
+  team = params[:container][:team_id].present? ? Team.find(params[:container][:team_id]) : nil
 
-    if @container.update(container_params.merge(team: team))
-      render json: @container
-    else
-      render json: @container.errors, status: :unprocessable_entity
-    end
+  if @container.update(container_params.merge(team: team))
+    render json: @container
+  else
+    render json: @container.errors, status: :unprocessable_entity
   end
+end
+
 
   def destroy
     # Check if the container belongs to the current user
