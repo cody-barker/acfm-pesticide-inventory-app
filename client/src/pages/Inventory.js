@@ -228,6 +228,7 @@ function Inventory() {
             {container.expires.slice(0, 10)}
           </span>
         </td>
+        <td>{container.team.name}</td>
         <td>{container.shelf}</td>
         <td>{container.row}</td>
         {sortedContents.map((content, index) => (
@@ -442,6 +443,7 @@ function Inventory() {
               <thead>
                 <tr>
                   <th>Expires</th>
+                  <th>Team</th>
                   <th>Shelf</th>
                   <th>Row</th>
                   {[...Array(maxContents).keys()].map((index) => (

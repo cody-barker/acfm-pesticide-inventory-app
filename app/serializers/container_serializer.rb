@@ -3,5 +3,5 @@ class ContainerSerializer < ActiveModel::Serializer
   has_many :contents
   has_many :products, through: :contents
   has_many :creation_logs
-  attributes :id, :shelf, :row, :expires, :contents
+  attributes :id, :shelf, :row, :expires, :contents, :team
 end
