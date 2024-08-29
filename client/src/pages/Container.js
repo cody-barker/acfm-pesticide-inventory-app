@@ -88,6 +88,7 @@ function Container() {
         <thead>
           <tr>
             <th>Expires</th>
+            <th>Team</th>
             <th>Shelf</th>
             <th>Row</th>
             <th colSpan={numContents + 1}>Contents</th>
@@ -98,6 +99,7 @@ function Container() {
             <td className={expirationClass}>
               {container.expires.slice(0, 10)}
             </td>
+            <td>{container.team.name}</td>
             <td>{container.shelf}</td>
             <td>{container.row}</td>
             {sortedContents.map((content, index) => (
