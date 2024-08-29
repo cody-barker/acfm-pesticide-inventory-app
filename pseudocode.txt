@@ -2,6 +2,7 @@
 To Add Teams to Containers
 
 1. Create a Team model/resource
+
 2. Set associations between containers, users, and Teams
 3. Create teams in seeds
 4. Add a team select for container create and edit
