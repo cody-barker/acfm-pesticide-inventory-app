@@ -68,7 +68,7 @@ function Team() {
                   {container.contents && container.contents.length > 0 ? (
                     container.contents.map((content) => (
                       <div key={content.id}>
-                        {content.concentration}%,
+                        {content.concentration}%
                         {getProductNameById(content.product_id)}
                       </div>
                     ))
