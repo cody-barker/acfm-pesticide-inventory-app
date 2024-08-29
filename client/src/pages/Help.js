@@ -27,7 +27,7 @@ function Help() {
         "Shelves -> Add a Container. Be sure to include the team that created it. By default, the expiration date is set 2 years from today, and the date will turn red if the product expires within 3 months.",
     },
     {
-      title: "How do I add a concentrates to the chem shed?",
+      title: "How do I add concentrates to the chem shed?",
       content:
         "Shelves -> Add a Container. Set the team name to Facilities. By default, the expiration date is set 2 years from today, and the date will turn red if the product expires within 3 months.",
     },
@@ -56,7 +56,7 @@ function Help() {
       title:
         "We'll no longer be using a specific product in the future. How do I remove it from the application?",
       content:
-        "Products -> Click on the Product Name -> Remove -> Yes. WARNING: This will remove that product from the products list, and from any containers in inventory containing it, so only do this if you are sure we have used up all of the inventory containing that product, and are sure we'll no longer be using it in the future!",
+        "Products -> Click on the Product Name -> Remove -> Yes. WARNING: This will remove the product from the products list and from any containers in inventory containing it. Only do this if you are certain all inventory containing the product has been used and you will not be using it in the future.",
     },
     {
       title:
