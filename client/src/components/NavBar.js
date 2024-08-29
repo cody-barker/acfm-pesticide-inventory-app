@@ -54,6 +54,9 @@ function NavBar() {
           <NavLink className="nav-button" to="/premix" onClick={closeMenu}>
             Premix
           </NavLink>
+          <NavLink className="nav-button" to="/teams" onClick={closeMenu}>
+            Teams
+          </NavLink>
           <NavLink className="nav-button" to="/products" onClick={closeMenu}>
             Products
           </NavLink>
