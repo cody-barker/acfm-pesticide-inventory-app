@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_15_164836) do
+ActiveRecord::Schema.define(version: 2024_08_29_174104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2024_07_15_164836) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "expires", default: -> { "(CURRENT_TIMESTAMP + 'P2Y'::interval)" }
+    t.integer "team_id"
+    t.index ["team_id"], name: "index_containers_on_team_id"
   end
 
   create_table "contents", force: :cascade do |t|
@@ -32,11 +34,24 @@ ActiveRecord::Schema.define(version: 2024_07_15_164836) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "creation_logs", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "epa_reg"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_teams_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
