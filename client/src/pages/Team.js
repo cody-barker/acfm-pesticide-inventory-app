@@ -38,7 +38,7 @@ function Team() {
   };
 
   if (!team || products.length === 0) {
-    return <p>Loading or team not found...</p>;
+    return <p></p>;
   }
 
   console.log(products);
