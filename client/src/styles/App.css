@@ -109,6 +109,18 @@ ul {
   padding: 0.75em 1.5em;
 }
 
+.teams-table {
+  margin: 0 1em;
+  border-collapse: collapse;
+  border: 1px solid var(--color--one);
+  box-shadow: var(--box-shadow);
+}
+
+.teams-table td,
+th {
+  padding: 1em;
+}
+
 .button--filter {
   border: none;
   border-radius: 0;
@@ -404,6 +416,10 @@ table tr:nth-of-type(even) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.inventory-table-container__title {
+  margin-bottom: 1em;
 }
 
 .inventory-table {
@@ -756,7 +772,7 @@ span {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 3em;
+  margin: 3em 1em;
 }
 
 .teams-list {
@@ -807,19 +823,7 @@ span {
   color: #404c24 !important; /* Color of the progress bar */
 }
 
-@media (max-width: 400px) {
-  .modal-close {
-    right: 50px;
-  }
-}
-
-@media (max-width: 500px) {
-  .nav-button {
-    padding: 0.5em;
-  }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   #navbar {
     font-size: 0.9em;
   }
@@ -894,7 +898,7 @@ table th {
   width: 18px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 850px) {
   #navbar {
     width: 100%;
     display: flex;
@@ -933,5 +937,23 @@ table th {
   .filter-container {
     flex-direction: column;
     padding: 0.5em 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .modal-close {
+    right: 50px;
+  }
+}
+
+@media (max-width: 500px) {
+  .nav-button {
+    padding: 0.5em;
+  }
+
+  .inventory-table th,
+  .inventory-table td {
+    padding: 0.1em;
+    font-size: 0.65em;
   }
 }
