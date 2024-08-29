@@ -51,6 +51,9 @@ function NavBar() {
           >
             Concentrates
           </NavLink>
+          <NavLink className="nav-button" to="/premix" onClick={closeMenu}>
+            Premix
+          </NavLink>
           <NavLink className="nav-button" to="/products" onClick={closeMenu}>
             Products
           </NavLink>
