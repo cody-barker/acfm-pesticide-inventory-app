@@ -28,14 +28,28 @@ class ContainersController < ApplicationController
 
  def update
   @container = Container.find(params[:id])
-  team = params[:container][:team_id].present? ? Team.find(params[:container][:team_id]) : nil
+  new_team = params[:container][:team_id].present? ? Team.find(params[:container][:team_id]) : nil
 
-  if @container.update(container_params.merge(team: team))
+  if @container.update(container_params.merge(team: new_team))
+    update_creation_logs(new_team)
     render json: @container
   else
     render json: @container.errors, status: :unprocessable_entity
   end
 end
+
+private
+
+def update_creation_logs(new_team)
+  # Fetch all creation logs related to this container
+  creation_logs = CreationLog.where(container_id: @container.id)
+  
+  creation_logs.each do |log|
+    # Update the team_id in each creation log
+    log.update(team_id: new_team.id) if new_team
+  end
+end
+
 
 
   def destroy
