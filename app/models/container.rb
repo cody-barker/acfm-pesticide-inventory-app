@@ -1,5 +1,6 @@
 class Container < ApplicationRecord
   belongs_to :team
+  # belongs_to :user
   has_many :contents, dependent: :destroy
   has_many :products, through: :contents
   has_many :creation_logs

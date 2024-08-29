@@ -110,6 +110,7 @@ function Inventory() {
       row: row,
       expires: formattedDate,
       contents_attributes: contents,
+      team_id: selectedTeam, // Add this line to include the selected team
     };
 
     fetch("/containers", {
@@ -130,6 +131,7 @@ function Inventory() {
             setShelf(1);
             setRow("A");
             setContents([{ product_id: "", concentration: "" }]);
+            setSelectedTeam(""); // Reset the selected team after submission
             setIsModalOpen(false);
             showToastMessage();
           });
@@ -259,6 +261,23 @@ function Inventory() {
             <form className="form" onSubmit={handleSubmit}>
               <div className="flex-column">
                 <div className="flex-row">
+                  <label className="form__label">
+                    Team
+                    <select
+                      name="team"
+                      className="button"
+                      value={selectedTeam || ""}
+                      onChange={(e) => setSelectedTeam(e.target.value)}
+                      required
+                    >
+                      <option value="">Select a team</option>
+                      {teams.map((team) => (
+                        <option key={team.id} value={team.id}>
+                          {team.name}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
                   <label className="form__label">
                     Shelf
                     <select

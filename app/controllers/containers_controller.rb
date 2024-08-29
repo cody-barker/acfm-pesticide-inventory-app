@@ -12,8 +12,19 @@ class ContainersController < ApplicationController
   end
 
   def create
-    container = @user.containers.create!(container_params)
-    render json: container, status: :created
+    # Find the team associated with the current user
+    team = @user.teams.find_by(id: container_params[:team_id])
+    
+    if team
+      container = team.containers.new(container_params.except(:team_id))  # Create the container with the found team
+      if container.save
+        render json: container, status: :created
+      else
+        render json: { error: 'Failed to create container' }, status: :unprocessable_entity
+      end
+    else
+      render json: { error: 'Team not found' }, status: :not_found
+    end
   end
 
   def update
