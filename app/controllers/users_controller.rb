@@ -1,31 +1,37 @@
 class UsersController < ApplicationController
-    # skip_before_action :authorize, only: [:create, :index]
+  # skip_before_action :authorize, only: [:create, :index]
 
-    def index
-        render json: User.all
+  # GET /users
+  def index
+    render json: User.all
+  end
+
+  # GET /users/:id
+  def show
+    user = find_user
+    if user
+      render json: user
+    else
+      render json: { error: 'User not found' }, status: :not_found
     end
+  end
 
-    def show
-        user = User.find_by(id: session[:user_id])
-        render json: user, status: :created
-    end
+  # POST /users
+  def create
+    user = User.create!(user_params)
+    session[:user_id] = user.id
+    render json: user, status: :created
+  end
 
-    def create
-        user = User.create!(user_params)
-        session[:user_id] = user.id
-        render json: user, status: :created
-    end
+  private
 
-    private
+  # Find user based on the provided ID
+  def find_user
+    User.find_by(id: params[:id])
+  end
 
-    def find_user
-        User.find(params[:id])
-    end
-
-    def user_params
-        params.permit(
-            :username, 
-            :password
-        )
-    end
+  # Only allow a list of trusted parameters through
+  def user_params
+    params.require(:user).permit(:username, :password)
+  end
 end
