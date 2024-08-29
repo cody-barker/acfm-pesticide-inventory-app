@@ -3,6 +3,11 @@ class CreationLogsController < ApplicationController
     render json: CreationLog.all
   end
 
+  def show
+    creation_log = CreationLog.find(params[:id]) 
+    render json: creation_log, status: :ok
+  end
+
   def create
     creation_log = CreationLog.create!(creation_log_params)
     render json: creation_log, status: :created
