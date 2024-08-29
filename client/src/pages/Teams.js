@@ -17,9 +17,11 @@ function Teams() {
       <h1>Teams</h1>
       <ul className="teams-list">
         {teams.map((team) => (
-          <li className="team" key={team.id}>
-            <Link to={`/teams/${team.id}`}>{team.name}</Link>
-          </li>
+          <Link to={`/teams/${team.id}`} key={team.id}>
+            <li className="team button--remove button--team button-width">
+              {team.name}
+            </li>
+          </Link>
         ))}
       </ul>
     </div>

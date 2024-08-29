@@ -101,6 +101,14 @@ ul {
   margin-top: 1em;
 }
 
+.button--team {
+  text-align: center;
+}
+
+.teams-list .button--team {
+  padding: 0.75em 1.5em;
+}
+
 .button--filter {
   border: none;
   border-radius: 0;
