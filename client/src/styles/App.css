@@ -455,6 +455,14 @@ table tr:nth-of-type(even) {
   margin-top: 2em;
 }
 
+.inventory-table-total {
+  margin-bottom: 1em;
+}
+
+.table-total {
+  margin-top: 1em;
+}
+
 .edit-container {
   margin-top: 3em;
   display: flex;

@@ -78,10 +78,24 @@ function Totals() {
     </tr>
   ));
 
+  // Calculate totals for both tables
+  const totalPrescriptions = uniquePrescriptions.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
+  const totalConcentrates = Object.values(productCounts).reduce(
+    (total, count) => total + count,
+    0
+  );
+
   return (
     <div className="inventory-container">
       <div className="inventory-table-container inventory-table-container--premix">
         <h2 className="inventory-table-container__title">Premix Inventory</h2>
+        <div className="inventory-table-total">
+          Total Containers: {totalPrescriptions}
+        </div>
         <table className="teams-table">
           <thead>
             <tr>
@@ -102,7 +116,8 @@ function Totals() {
 
       <div className="table-container">
         <h2 className="h2">Concentrate Inventory</h2>
-        <table className="table margin-top-2em">
+        <div className="table-total">Total Containers: {totalConcentrates}</div>
+        <table className="table margin-top-1em">
           <thead>
             <tr className="table-header-row">
               <th>Product</th>
