@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { ProductsContext } from "../contexts/ProductsContext"; // Make sure to import your context
 
 function Team() {
@@ -43,7 +43,8 @@ function Team() {
   );
 
   if (!team || products.length === 0) {
-    return <p></p>;
+    return <p>
+    </p>;
   }
 
   return (
@@ -60,7 +61,7 @@ function Team() {
               <th>Row</th>
               {/* Create a separate column for each possible content slot */}
               {[...Array(maxContents)].map((_, index) => (
-                <th key={index}>Content {index + 1}</th>
+                <th key={index}>Product {index + 1}</th>
               ))}
             </tr>
           </thead>
@@ -73,13 +74,39 @@ function Team() {
 
               return (
                 <tr key={container.id}>
-                  <td>{container.expires.slice(0, 10)}</td>
-                  <td>{container.shelf}</td>
-                  <td>{container.row}</td>
+                  <td>
+                    <NavLink
+                      to={`/containers/${container.id}`}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {container.expires.slice(0, 10)}
+                    </NavLink>
+                  </td>
+                  <td>
+                    <NavLink
+                      to={`/containers/${container.id}`}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {container.shelf}
+                    </NavLink>
+                  </td>
+                  <td>
+                    <NavLink
+                      to={`/containers/${container.id}`}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {container.row}
+                    </NavLink>
+                  </td>
                   {sortedContents.map((content, index) => (
                     <td key={index}>
-                      {content.concentration}%{" "}
-                      {getProductNameById(content.product_id)}
+                      <NavLink
+                        to={`/containers/${container.id}`}
+                        style={{ textDecoration: "none", color: "inherit" }}
+                      >
+                        {content.concentration}%{" "}
+                        {getProductNameById(content.product_id)}
+                      </NavLink>
                     </td>
                   ))}
                   {/* Add empty cells to fill up the row if there are fewer contents than the maximum */}
