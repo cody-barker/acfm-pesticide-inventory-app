@@ -9,6 +9,7 @@ import Modal from "../components/Modal";
 
 function Inventory() {
   const { user, setUser } = useContext(UserContext);
+  const teams = user.teams || [];
   const { products } = useContext(ProductsContext);
   const [errors, setErrors] = useState([]);
   const [shelf, setShelf] = useState(1);
@@ -21,6 +22,8 @@ function Inventory() {
   const [selectedConcentration, setSelectedConcentration] = useState("");
   const [selectedProduct2, setSelectedProduct2] = useState("");
   const [selectedConcentration2, setSelectedConcentration2] = useState("");
+  const [selectedTeam, setSelectedTeam] = useState("");
+
   const [expires, setExpires] = useState("");
   const showToastMessage = () => {
     toast("Container added!", {
@@ -36,6 +39,7 @@ function Inventory() {
     setSelectedConcentration("");
     setSelectedProduct2("");
     setSelectedConcentration2("");
+    setSelectedTeam(""); // Reset team filter here
     setShelf(1);
     setRow("A");
   };
@@ -171,7 +175,10 @@ function Inventory() {
           content.concentration === parseFloat(selectedConcentration2))
     );
 
-    return firstFilterMatch && secondFilterMatch;
+    const teamFilterMatch =
+      !selectedTeam || container.team.id === parseInt(selectedTeam);
+
+    return firstFilterMatch && secondFilterMatch && teamFilterMatch;
   });
 
   const sortedContainers = filteredContainers.slice().sort((a, b) => {
@@ -352,6 +359,7 @@ function Inventory() {
         </div>
         <div className="filter-container">
           <div className="filter-container__filter-group">
+            {/* Existing filters */}
             <label className="filter">
               <select
                 value={selectedConcentration}
@@ -384,6 +392,7 @@ function Inventory() {
             </label>
           </div>
           <div className="filter-container__filter-group">
+            {/* Existing filters */}
             <label className="filter">
               <select
                 value={selectedConcentration2}
@@ -415,6 +424,23 @@ function Inventory() {
               </select>
             </label>
           </div>
+          <div className="filter-container__filter-group">
+            <label className="filter">
+              <select
+                value={selectedTeam}
+                onChange={(e) => setSelectedTeam(e.target.value)}
+                className="button button--filter"
+                name="select-team"
+              >
+                <option value="">All Teams</option>
+                {teams.map((team) => (
+                  <option key={team.id} value={team.id}>
+                    {team.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
           <button
             onClick={handleResetFilters}
             className="reset-button"
@@ -427,6 +453,7 @@ function Inventory() {
             />
           </button>
         </div>
+
         <div>
           <p className="flex-column">
             <button onClick={handleModalToggle} className="button button--add">
