@@ -13,7 +13,6 @@ function Team() {
       try {
         const response = await fetch(`/teams/${id}`);
         const data = await response.json();
-        console.log("Fetched team data:", data); // Debugging line
         if (data) {
           setTeam(data);
           setContainers(data.containers || []);
@@ -37,11 +36,15 @@ function Team() {
     return product ? product.name : "Unknown Product";
   };
 
+  // Calculate the maximum number of contents in any container
+  const maxContents = containers.reduce(
+    (max, container) => Math.max(max, container.contents.length),
+    0
+  );
+
   if (!team || products.length === 0) {
     return <p></p>;
   }
-
-  console.log(products);
 
   return (
     <div className="inventory-table-container inventory-table-container--team">
@@ -55,7 +58,10 @@ function Team() {
               <th>Expires</th>
               <th>Shelf</th>
               <th>Row</th>
-              <th>Contents</th>
+              {/* Create a separate column for each possible content slot */}
+              {[...Array(maxContents)].map((_, index) => (
+                <th key={index}>Content {index + 1}</th>
+              ))}
             </tr>
           </thead>
           <tbody>
@@ -64,18 +70,19 @@ function Team() {
                 <td>{container.expires.slice(0, 10)}</td>
                 <td>{container.shelf}</td>
                 <td>{container.row}</td>
-                <td>
-                  {container.contents && container.contents.length > 0 ? (
-                    container.contents.map((content) => (
-                      <div key={content.id}>
-                        {content.concentration}%
-                        {getProductNameById(content.product_id)}
-                      </div>
-                    ))
-                  ) : (
-                    <p>No contents</p>
-                  )}
-                </td>
+                {container.contents.map((content, index) => (
+                  <td key={index}>
+                    {content.concentration}%{" "}
+                    {getProductNameById(content.product_id)}
+                  </td>
+                ))}
+                {/* Add empty cells to fill up the row if there are fewer contents than the maximum */}
+                {Array.from(
+                  { length: maxContents - container.contents.length },
+                  (_, index) => (
+                    <td key={`empty-${index}`}></td>
+                  )
+                )}
               </tr>
             ))}
           </tbody>
