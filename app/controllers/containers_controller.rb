@@ -3,12 +3,12 @@ class ContainersController < ApplicationController
   before_action :find_user_by_session_id
 
   def index
-    containers = Container.all
-    render json: containers
+    containers = @user.containers
+    render json: containers, include: :contents
   end
 
   def show
-    render json: @container
+    render json: @container, include: :contents
   end
 
   def create
@@ -16,7 +16,7 @@ class ContainersController < ApplicationController
     render json: container, status: :created
   end
 
-   def update
+  def update
     if @container.update(container_params)
       render json: @container, status: :ok
     else
@@ -25,22 +25,22 @@ class ContainersController < ApplicationController
   end
 
   def destroy
-    container = @user.containers.find(params[:id])
-    container.destroy
-    render json: container, status: :no_content
+    @container.destroy
+    head :no_content
   end
 
   private
 
   def find_user_by_session_id
     @user = User.find_by(id: session[:user_id])
+    head :unauthorized unless @user
   end
 
   def container_params
-    params.require(:container).permit(:shelf, :row, :expires, contents_attributes: [:id, :product_id, :concentration, :container_id, :_destroy])
+    params.require(:container).permit(:shelf, :row, :expires, :team_id, contents_attributes: [:id, :product_id, :concentration, :container_id, :_destroy])
   end
 
   def set_container
-    @container = Container.find(params[:id])
+    @container = @user.containers.find(params[:id])
   end
 end
