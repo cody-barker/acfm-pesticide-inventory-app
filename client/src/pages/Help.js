@@ -65,9 +65,14 @@ function Help() {
         "Totals. Scroll as needed. If you have trouble finding a specific premix, go to the Shelves page and use the Product and Concentration filters to find it.",
     },
     {
-      title: "How ",
+      title:
+        "How do I view how many containers each team has created since a specific date?",
+      content: "Teams -> Select a Date",
+    },
+    {
+      title: "How do I view all the premixes a team has in inventory?",
       content:
-        "Totals. Scroll as needed. If you have trouble finding a specific premix, go to the Shelves page and use the Product and Concentration filters to find it.",
+        "Teams -> Click on a team name. This will take you to the team detail page with a table of all of their premixes in the chem shed.",
     },
   ];
 
