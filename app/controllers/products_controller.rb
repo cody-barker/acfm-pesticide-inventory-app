@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     def update
       product = products.find(params[:id])
       product.update!(product_params)
-      render json: product, status: :accepted
+      render json: product, status: :ok
     end
 
     def destroy
