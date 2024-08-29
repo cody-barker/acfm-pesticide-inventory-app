@@ -27,12 +27,20 @@ class ContainersController < ApplicationController
   end
 
   def update
-    if @container.update(container_params)
-      render json: @container, status: :ok
+    team = @user.teams.find_by(id: container_params[:team_id])
+    
+    if team
+      if @container.update(container_params)
+        render json: @container, status: :ok
+      else
+        render json: { error: 'Failed to update container' }, status: :unprocessable_entity
+      end
     else
-      render json: { error: 'Failed to update container' }, status: :unprocessable_entity
+      render json: { error: 'Team not found' }, status: :not_found
     end
   end
+
+
 
 
   def destroy
@@ -57,8 +65,9 @@ end
 
 
   def container_params
-    params.require(:container).permit(:shelf, :row, :expires, :team_id, contents_attributes: [:id, :product_id, :concentration, :container_id, :_destroy])
-  end
+  params.require(:container).permit(:shelf, :row, :expires, :team_id, contents_attributes: [:id, :product_id, :concentration, :container_id, :_destroy])
+end
+
 
   def set_container
     @container = @user.containers.find(params[:id])

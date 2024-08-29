@@ -19,6 +19,7 @@ function EditContainer() {
   const [row, setRow] = useState(container?.row || "");
   const [contents, setContents] = useState(container?.contents || []);
   const [expires, setExpires] = useState(container?.expires || "");
+  const [team, setTeam] = useState(container?.team?.id || ""); // Use team ID for initial state
 
   const showToastMessage = () => {
     toast("Container updated!", {
@@ -37,7 +38,8 @@ function EditContainer() {
           id: content.id || null,
         }))
       );
-      setExpires(container.expires); // Prefill expires with current container's expires
+      setExpires(container.expires);
+      setTeam(container.team?.id || ""); // Prefill team with current container's team ID
     }
   }, [container]);
 
@@ -74,6 +76,10 @@ function EditContainer() {
     setExpires(event.target.value);
   }
 
+  function handleTeamChange(event) {
+    setTeam(event.target.value); // Set team state to selected value
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -81,13 +87,8 @@ function EditContainer() {
       id: container.id,
       shelf,
       row,
-      expires, // Include updated expires date for the entire container
-      contents_attributes: contents.map((content) => {
-        if (content._destroy || (!content.product_id && content.id)) {
-          return { ...content, _destroy: true };
-        }
-        return content;
-      }),
+      expires,
+      team_id: team,
     };
 
     fetch(`/containers/${id}`, {
@@ -127,6 +128,21 @@ function EditContainer() {
       <form className="edit-container__form" onSubmit={handleSubmit}>
         <div className="edit-container__form-row">
           <label className="edit-container__label">
+            Team
+            <select
+              className="edit-container__select button"
+              value={team}
+              onChange={handleTeamChange}
+            >
+              <option value="">Select a team</option>
+              {user.teams.map((t) => (
+                <option key={t.id} value={t.id}>
+                  {t.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="edit-container__label">
             Shelf
             <select
               className="edit-container__select button"
@@ -143,7 +159,7 @@ function EditContainer() {
           <label className="edit-container__label">
             Row
             <select
-              className="edit-container__select  button"
+              className="edit-container__select button"
               value={row}
               onChange={handleRowChange}
             >
