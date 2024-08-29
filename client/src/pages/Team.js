@@ -65,26 +65,33 @@ function Team() {
             </tr>
           </thead>
           <tbody>
-            {containers.map((container) => (
-              <tr key={container.id}>
-                <td>{container.expires.slice(0, 10)}</td>
-                <td>{container.shelf}</td>
-                <td>{container.row}</td>
-                {container.contents.map((content, index) => (
-                  <td key={index}>
-                    {content.concentration}%{" "}
-                    {getProductNameById(content.product_id)}
-                  </td>
-                ))}
-                {/* Add empty cells to fill up the row if there are fewer contents than the maximum */}
-                {Array.from(
-                  { length: maxContents - container.contents.length },
-                  (_, index) => (
-                    <td key={`empty-${index}`}></td>
-                  )
-                )}
-              </tr>
-            ))}
+            {containers.map((container) => {
+              // Sort contents by concentration in descending order
+              const sortedContents = [...container.contents].sort(
+                (a, b) => b.concentration - a.concentration
+              );
+
+              return (
+                <tr key={container.id}>
+                  <td>{container.expires.slice(0, 10)}</td>
+                  <td>{container.shelf}</td>
+                  <td>{container.row}</td>
+                  {sortedContents.map((content, index) => (
+                    <td key={index}>
+                      {content.concentration}%{" "}
+                      {getProductNameById(content.product_id)}
+                    </td>
+                  ))}
+                  {/* Add empty cells to fill up the row if there are fewer contents than the maximum */}
+                  {Array.from(
+                    { length: maxContents - sortedContents.length },
+                    (_, index) => (
+                      <td key={`empty-${index}`}></td>
+                    )
+                  )}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       )}
