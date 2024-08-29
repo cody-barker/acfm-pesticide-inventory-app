@@ -103,8 +103,6 @@ function Help() {
         <h2 className="h2 h2--video">Video Tutorial</h2>
         <iframe
           className="demo-video"
-          width="560"
-          height="315"
           src="https://www.youtube.com/embed/Yj-KRJet66A?si=j6hYEBCETdSe3szX"
           title="YouTube video player"
           frameBorder="0"
