@@ -25,7 +25,7 @@ function Totals() {
           .sort((a, b) => b.concentration - a.concentration) // Sort by concentration descending
           .map(
             ({ concentration, productName }) =>
-              `${concentration}% ${productName}`
+              `${concentration}% ${productName} `
           )
           .join(", ");
 
