@@ -6,9 +6,9 @@ class UsersController < ApplicationController
     end
 
     def show
-    @user = User.includes(:teams => [:containers, :contents, :creation_logs]).find(params[:id])
+        user = User.find_by(id: session[:user_id])
+        render json: user, status: :created
     end
-
 
     def create
         user = User.create!(user_params)
