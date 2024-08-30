@@ -6,7 +6,6 @@ import reportWebVitals from "./scripts/reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./contexts/UserContext";
 import { ProductsProvider } from "./contexts/ProductsContext";
-import { CreationLogsProvider } from "./contexts/CreationLogsContext";
 
 // Create a root for the React 18 app
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -16,9 +15,7 @@ root.render(
   <BrowserRouter>
     <UserProvider>
       <ProductsProvider>
-        <CreationLogsProvider>
-          <App />
-        </CreationLogsProvider>
+        <App />
       </ProductsProvider>
     </UserProvider>
   </BrowserRouter>
