@@ -270,7 +270,7 @@ function EditContainer() {
         <button type="submit" className="edit-container__button button">
           Submit
         </button>
-        <div className="edit-container__errors">
+        <div className="error">
           {errors.map((error, index) => (
             <p key={index} className="error-message">
               {error}
