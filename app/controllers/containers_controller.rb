@@ -13,11 +13,7 @@ class ContainersController < ApplicationController
 
   def create
     team = @user.teams.find_by(id: container_params[:team_id])
-    
-    if team
-      container = team.containers.new(container_params.except(:team_id))  # Create the container with the found team
-      if container.save
-        # Create a CreationLog record
+    container = team.containers.create!(container_params.except(:team_id))
         CreationLog.create!(
           container: container,
           team: team,
@@ -25,19 +21,32 @@ class ContainersController < ApplicationController
         )
 
         render json: container, status: :created
-      else
-        render json: { error: 'Failed to create container' }, status: :unprocessable_entity
-      end
-    else
-      render json: { error: 'Team not found' }, status: :not_found
-    end
   end
 
-  def update
+  # def update
+  #   new_team = params[:container][:team_id].present? ? Team.find(params[:container][:team_id]) : nil
+  #   old_team = @container.team
+
+  #   if @container.update(container_params.merge(team: new_team))
+  #     if new_team != old_team
+  #       # Update CreationLog if the team has changed
+  #       CreationLog.find_by(container: @container)&.update(
+  #         team: new_team,
+  #         created_at: @container.created_at
+  #       )
+  #     end
+
+  #     render json: @container
+  #   else
+  #     render json: @container.errors, status: :unprocessable_entity
+  #   end
+  # end
+
+    def update
     new_team = params[:container][:team_id].present? ? Team.find(params[:container][:team_id]) : nil
     old_team = @container.team
 
-    if @container.update(container_params.merge(team: new_team))
+    @container.update!(container_params.merge(team: new_team))
       if new_team != old_team
         # Update CreationLog if the team has changed
         CreationLog.find_by(container: @container)&.update(
@@ -45,11 +54,7 @@ class ContainersController < ApplicationController
           created_at: @container.created_at
         )
       end
-
-      render json: @container
-    else
-      render json: @container.errors, status: :unprocessable_entity
-    end
+    render json: @container
   end
 
   def destroy

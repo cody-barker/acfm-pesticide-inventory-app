@@ -12,6 +12,7 @@ function EditContainer() {
 
   const { user, setUser } = useContext(UserContext);
   const { products } = useContext(ProductsContext);
+  const [errors, setErrors] = useState([]);
 
   let container = user.containers.find((container) => container.id === id);
 
@@ -79,7 +80,6 @@ function EditContainer() {
     setContents(updatedContents);
   }
 
-
   function handleExpiresChange(event) {
     setExpires(event.target.value);
   }
@@ -114,7 +114,13 @@ function EditContainer() {
     })
       .then((r) => {
         if (!r.ok) {
-          throw new Error("Failed to update container");
+          return r.json().then((data) => {
+            throw new Error(
+              data.errors
+                ? data.errors.join(", ")
+                : "Failed to update container"
+            );
+          });
         }
         return r.json();
       })
@@ -129,10 +135,10 @@ function EditContainer() {
         }, 2000);
       })
       .catch((error) => {
+        setErrors([error.message]); // Set the error message in the errors state
         console.error("Error updating container:", error);
       });
   }
-
 
   if (!container) {
     return <p>Loading...</p>;
@@ -264,6 +270,13 @@ function EditContainer() {
         <button type="submit" className="edit-container__button button">
           Submit
         </button>
+        <div className="edit-container__errors">
+          {errors.map((error, index) => (
+            <p key={index} className="error-message">
+              {error}
+            </p>
+          ))}
+        </div>
       </form>
       <ToastContainer autoClose={2000} />
     </div>
