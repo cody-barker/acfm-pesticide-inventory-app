@@ -16,10 +16,9 @@ function Teams() {
   }, [user]);
 
   useEffect(() => {
-    // Set default date to January 1 of the current year
     const now = new Date();
     const currentYear = now.getFullYear();
-    const januaryFirst = new Date(currentYear, 0, 1); // January is month 0
+    const januaryFirst = new Date(currentYear, 0, 1);
     const formattedDate = januaryFirst.toISOString().split("T")[0];
     setSelectedDate(formattedDate);
   }, []);
@@ -28,8 +27,10 @@ function Teams() {
     const fetchCreationLogs = async () => {
       try {
         const response = await fetch(`/creation_logs`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
-        console.log("Fetched creation logs:", data); // Log data to verify it's an array
         if (Array.isArray(data)) {
           setCreationLogs(data);
         } else {
@@ -48,18 +49,12 @@ function Teams() {
   useEffect(() => {
     if (selectedDate && teams.length > 0) {
       const selectedDateObj = new Date(selectedDate);
-      selectedDateObj.setUTCHours(0, 0, 0, 0); // Normalize to UTC start of the selected date
+      selectedDateObj.setUTCHours(0, 0, 0, 0);
 
-      // Initialize counts
       const counts = {};
-
-      // Count containers created since selected date for each team
       creationLogs.forEach((log) => {
         const logDateObj = new Date(log.created_at);
-        logDateObj.setUTCHours(0, 0, 0, 0); // Normalize to UTC start of the log's creation date
-
-        console.log("Log Date:", logDateObj.toISOString()); // Debugging output
-        console.log("Selected Date:", selectedDateObj.toISOString()); // Debugging output
+        logDateObj.setUTCHours(0, 0, 0, 0);
 
         if (logDateObj >= selectedDateObj) {
           const teamId = log.team.id;
@@ -70,11 +65,8 @@ function Teams() {
         }
       });
 
-      console.log("Counts based on selected date:", counts); // Debugging output
-
       setContainerCounts(counts);
     } else {
-      // If no date is selected, reset counts
       setContainerCounts({});
     }
   }, [selectedDate, creationLogs, teams]);
@@ -83,7 +75,6 @@ function Teams() {
     <div className="teams-list__container">
       <h1>Teams</h1>
 
-      {/* Date Picker */}
       <label htmlFor="date-picker" className="date-picker__label">
         Select a Date to View Containers Created Since
       </label>
@@ -95,11 +86,12 @@ function Teams() {
         onChange={(e) => setSelectedDate(e.target.value)}
       />
 
-      <table className="inventory-table teams-table">
+      <table className="teams-table">
         <thead>
           <tr>
             <th>Team Name</th>
-            <th>Containers</th>
+            <th>Containers Since {selectedDate}</th>
+            <th>Current Containers</th>
           </tr>
         </thead>
         <tbody>
@@ -109,6 +101,7 @@ function Teams() {
                 <Link to={`/teams/${team.id}`}>{team.name}</Link>
               </td>
               <td>{containerCounts[team.id] || 0}</td>
+              <td>{team.containers.length || 0}</td>
             </tr>
           ))}
         </tbody>
