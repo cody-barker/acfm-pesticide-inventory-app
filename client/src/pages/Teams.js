@@ -92,7 +92,7 @@ function Teams() {
         onChange={(e) => setSelectedDate(e.target.value)}
       />
 
-      <table className="teams-table">
+      <table className="inventory-table teams-table">
         <thead>
           <tr>
             <th>Team Name</th>

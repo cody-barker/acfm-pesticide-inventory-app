@@ -17,6 +17,13 @@ class ContainersController < ApplicationController
     if team
       container = team.containers.new(container_params.except(:team_id))  # Create the container with the found team
       if container.save
+        # Create a CreationLog record
+        CreationLog.create!(
+          container: container,
+          team: team,
+          created_at: container.created_at
+        )
+
         render json: container, status: :created
       else
         render json: { error: 'Failed to create container' }, status: :unprocessable_entity
@@ -26,31 +33,24 @@ class ContainersController < ApplicationController
     end
   end
 
- def update
-  @container = Container.find(params[:id])
-  new_team = params[:container][:team_id].present? ? Team.find(params[:container][:team_id]) : nil
+  def update
+    new_team = params[:container][:team_id].present? ? Team.find(params[:container][:team_id]) : nil
+    old_team = @container.team
 
-  if @container.update(container_params.merge(team: new_team))
-    update_creation_logs(new_team)
-    render json: @container
-  else
-    render json: @container.errors, status: :unprocessable_entity
+    if @container.update(container_params.merge(team: new_team))
+      if new_team != old_team
+        # Update CreationLog if the team has changed
+        CreationLog.find_by(container: @container)&.update(
+          team: new_team,
+          created_at: @container.created_at
+        )
+      end
+
+      render json: @container
+    else
+      render json: @container.errors, status: :unprocessable_entity
+    end
   end
-end
-
-private
-
-def update_creation_logs(new_team)
-  # Fetch all creation logs related to this container
-  creation_logs = CreationLog.where(container_id: @container.id)
-  
-  creation_logs.each do |log|
-    # Update the team_id in each creation log
-    log.update(team_id: new_team.id) if new_team
-  end
-end
-
-
 
   def destroy
     # Check if the container belongs to the current user
