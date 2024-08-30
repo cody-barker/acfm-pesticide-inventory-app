@@ -91,6 +91,19 @@ function Totals() {
 
   return (
     <div className="inventory-container">
+      <div className="table-container">
+        <h2 className="h2">Concentrate Inventory</h2>
+        <div className="table-total">Total Containers: {totalConcentrates}</div>
+        <table className="table margin-top-1em">
+          <thead>
+            <tr className="table-header-row">
+              <th>Product</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>{concentrateComps}</tbody>
+        </table>
+      </div>
       <div className="inventory-table-container inventory-table-container--premix">
         <h2 className="inventory-table-container__title">Premix Inventory</h2>
         <div className="inventory-table-total">
@@ -111,20 +124,6 @@ function Totals() {
               </tr>
             ))}
           </tbody>
-        </table>
-      </div>
-
-      <div className="table-container">
-        <h2 className="h2">Concentrate Inventory</h2>
-        <div className="table-total">Total Containers: {totalConcentrates}</div>
-        <table className="table margin-top-1em">
-          <thead>
-            <tr className="table-header-row">
-              <th>Product</th>
-              <th>Quantity</th>
-            </tr>
-          </thead>
-          <tbody>{concentrateComps}</tbody>
         </table>
       </div>
     </div>
