@@ -104,7 +104,7 @@ function Teams() {
       <h1>Teams</h1>
 
       <label htmlFor="date-picker" className="date-picker__label">
-        Select a Date to View Containers Created Since
+        Select a Date to View Premix Returned Since
       </label>
       <input
         id="date-picker"
@@ -118,20 +118,22 @@ function Teams() {
         <thead>
           <tr>
             <th>Team Name</th>
-            <th>Containers Since {selectedDate}</th>
-            <th>Current Containers</th>
+            <th>Premix Returned Since {selectedDate}</th>
+            <th>Containers in Inventory Currently</th>
           </tr>
         </thead>
         <tbody>
-          {teams.map((team) => (
-            <tr key={team.id}>
-              <td>
-                <Link to={`/teams/${team.id}`}>{team.name}</Link>
-              </td>
-              <td>{containerCounts[team.id] || 0}</td>
-              <td>{team.containers.length || 0}</td>
-            </tr>
-          ))}
+          {teams
+            .filter((team) => team.name !== "Facilities")
+            .map((team) => (
+              <tr key={team.id}>
+                <td>
+                  <Link to={`/teams/${team.id}`}>{team.name}</Link>
+                </td>
+                <td>{containerCounts[team.id] || 0}</td>
+                <td>{team.containers.length || 0}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
