@@ -23,26 +23,7 @@ class ContainersController < ApplicationController
         render json: container, status: :created
   end
 
-  # def update
-  #   new_team = params[:container][:team_id].present? ? Team.find(params[:container][:team_id]) : nil
-  #   old_team = @container.team
-
-  #   if @container.update(container_params.merge(team: new_team))
-  #     if new_team != old_team
-  #       # Update CreationLog if the team has changed
-  #       CreationLog.find_by(container: @container)&.update(
-  #         team: new_team,
-  #         created_at: @container.created_at
-  #       )
-  #     end
-
-  #     render json: @container
-  #   else
-  #     render json: @container.errors, status: :unprocessable_entity
-  #   end
-  # end
-
-    def update
+  def update
     new_team = params[:container][:team_id].present? ? Team.find(params[:container][:team_id]) : nil
     old_team = @container.team
 
