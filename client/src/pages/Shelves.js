@@ -475,7 +475,7 @@ function Shelves() {
 
         <div>
           <p className="flex-column">
-            <button onClick={handleModalToggle} className="button button--add">
+            <button onClick={handleModalToggle} className="button button--add modal-button">
               {isModalOpen ? "Cancel" : "Add a Container"}
             </button>
             <span className="flex-column__span">
