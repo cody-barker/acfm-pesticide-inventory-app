@@ -119,7 +119,7 @@ function Teams() {
           <tr>
             <th>Team Name</th>
             <th>Premix Returned Since {selectedDate}</th>
-            <th>Containers in Inventory Currently</th>
+            <th>Premix Currently in Inventory</th>
           </tr>
         </thead>
         <tbody>
