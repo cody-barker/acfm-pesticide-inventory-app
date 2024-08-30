@@ -58,6 +58,9 @@ function Teams() {
         const logDateObj = new Date(log.created_at);
         logDateObj.setUTCHours(0, 0, 0, 0); // Normalize to UTC start of the log's creation date
 
+        console.log("Log Date:", logDateObj.toISOString()); // Debugging output
+        console.log("Selected Date:", selectedDateObj.toISOString()); // Debugging output
+
         if (logDateObj >= selectedDateObj) {
           const teamId = log.team.id;
           if (!counts[teamId]) {
@@ -82,7 +85,7 @@ function Teams() {
 
       {/* Date Picker */}
       <label htmlFor="date-picker" className="date-picker__label">
-        Select a Date to View Premixes Created Since
+        Select a Date to View Containers Created Since
       </label>
       <input
         id="date-picker"
