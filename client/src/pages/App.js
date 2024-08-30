@@ -14,7 +14,7 @@ import EditContainer from "./EditContainer";
 import Footer from "../components/Footer";
 import Totals from "./Totals";
 import Help from "./Help";
-import NotFound from "./NotFound"; // Import the NotFound component
+import NotFound from "./NotFound";
 import Teams from "./Teams";
 import Team from "./Team";
 
@@ -54,7 +54,7 @@ function App() {
             <Route path="/teams" element={<Teams />} />
             <Route path="/teams/:id" element={<Team />} />
             <Route path="/help" element={<Help />} />
-            <Route path="*" element={<NotFound />} /> {/* 404 Route */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
       </div>

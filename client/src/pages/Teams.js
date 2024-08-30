@@ -24,34 +24,6 @@ function Teams() {
   }, []);
 
   useEffect(() => {
-    const fetchTeams = async () => {
-      try {
-        const response = await fetch(`/teams`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        if (Array.isArray(data)) {
-          setTeams(data);
-        } else {
-          console.error("Expected an array but got:", data);
-          setTeams([]);
-        }
-      } catch (error) {
-        console.error("Error fetching teams:", error);
-        setTeams([]);
-      }
-    };
-
-    fetchTeams();
-
-    // Polling interval (e.g., every 30 seconds)
-    const intervalId = setInterval(fetchTeams, 30000);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
-  useEffect(() => {
     const fetchCreationLogs = async () => {
       try {
         const response = await fetch(`/creation_logs`);
