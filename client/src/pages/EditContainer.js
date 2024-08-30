@@ -221,11 +221,14 @@ function EditContainer() {
                     }
                   >
                     <option value="">Select a product</option>
-                    {products.map((product) => (
-                      <option key={product.id} value={product.id}>
-                        {product.name}
-                      </option>
-                    ))}
+                    {products
+                      .slice() // Create a copy of the products array to avoid mutating the original array
+                      .sort((a, b) => a.name.localeCompare(b.name)) // Sort the products alphabetically by name
+                      .map((product) => (
+                        <option key={product.id} value={product.id}>
+                          {product.name}
+                        </option>
+                      ))}
                   </select>
                 </label>
                 <label className="edit-container__label">
