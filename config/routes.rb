@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :creation_logs
-  resources :teams
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 
 
