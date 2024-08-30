@@ -15,7 +15,8 @@ This app allows employees to:
 
 ## Demo
 
-[![Watch the video](https://img.youtube.com/vi/Yj-KRJet66A/maxresdefault.jpg)](https://www.youtube.com/watch?v=Yj-KRJet66A)
+[![Watch the video](https://img.youtube.com/vi/Yj-KRJet66A/maxresdefault.jpg)](https://youtu.be/3ZT5qP2dsG0?si=5RZxF6DpiQ1bUi06)
+
 
 ## Available Scripts
 

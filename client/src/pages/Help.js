@@ -102,12 +102,13 @@ function Help() {
       <div className="video-wrapper">
         <h2 className="h2 h2--video">Video Tutorial</h2>
         <iframe
+          title="demo-video"
           className="demo-video"
-          src="https://www.youtube.com/embed/Yj-KRJet66A?si=j6hYEBCETdSe3szX"
-          title="YouTube video player"
-          frameBorder="0"
+          src="https://www.youtube.com/embed/3ZT5qP2dsG0?si=5RZxF6DpiQ1bUi06"
+          frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-          referrerPolicy="strict-origin-when-cross-origin"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
         ></iframe>
       </div>
     </div>
