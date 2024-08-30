@@ -961,13 +961,7 @@ table th {
   }
 }
 
-@media (max-width: 400px) {
-  .modal-close {
-    right: 50px;
-  }
-}
-
-@media (max-width: 500px) {
+@media (max-width: 520px) {
   .nav-button {
     padding: 0.5em;
   }
@@ -976,5 +970,13 @@ table th {
   .inventory-table td {
     padding: 0.1em;
     font-size: 0.65em;
+  }
+
+  .modal__content {
+   font-size: 0.75rem;
+  }
+
+    .modal__button--close {
+    right: 50px;
   }
 }
