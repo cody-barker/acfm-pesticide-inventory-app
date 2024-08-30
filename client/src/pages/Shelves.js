@@ -499,9 +499,7 @@ function Shelves() {
                   <th>Team</th>
                   <th>Shelf</th>
                   <th>Row</th>
-                  {[...Array(maxContents).keys()].map((index) => (
-                    <th key={index}>Product {index + 1}</th>
-                  ))}
+                  <th colSpan={maxContents}>Contents</th>
                 </tr>
               </thead>
               <tbody>{tableRows}</tbody>

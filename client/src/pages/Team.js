@@ -43,8 +43,7 @@ function Team() {
   );
 
   if (!team || products.length === 0) {
-    return <p>
-    </p>;
+    return <p></p>;
   }
 
   return (
@@ -59,10 +58,7 @@ function Team() {
               <th>Expires</th>
               <th>Shelf</th>
               <th>Row</th>
-              {/* Create a separate column for each possible content slot */}
-              {[...Array(maxContents)].map((_, index) => (
-                <th key={index}>Product {index + 1}</th>
-              ))}
+              <th colSpan={maxContents}>Contents</th>
             </tr>
           </thead>
           <tbody>
