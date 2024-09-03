@@ -19,7 +19,7 @@ function EditContainer() {
   const [shelf, setShelf] = useState(container?.shelf || "");
   const [row, setRow] = useState(container?.row || "");
   const [contents, setContents] = useState(container?.contents || []);
-  const [expires, setExpires] = useState(container?.expires || "");
+  const [expires, setExpires] = useState(container?.expires.slice(0, 10) || ""); // Ensure only the date part
   const [team, setTeam] = useState(container?.team?.id || ""); // Use team ID for initial state
 
   const showToastMessage = () => {
@@ -39,8 +39,8 @@ function EditContainer() {
           id: content.id || null,
         }))
       );
-      setExpires(container.expires);
-      setTeam(container.team?.id || ""); // Prefill team with current container's team ID
+      setExpires(container.expires.slice(0, 10) || "");
+      setTeam(container.team?.id || "");
     }
   }, [container]);
 
@@ -81,7 +81,7 @@ function EditContainer() {
   }
 
   function handleExpiresChange(event) {
-    setExpires(event.target.value);
+    setExpires(event.target.value.slice(0, 10)); // Slice date to exclude time
   }
 
   function handleTeamChange(event) {
@@ -95,7 +95,7 @@ function EditContainer() {
       id: container.id,
       shelf,
       row,
-      expires,
+      expires: expires,
       team_id: team,
       contents_attributes: contents.map((content) => ({
         id: content.id || null, // Add ID if it exists; otherwise, set to null

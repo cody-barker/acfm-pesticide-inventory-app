@@ -39,7 +39,7 @@ function Shelves() {
     setSelectedConcentration("");
     setSelectedProduct2("");
     setSelectedConcentration2("");
-    setSelectedTeam(""); // Reset team filter here
+    setSelectedTeam("");
     setShelf(1);
     setRow("A");
   };
@@ -52,12 +52,12 @@ function Shelves() {
 
   useEffect(() => {
     const today = new Date();
-    const twoYearsFromNow = new Date(
-      today.getFullYear() + 2,
-      today.getMonth(),
+    const sixMonthsFromNow = new Date(
+      today.getFullYear(),
+      today.getMonth() + 6,
       today.getDate()
     );
-    const formattedDate = twoYearsFromNow.toISOString().slice(0, 10);
+    const formattedDate = sixMonthsFromNow.toISOString().slice(0, 10);
     setExpires(formattedDate);
   }, []);
 
@@ -97,12 +97,12 @@ function Shelves() {
     e.preventDefault();
 
     const today = new Date();
-    const twoYearsFromNow = new Date(
-      today.getFullYear() + 2,
-      today.getMonth(),
+    const sixMonthsFromNow = new Date(
+      today.getFullYear(),
+      today.getMonth() + 6,
       today.getDate()
     );
-    const formattedDate = twoYearsFromNow.toISOString().slice(0, 10);
+    const formattedDate = sixMonthsFromNow.toISOString().slice(0, 10);
 
     const container = {
       user_id: user.id,
@@ -110,7 +110,7 @@ function Shelves() {
       row: row,
       expires: formattedDate,
       contents_attributes: contents,
-      team_id: selectedTeam, // Add this line to include the selected team
+      team_id: selectedTeam,
     };
 
     fetch("/containers", {
