@@ -45,10 +45,10 @@ function Shelves() {
   };
 
   useEffect(() => {
-    if (user && user.containers) {
+    if (user && user.containers && products) {
       setLoading(false);
     }
-  }, [user]);
+  }, [user, products]);
 
   useEffect(() => {
     const today = new Date();
@@ -61,7 +61,7 @@ function Shelves() {
     setExpires(formattedDate);
   }, []);
 
-  if (loading) {
+  if (loading || !user.containers || !products) {
     return <p></p>;
   }
 
@@ -208,6 +208,13 @@ function Shelves() {
   );
 
   const tableRows = sortedContainers.map((container) => {
+    if (!container.contents || container.contents.length === 0) {
+      return (
+        <tr key={container.id}>
+          <td colSpan={maxContents + 4}>No contents available</td>
+        </tr>
+      );
+    }
     const sortedContents = container.contents.slice().sort((a, b) => {
       return b.concentration - a.concentration;
     });
