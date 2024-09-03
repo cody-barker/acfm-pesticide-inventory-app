@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_29_174533) do
+ActiveRecord::Schema.define(version: 2024_09_03_234400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2024_08_29_174533) do
     t.string "row"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "expires", default: -> { "(CURRENT_TIMESTAMP + 'P2Y'::interval)" }
+    t.datetime "expires"
     t.integer "team_id"
     t.index ["team_id"], name: "index_containers_on_team_id"
   end
