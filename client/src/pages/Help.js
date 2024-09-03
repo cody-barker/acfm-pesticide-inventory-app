@@ -24,7 +24,7 @@ function Help() {
     {
       title: "How do I add a premix to the chem shed?",
       content:
-        "Shelves -> Add a Container. Be sure to include the team that created it. By default, the expiration date is set 2 years from today, and the date will turn red if the product expires within 3 months.",
+        "Shelves -> Add a Container. Be sure to include the team that created it. By default, the expiration date is set 6 months from today, and the date will turn red if the product expires within 3 months.",
     },
     {
       title: "How do I add concentrates to the chem shed?",
