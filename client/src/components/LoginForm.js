@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import Error from "./Error";
 import { UserContext } from "../contexts/UserContext";
+import { ProductsContext } from "../contexts/ProductsContext";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
@@ -8,6 +9,7 @@ function LoginForm() {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { setUser } = useContext(UserContext);
+  const { setProducts } = useContext(ProductsContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -18,14 +20,32 @@ function LoginForm() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, password }),
-    }).then((r) => {
-      setIsLoading(false);
-      if (r.ok) {
-        r.json().then((user) => setUser(user));
-      } else {
-        r.json().then((err) => setErrors(err.errors));
-      }
-    });
+    })
+      .then((r) => {
+        setIsLoading(false);
+        if (r.ok) {
+          r.json().then(async (user) => {
+            setUser(user);
+
+            // Fetch products after successful login
+            const productsResponse = await fetch("/products");
+            if (productsResponse.ok) {
+              const products = await productsResponse.json();
+              setProducts(products);
+            } else {
+              console.error("Failed to fetch products");
+              // Handle error case as needed
+            }
+          });
+        } else {
+          r.json().then((err) => setErrors(err.errors));
+        }
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.error("Login error:", error);
+        // Handle fetch error as needed
+      });
   }
 
   return (
@@ -38,7 +58,7 @@ function LoginForm() {
           autoComplete="off"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-        ></input>
+        />
       </label>
       <label className="form__label">
         Password
@@ -48,7 +68,7 @@ function LoginForm() {
           autoComplete="off"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-        ></input>
+        />
       </label>
 
       <button className="button button--login" type="submit">

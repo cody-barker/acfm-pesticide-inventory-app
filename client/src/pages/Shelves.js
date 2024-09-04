@@ -62,7 +62,11 @@ function Shelves() {
     setExpires(formattedDate);
   }, []);
 
-  if (loading || !user.containers || productsLoading) {
+  if (loading || !user.containers) {
+    return <p></p>;
+  }
+
+  if (productsLoading) {
     return <p></p>;
   }
 
