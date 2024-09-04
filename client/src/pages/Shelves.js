@@ -252,11 +252,6 @@ function Shelves() {
           const product = products.find(
             (product) => product.id === content.product_id
           );
-          console.log(
-            `Content: ${content.product_id}, Concentration: ${
-              content.concentration
-            }, Product: ${product ? product.name : "Not Found"}`
-          );
           return (
             <td key={index}>
               {content.concentration}%{" "}
