@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Modal from "../components/Modal";
 
 function Shelves() {
+  const { loading: productsLoading } = useContext(ProductsContext);
   const { user, setUser } = useContext(UserContext);
   const teams = user.teams || [];
   const { products } = useContext(ProductsContext);
@@ -61,7 +62,7 @@ function Shelves() {
     setExpires(formattedDate);
   }, []);
 
-  if (loading || !user.containers || !products) {
+  if (loading || !user.containers || productsLoading) {
     return <p></p>;
   }
 
@@ -247,15 +248,22 @@ function Shelves() {
         <td>{container.team.name}</td>
         <td>{container.shelf}</td>
         <td>{container.row}</td>
-        {sortedContents.map((content, index) => (
-          <td key={index}>
-            {content.concentration}%{" "}
-            {
-              products.find((product) => product.id === content.product_id)
-                ?.name
-            }
-          </td>
-        ))}
+        {sortedContents.map((content, index) => {
+          const product = products.find(
+            (product) => product.id === content.product_id
+          );
+          console.log(
+            `Content: ${content.product_id}, Concentration: ${
+              content.concentration
+            }, Product: ${product ? product.name : "Not Found"}`
+          );
+          return (
+            <td key={index}>
+              {content.concentration}%{" "}
+              {product ? product.name : "No Product Name"}
+            </td>
+          );
+        })}
       </tr>
     );
   });
