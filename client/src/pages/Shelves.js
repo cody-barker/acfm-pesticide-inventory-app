@@ -259,7 +259,7 @@ function Shelves() {
           return (
             <td key={index}>
               {content.concentration}%{" "}
-              {product ? product.name : "No Product Name"}
+              {product ? product.name : "Refresh the page"}
             </td>
           );
         })}
