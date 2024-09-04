@@ -132,7 +132,7 @@ function Shelves() {
             setShelf(1);
             setRow("A");
             setContents([{ product_id: "", concentration: "" }]);
-            setSelectedTeam(""); // Reset the selected team after submission
+            setSelectedTeam("");
             setIsModalOpen(false);
             showToastMessage();
           });
