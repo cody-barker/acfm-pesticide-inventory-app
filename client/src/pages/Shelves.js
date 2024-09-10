@@ -276,8 +276,8 @@ function Shelves() {
             onClose={handleModalToggle}
             className="modal"
           >
-            <form className="form" onSubmit={handleSubmit}>
-              <div className="flex-column">
+            <form className="form add-form" onSubmit={handleSubmit}>
+              <div className="flex-column flex-column--modal">
                 <div className="flex-row">
                   <label className="form__label">
                     Team
@@ -372,7 +372,7 @@ function Shelves() {
                       onClick={() => removeContentField(index)}
                       disabled={contents.length === 1}
                     >
-                      Remove
+                      X
                     </button>
                   </div>
                 ))}

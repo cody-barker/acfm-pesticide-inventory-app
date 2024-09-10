@@ -234,7 +234,7 @@ function EditContainer() {
                 <label className="edit-container__label">
                   Concentration
                   <input
-                    className="edit-container__input"
+                    className="edit-container__input--concentration"
                     type="number"
                     required
                     step="any"
@@ -258,7 +258,7 @@ function EditContainer() {
                   onClick={() => handleRemoveContent(index)}
                   disabled={contents.length === 1 && !content._destroy} // Disable the button if there's only one content that is not marked for destruction
                 >
-                  Remove
+                  X
                 </button>
               </div>
             )

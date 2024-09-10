@@ -258,11 +258,11 @@ input:focus {
 }
 
 .concentration-input::placeholder {
-  text-align: right;
+  text-align: center;
 }
 
 .concentration-input {
-  min-width: 4em;
+  width: 100px;
 }
 
 ::placeholder {
@@ -284,10 +284,15 @@ input:focus {
   align-items: center;
   flex-direction: column;
   color: var(--color--five);
+  flex-wrap: wrap;
 }
 
 .form--login {
   margin-top: 1em;
+}
+
+.add-form {
+  font-size: 1rem;
 }
 
 .background-image {
@@ -472,6 +477,7 @@ table tr:nth-of-type(even) {
   margin-top: 3em;
   display: flex;
   justify-content: center;
+  font-size: 0.9rem;
 }
 
 .edit-container__form {
@@ -488,6 +494,7 @@ table tr:nth-of-type(even) {
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .edit-container__label {
@@ -495,12 +502,15 @@ table tr:nth-of-type(even) {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-right: 1em;
 }
 
 .edit-container__button {
   margin-top: 1.8em;
   padding: 0.5em 1em;
+}
+
+.edit-container__input--concentration {
+  width: 80px;
 }
 
 .edit-container .container {
@@ -599,6 +609,7 @@ table tr:nth-of-type(even) {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .link-button {
@@ -654,6 +665,10 @@ table tr:nth-of-type(even) {
   align-items: center;
 }
 
+.flex-column--modal {
+  margin: 1rem 8px;
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -669,7 +684,7 @@ table tr:nth-of-type(even) {
 
 .modal__content {
   background: var(--color--three);
-  padding: 20px;
+  padding: 20px 0;
   border-radius: 5px;
   position: relative;
 }
@@ -919,6 +934,18 @@ table th {
   width: 18px;
 }
 
+@media (min-width: 422px) {
+  .add-form {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 350px) {
+  .edit-container {
+    font-size: 1rem;
+  }
+}
+
 @media (max-width: 850px) {
   #navbar {
     width: 100%;
@@ -973,10 +1000,14 @@ table th {
   }
 
   .modal__content {
-   font-size: 0.75rem;
+    font-size: 0.75rem;
   }
 
-    .modal__button--close {
+  .modal__button--close {
     right: 50px;
+  }
+
+  .add-form {
+    font-size: 0.75rem;
   }
 }
