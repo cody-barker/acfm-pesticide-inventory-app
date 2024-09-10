@@ -40,6 +40,10 @@ ul {
   background-color: var(--color--three);
 }
 
+.page-height {
+  min-height: 70svh;
+}
+
 .footer {
   display: flex;
   justify-content: center;

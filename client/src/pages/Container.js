@@ -83,7 +83,7 @@ function Container() {
     .sort((a, b) => b.concentration - a.concentration);
 
   return (
-    <div className="flex-column-center">
+    <div className="flex-column-center page-height">
       <table className="inventory-table margin-top-4em">
         <thead>
           <tr>
