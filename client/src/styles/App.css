@@ -313,6 +313,10 @@ input:focus {
   color: rgb(202, 11, 11);
 }
 
+.error--remove-product {
+  padding: 0 1rem;
+}
+
 select {
   background-color: transparent;
   box-shadow: var(--box-shadow);

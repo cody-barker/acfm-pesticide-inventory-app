@@ -73,7 +73,7 @@ function Product() {
       {/* Modal for delete confirmation */}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <h2>Are you sure you want to remove this product?</h2>
-        <p className="error">
+        <p className="error error--remove-product">
           Warning: This action will remove the product from all containers that
           include it.
         </p>
