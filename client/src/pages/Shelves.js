@@ -220,6 +220,7 @@ function Shelves() {
         </tr>
       );
     }
+
     const sortedContents = container.contents.slice().sort((a, b) => {
       return b.concentration - a.concentration;
     });
@@ -258,8 +259,10 @@ function Shelves() {
           );
           return (
             <td key={index}>
-              {content.concentration}%{" "}
-              {product ? product.name : "Refresh the page"}
+              <div>{content.concentration}%</div>{" "}
+              {/* Concentration appears above */}
+              <div>{product ? product.name : "Refresh the page"}</div>{" "}
+              {/* Product name */}
             </td>
           );
         })}
