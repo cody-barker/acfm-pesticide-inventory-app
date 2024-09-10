@@ -1011,7 +1011,7 @@ table th {
 
   .inventory-table th,
   .inventory-table td {
-    padding: 0.1em;
+    padding: clamp(0.1em, 0.2em, 0.5em);
     font-size: 0.65em;
   }
 
