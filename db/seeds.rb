@@ -1,7 +1,7 @@
 # Create Users
 user = User.create!(
   username: "acfm",
-  password: "test"
+  password: "1775"
 )
 
 # Create Products
