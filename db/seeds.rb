@@ -1,4 +1,8 @@
-user = User.find(1)
+# Create Users
+user = User.create!(
+  username: "acfm",
+  password: "test"
+)
 
 # Create Products
 products = Product.create!(
@@ -27,6 +31,7 @@ teams = Team.create!(
     { name: "Facilities", user_id: user.id }
   ]
 )
+
 
 # Assign teams to user
 user.teams << teams
