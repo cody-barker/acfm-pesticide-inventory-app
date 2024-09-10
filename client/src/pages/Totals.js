@@ -23,11 +23,21 @@ function Totals() {
             return { concentration: content.concentration, productName };
           })
           .sort((a, b) => b.concentration - a.concentration) // Sort by concentration descending
-          .map(
-            ({ concentration, productName }) =>
-              `${concentration}% ${productName}`
-          )
-          .join(", ");
+          .map(({ concentration, productName }) => (
+            <span
+              key={`${concentration}-${productName}`}
+              style={{
+                display: "inline-block",
+                marginRight: "10px", // Add spacing between items
+                textAlign: "center",
+              }}
+            >
+              <div className="totals__table-td">
+                <div>{concentration}%</div>
+                <div>{productName}</div>
+              </div>
+            </span>
+          ));
 
         if (prescriptionMap.has(prescription)) {
           prescriptionMap.set(
@@ -120,7 +130,7 @@ function Totals() {
             {uniquePrescriptions.map((item, index) => (
               <tr key={index}>
                 <td>{item.prescription}</td>
-                <td>{item.quantity}</td>
+                <td className="totals__table-td">{item.quantity}</td>
               </tr>
             ))}
           </tbody>

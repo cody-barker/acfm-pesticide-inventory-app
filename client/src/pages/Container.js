@@ -103,8 +103,10 @@ function Container() {
             <td>{container.shelf}</td>
             <td>{container.row}</td>
             {sortedContents.map((content, index) => (
-              <td key={index}>
-                {content.concentration}% {""}
+              <td className="td__concentration--p" key={index}>
+                <p>
+                  {content.concentration}% {""}
+                </p>
                 {
                   products.find((product) => product.id === content.product_id)
                     ?.name

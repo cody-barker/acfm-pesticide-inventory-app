@@ -43,7 +43,7 @@ function Team() {
   );
 
   if (!team || products.length === 0) {
-    return <p></p>;
+    return <p>No data available</p>;
   }
 
   return (
@@ -95,13 +95,17 @@ function Team() {
                     </NavLink>
                   </td>
                   {sortedContents.map((content, index) => (
-                    <td key={index}>
+                    <td key={index} className="content-cell">
                       <NavLink
                         to={`/containers/${container.id}`}
                         style={{ textDecoration: "none", color: "inherit" }}
                       >
-                        {content.concentration}%{" "}
-                        {getProductNameById(content.product_id)}
+                        <div className="content-concentration">
+                          {content.concentration}%
+                        </div>
+                        <div className="content-product">
+                          {getProductNameById(content.product_id)}
+                        </div>
                       </NavLink>
                     </td>
                   ))}

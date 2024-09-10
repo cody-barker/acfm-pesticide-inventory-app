@@ -44,11 +44,7 @@ function NavBar() {
           <NavLink className="nav-button" to="/" onClick={closeMenu}>
             Shelves
           </NavLink>
-          <NavLink
-            className="nav-button"
-            to="/totals"
-            onClick={closeMenu}
-          >
+          <NavLink className="nav-button" to="/totals" onClick={closeMenu}>
             Totals
           </NavLink>
           <NavLink className="nav-button" to="/teams" onClick={closeMenu}>
