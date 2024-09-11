@@ -308,7 +308,7 @@ function Shelves() {
                       onChange={handleShelfChange}
                       required
                     >
-                      {[...Array(10).keys()].map((num) => (
+                      {[...Array(32).keys()].map((num) => (
                         <option key={num + 1} value={num + 1}>
                           {num + 1}
                         </option>

@@ -169,7 +169,7 @@ function EditContainer() {
               value={shelf}
               onChange={handleShelfChange}
             >
-              {[...Array(10).keys()].map((i) => (
+              {[...Array(32).keys()].map((i) => (
                 <option key={i + 1} value={i + 1}>
                   {i + 1}
                 </option>
