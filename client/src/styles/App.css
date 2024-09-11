@@ -556,6 +556,10 @@ table tr:nth-of-type(even) {
   width: 50%;
 }
 
+.product__select {
+  max-width: 180px;
+}
+
 .product-options-wrapper {
   display: flex;
   justify-content: center;

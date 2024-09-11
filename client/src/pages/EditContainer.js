@@ -209,7 +209,7 @@ function EditContainer() {
                 <label className="edit-container__label">
                   Product
                   <select
-                    className="edit-container__select button"
+                    className="edit-container__select button product__select"
                     value={content.product_id}
                     required
                     onChange={(e) =>

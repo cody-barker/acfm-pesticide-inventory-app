@@ -346,7 +346,7 @@ function Shelves() {
                 {contents.map((content, index) => (
                   <div className="flex-row" key={index}>
                     <select
-                      className="button"
+                      className="button product__select"
                       value={content.product_id}
                       onChange={(e) => handleContentChange(index, e)}
                       name="product_id"
@@ -419,7 +419,7 @@ function Shelves() {
               <select
                 value={selectedProduct}
                 onChange={handleProductFilterChange}
-                className="button button--filter"
+                className="button button--filter product__select"
                 name="select-product-1"
               >
                 <option value="">All Products</option>
@@ -452,7 +452,7 @@ function Shelves() {
               <select
                 value={selectedProduct2}
                 onChange={handleProductFilterChange2}
-                className="button button--filter"
+                className="button button--filter product__select"
                 name="select-product-2"
               >
                 <option value="">All Products</option>
