@@ -101,15 +101,24 @@ function Help() {
       </div>
       <div className="video-wrapper">
         <h2 className="h2 h2--video">Video Tutorial</h2>
-        <iframe
+        {/* <iframe
           title="demo-video"
           className="demo-video"
-          src="https://www.youtube.com/embed/3ZT5qP2dsG0?si=5RZxF6DpiQ1bUi06"
+          src="https://youtu.be/5YynEyBNSgE"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen
-        ></iframe>
+          
+        ></iframe> */}
+        <iframe 
+          src="https://www.youtube.com/embed/hiJ7feiMlV0?si=u8SCPel1Fwowazzx" 
+          title="How to Use This App" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" 
+          referrerpolicy="strict-origin-when-cross-origin" 
+          allowfullscreen>
+        </iframe>
       </div>
     </div>
   );
