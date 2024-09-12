@@ -777,8 +777,10 @@ span {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 0 1em;
+  margin: 0 auto;
   height: auto;
+  max-width: 800px;
+  
 }
 
 .help-topic {
