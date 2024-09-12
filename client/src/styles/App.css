@@ -109,6 +109,18 @@ ul {
   text-align: center;
 }
 
+.filter__button--toggle--expiring {
+  margin: 0 1rem;
+  background-color: inherit;
+  border: none;
+  color: var(--color--five);
+  font-size: 1rem;
+}
+
+.filter__button--toggle--expiring:hover {
+  cursor: pointer;
+}
+
 .teams-list .button--team {
   padding: 0.75em 1.5em;
 }
@@ -910,7 +922,8 @@ span {
   .form__label,
   .edit-container__label,
   .edit-container__input,
-  .concentration-input {
+  .concentration-input,
+  .filter__button--toggle--expiring {
     font-size: 0.9em;
   }
 
@@ -953,6 +966,7 @@ table th {
   justify-content: center;
   cursor: pointer;
   margin: 1em 0;
+  padding: 0 1em;
 }
 
 .reset-button:hover {
@@ -1035,14 +1049,8 @@ table th {
     font-size: 0.65em;
   }
 
-  .modal__content {
-    font-size: 0.75rem;
-  }
-
-  .modal__button--close {
-    font-size: 0.75rem;
-  }
-
+  .modal__content,
+  .modal__button--close,
   .add-form {
     font-size: 0.75rem;
   }

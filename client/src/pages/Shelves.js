@@ -24,8 +24,9 @@ function Shelves() {
   const [selectedProduct2, setSelectedProduct2] = useState("");
   const [selectedConcentration2, setSelectedConcentration2] = useState("");
   const [selectedTeam, setSelectedTeam] = useState("");
-
   const [expires, setExpires] = useState("");
+  const [filterExpiresSoon, setFilterExpiresSoon] = useState(false);
+
   const showToastMessage = () => {
     toast("Container added!", {
       className: "custom-toast",
@@ -43,6 +44,7 @@ function Shelves() {
     setSelectedTeam("");
     setShelf(1);
     setRow("A");
+    setFilterExpiresSoon(false);
   };
 
   useEffect(() => {
@@ -185,7 +187,16 @@ function Shelves() {
     const teamFilterMatch =
       !selectedTeam || container.team.id === parseInt(selectedTeam);
 
-    return firstFilterMatch && secondFilterMatch && teamFilterMatch;
+    const isExpiringSoon =
+      new Date(container.expires) <
+      new Date(new Date().setMonth(new Date().getMonth() + 3));
+
+    return (
+      firstFilterMatch &&
+      secondFilterMatch &&
+      teamFilterMatch &&
+      (!filterExpiresSoon || isExpiringSoon)
+    );
   });
 
   const sortedContainers = filteredContainers.slice().sort((a, b) => {
@@ -481,6 +492,12 @@ function Shelves() {
               </select>
             </label>
           </div>
+          <button
+            className="filter__button--toggle--expiring"
+            onClick={() => setFilterExpiresSoon((prev) => !prev)}
+          >
+            {filterExpiresSoon ? "Show All Containers" : "Show Expiring Soon"}
+          </button>
           <button
             onClick={handleResetFilters}
             className="reset-button"
