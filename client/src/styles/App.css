@@ -1002,6 +1002,7 @@ table th {
 
   .nav-links.open {
     display: flex;
+    z-index: 1;
   }
 
   .menu-toggle {
