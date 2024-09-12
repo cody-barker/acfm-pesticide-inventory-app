@@ -477,6 +477,15 @@ table tr:nth-of-type(even) {
   margin-bottom: 1em;
 }
 
+.premix-table__td {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.prescription-item {
+  padding: 0.5em;
+}
+
 .table-total {
   margin-top: 1em;
 }
