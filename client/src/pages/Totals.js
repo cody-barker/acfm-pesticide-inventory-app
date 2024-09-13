@@ -6,7 +6,6 @@ function Totals() {
   const { user } = useContext(UserContext);
   const { products } = useContext(ProductsContext);
 
-  // Generate unique prescriptions and their quantities
   const uniquePrescriptions = useMemo(() => {
     const prescriptionMap = new Map();
 
@@ -16,21 +15,24 @@ function Totals() {
       );
 
       if (filteredContents.length > 0) {
-        // Create a unique identifier for the prescription
-        const prescriptionKey = filteredContents
+        // Sort by concentration in descending order, and by product name in case of a tie
+        const sortedPrescription = filteredContents
           .map((content) => {
             const product = products.find((p) => p.id === content.product_id);
             const productName = product ? product.name : "Unknown Product";
             return { concentration: content.concentration, productName };
           })
-          .sort((a, b) => a.productName.localeCompare(b.productName)) // Sort for consistent key generation
-          .map(({ concentration, productName }) => ({
-            concentration,
-            productName,
-          }));
+          .sort((a, b) => {
+            // Sort first by concentration, then by product name (alphabetically) if concentrations are equal
+            if (b.concentration !== a.concentration) {
+              return b.concentration - a.concentration;
+            }
+            return a.productName.localeCompare(b.productName);
+          });
 
-        const keyString = JSON.stringify(prescriptionKey);
+        const keyString = JSON.stringify(sortedPrescription);
 
+        // Tally the prescription
         if (prescriptionMap.has(keyString)) {
           prescriptionMap.set(keyString, prescriptionMap.get(keyString) + 1);
         } else {
