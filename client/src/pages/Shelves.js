@@ -6,6 +6,7 @@ import Error from "../components/Error";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "../components/Modal";
+import { GrPowerReset } from "react-icons/gr";
 
 function Shelves() {
   const { loading: productsLoading } = useContext(ProductsContext);
@@ -271,9 +272,7 @@ function Shelves() {
           return (
             <td key={index}>
               <div>{content.concentration}%</div>{" "}
-              {/* Concentration appears above */}
               <div>{product ? product.name : "Refresh the page"}</div>{" "}
-              {/* Product name */}
             </td>
           );
         })}
@@ -410,7 +409,6 @@ function Shelves() {
         </div>
         <div className="filter-container">
           <div className="filter-container__filter-group">
-            {/* Existing filters */}
             <label className="filter">
               <select
                 value={selectedConcentration}
@@ -443,7 +441,6 @@ function Shelves() {
             </label>
           </div>
           <div className="filter-container__filter-group">
-            {/* Existing filters */}
             <label className="filter">
               <select
                 value={selectedConcentration2}
@@ -503,11 +500,7 @@ function Shelves() {
             className="reset-button"
             alt="reset button"
           >
-            <img
-              className="reset-button__image"
-              src="/assets/reset-icon.svg"
-              alt="reset button"
-            />
+            <GrPowerReset className="reset-button__image" />
           </button>
         </div>
 

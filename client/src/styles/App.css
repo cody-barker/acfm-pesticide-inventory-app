@@ -975,7 +975,8 @@ table th {
 }
 
 .reset-button__image {
-  width: 18px;
+  font-size: 20px;
+  color: var(--color--five);
 }
 
 @media (min-width: 422px) {
