@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show, :create, :update, :destroy]
   resources :users, only: [:index]
   resources :teams
-  resources :creation_logs, path: 'creationLogs'
+  resources :creation_logs, path: 'creation-logs'
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

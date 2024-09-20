@@ -47,7 +47,7 @@ function Teams() {
   // }, []);
 
   useEffect(() => {
-    fetch("/creationLogs")
+    fetch("/creation-logs")
       .then((r) => r.json())
       .then((logs) => setCreationLogs(logs));
   }, []);
