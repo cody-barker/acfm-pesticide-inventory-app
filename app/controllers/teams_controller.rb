@@ -1,7 +1,5 @@
 class TeamsController < ApplicationController
 
-  skip_before_action :authorize
-
   def index
     render json: Team.all
   end
