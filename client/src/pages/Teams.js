@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import { CreationLogsContext } from "../contexts/CreationLogsContext";
 
 function Teams() {
   const { user } = useContext(UserContext);
   const [teams, setTeams] = useState([]);
-  const [creationLogs, setCreationLogs] = useState([]);
+  // const [creationLogs, setCreationLogs] = useState([]);
+  const { creationLogs } = useContext(CreationLogsContext);
   const [selectedDate, setSelectedDate] = useState("");
   const [containerCounts, setContainerCounts] = useState({});
 
@@ -23,28 +25,28 @@ function Teams() {
     setSelectedDate(formattedDate);
   }, []);
 
-  useEffect(() => {
-    const fetchCreationLogs = async () => {
-      try {
-        const response = await fetch(`/creation-logs`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        if (Array.isArray(data)) {
-          setCreationLogs(data);
-        } else {
-          console.error("Expected an array but got:", data);
-          setCreationLogs([]);
-        }
-      } catch (error) {
-        console.error("Error fetching creation logs:", error);
-        setCreationLogs([]);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchCreationLogs = async () => {
+  //     try {
+  //       const response = await fetch(`/creation-logs`);
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! status: ${response.status}`);
+  //       }
+  //       const data = await response.json();
+  //       if (Array.isArray(data)) {
+  //         setCreationLogs(data);
+  //       } else {
+  //         console.error("Expected an array but got:", data);
+  //         setCreationLogs([]);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching creation logs:", error);
+  //       setCreationLogs([]);
+  //     }
+  //   };
 
-    fetchCreationLogs();
-  }, []);
+  //   fetchCreationLogs();
+  // }, []);
 
   // useEffect(() => {
   //   fetch("/creation-logs")

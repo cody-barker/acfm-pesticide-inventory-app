@@ -2,6 +2,7 @@ import "../styles/App.css";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { ProductsContext } from "../contexts/ProductsContext";
+import { CreationLogsContext } from "../contexts/CreationLogsContext";
 import Login from "./Login";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "../components/NavBar";
@@ -21,8 +22,9 @@ import Team from "./Team";
 function App() {
   const { user, loading: userLoading } = useContext(UserContext);
   const { loading: productsLoading } = useContext(ProductsContext);
+  const { loading: creationLogsLoading } = useContext(CreationLogsContext);
 
-  if (userLoading || productsLoading) {
+  if (userLoading || productsLoading || creationLogsLoading) {
     return <div></div>;
   }
 
