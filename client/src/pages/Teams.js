@@ -23,34 +23,34 @@ function Teams() {
     setSelectedDate(formattedDate);
   }, []);
 
-  // useEffect(() => {
-  //   const fetchCreationLogs = async () => {
-  //     try {
-  //       const response = await fetch(`/creationLogs`);
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! status: ${response.status}`);
-  //       }
-  //       const data = await response.json();
-  //       if (Array.isArray(data)) {
-  //         setCreationLogs(data);
-  //       } else {
-  //         console.error("Expected an array but got:", data);
-  //         setCreationLogs([]);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching creation logs:", error);
-  //       setCreationLogs([]);
-  //     }
-  //   };
-
-  //   fetchCreationLogs();
-  // }, []);
-
   useEffect(() => {
-    fetch("/creation-logs")
-      .then((r) => r.json())
-      .then((logs) => setCreationLogs(logs));
+    const fetchCreationLogs = async () => {
+      try {
+        const response = await fetch(`/creation-logs`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          setCreationLogs(data);
+        } else {
+          console.error("Expected an array but got:", data);
+          setCreationLogs([]);
+        }
+      } catch (error) {
+        console.error("Error fetching creation logs:", error);
+        setCreationLogs([]);
+      }
+    };
+
+    fetchCreationLogs();
   }, []);
+
+  // useEffect(() => {
+  //   fetch("/creation-logs")
+  //     .then((r) => r.json())
+  //     .then((logs) => setCreationLogs(logs));
+  // }, []);
 
   useEffect(() => {
     if (selectedDate && teams.length > 0) {
