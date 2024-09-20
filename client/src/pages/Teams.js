@@ -26,7 +26,7 @@ function Teams() {
   useEffect(() => {
     const fetchCreationLogs = async () => {
       try {
-        const response = await fetch(`/creation_logs`);
+        const response = await fetch(`/creationLogs`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
