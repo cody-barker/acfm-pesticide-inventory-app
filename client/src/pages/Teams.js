@@ -46,12 +46,6 @@ function Teams() {
     fetchCreationLogs();
   }, []);
 
-  // useEffect(() => {
-  //   fetch("/creation-logs")
-  //     .then((r) => r.json())
-  //     .then((logs) => setCreationLogs(logs));
-  // }, []);
-
   useEffect(() => {
     if (selectedDate && teams.length > 0) {
       const selectedDateObj = new Date(selectedDate);
