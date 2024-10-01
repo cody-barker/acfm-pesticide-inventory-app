@@ -75,7 +75,6 @@ function Totals() {
     a.name.localeCompare(b.name)
   );
 
-  // Remove the filter that excludes zero-quantity products
   const concentrateComps = sortedProducts.map((product) => (
     <tr key={product.id}>
       <td>{product.name}</td>
@@ -83,7 +82,6 @@ function Totals() {
     </tr>
   ));
 
-  // Calculate totals for both tables
   const totalPrescriptions = uniquePrescriptions.reduce(
     (total, item) => total + item.quantity,
     0
