@@ -75,13 +75,8 @@ function Totals() {
     a.name.localeCompare(b.name)
   );
 
-  // Filter out products with zero quantity
-  const filteredProducts = sortedProducts.filter(
-    (product) => productCounts[product.id] > 0
-  );
-
-  // Map over filtered products to create table rows for concentrates
-  const concentrateComps = filteredProducts.map((product) => (
+  // Remove the filter that excludes zero-quantity products
+  const concentrateComps = sortedProducts.map((product) => (
     <tr key={product.id}>
       <td>{product.name}</td>
       <td>{productCounts[product.id]}</td>
