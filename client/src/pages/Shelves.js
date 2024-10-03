@@ -27,6 +27,8 @@ function Shelves() {
   const [selectedTeam, setSelectedTeam] = useState("");
   const [expires, setExpires] = useState("");
   const [filterExpiresSoon, setFilterExpiresSoon] = useState(false);
+  const [containerType, setContainerType] = useState("Premix"); // Default to "Premix"
+  const [customExpiration, setCustomExpiration] = useState(false); // Track if expiration date is customized
 
   const showToastMessage = () => {
     toast("Container added!", {
@@ -100,6 +102,27 @@ function Shelves() {
     updatedContents.splice(index, 1);
     setContents(updatedContents);
   };
+
+  function handleExpiresChange(event) {
+    setExpires(event.target.value.slice(0, 10)); // Slice date to exclude time
+    setCustomExpiration(true); // Mark that user has set a custom expiration
+  }
+
+  // Add a new function to handle container type changes
+ function handleContainerTypeChange(event) {
+   const type = event.target.value;
+   setContainerType(type);
+
+   // Only update expiration if not customized
+   if (!customExpiration) {
+     const today = new Date();
+     const expirationDate =
+       type === "Premix"
+         ? new Date(today.setMonth(today.getMonth() + 6))
+         : new Date(today.setFullYear(today.getFullYear() + 2));
+     setExpires(expirationDate.toISOString().slice(0, 10));
+   }
+ }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -202,7 +225,7 @@ function Shelves() {
 
   const sortedContainers = filteredContainers.slice().sort((a, b) => {
     if (a.shelf !== b.shelf) {
-      return a.shelf - b.shelf;
+      return b.shelf - a.shelf;
     }
     return a.row.localeCompare(b.row);
   });
@@ -291,6 +314,26 @@ function Shelves() {
           >
             <form className="form add-form" onSubmit={handleSubmit}>
               <div className="flex-column flex-column--modal">
+                <div className="date-radio-buttons">
+                  <label>
+                    <input
+                      type="radio"
+                      value="Premix"
+                      checked={containerType === "Premix"}
+                      onChange={handleContainerTypeChange}
+                    />
+                    Premix
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      value="Concentrate"
+                      checked={containerType === "Concentrate"}
+                      onChange={handleContainerTypeChange}
+                    />
+                    Concentrate
+                  </label>
+                </div>
                 <div className="flex-row">
                   <label className="form__label">
                     Team
@@ -347,7 +390,7 @@ function Shelves() {
                       name="expiration_date"
                       type="date"
                       value={expires}
-                      onChange={(e) => setExpires(e.target.value)}
+                      onChange={handleExpiresChange}
                       required
                     />
                   </label>

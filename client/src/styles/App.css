@@ -31,7 +31,7 @@ ul {
 .page {
   display: flex;
   flex-direction: column;
-  min-height: 100svh;
+  min-height: 100vh;
 }
 
 .page__content {
@@ -41,7 +41,7 @@ ul {
 }
 
 .page-height {
-  min-height: 70svh;
+  min-height: 70vh;
 }
 
 .footer {
@@ -268,7 +268,8 @@ input {
   border-radius: 3em;
 }
 
-input:focus {
+input:focus,
+select:focus {
   outline: none;
   opacity: 0.9;
 }
@@ -339,17 +340,12 @@ select {
   font-size: 1rem;
 }
 
-select:focus {
-  outline: none;
-  opacity: 90%;
-}
-
 select:hover {
   cursor: pointer;
 }
 
 .wrapper {
-  min-height: 100svh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -524,6 +520,12 @@ table tr:nth-of-type(even) {
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.date-radio-buttons {
+  display: flex;
+  gap: 2em;
+  margin-bottom: 1em;
 }
 
 .edit-container__label {

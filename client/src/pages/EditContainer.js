@@ -21,6 +21,8 @@ function EditContainer() {
   const [contents, setContents] = useState(container?.contents || []);
   const [expires, setExpires] = useState(container?.expires.slice(0, 10) || ""); // Ensure only the date part
   const [team, setTeam] = useState(container?.team?.id || ""); // Use team ID for initial state
+  const [containerType, setContainerType] = useState("Premix"); // Default to "Premix"
+  const [customExpiration, setCustomExpiration] = useState(false); // Track if expiration date is customized
 
   const showToastMessage = () => {
     toast("Container updated!", {
@@ -82,7 +84,28 @@ function EditContainer() {
 
   function handleExpiresChange(event) {
     setExpires(event.target.value.slice(0, 10)); // Slice date to exclude time
+    setCustomExpiration(true); // Mark that user has set a custom expiration
   }
+
+  // Add a new function to handle container type changes
+ function handleContainerTypeChange(event) {
+   const type = event.target.value;
+   setContainerType(type);
+
+   if (!customExpiration) {
+     // Only update if not customized
+     const today = new Date();
+     if (type === "Premix") {
+       const expirationDate = new Date(today.setMonth(today.getMonth() + 6));
+       setExpires(expirationDate.toISOString().slice(0, 10)); // Set expiration to 6 months from today
+     } else {
+       const expirationDate = new Date(
+         today.setFullYear(today.getFullYear() + 2)
+       );
+       setExpires(expirationDate.toISOString().slice(0, 10)); // Set expiration to 2 years from today
+     }
+   }
+ }
 
   function handleTeamChange(event) {
     setTeam(event.target.value); // Set team state to selected value
@@ -147,6 +170,26 @@ function EditContainer() {
   return (
     <div className="edit-container">
       <form className="edit-container__form" onSubmit={handleSubmit}>
+        <div className="date-radio-buttons">
+          <label>
+            <input
+              type="radio"
+              value="Premix"
+              checked={containerType === "Premix"}
+              onChange={handleContainerTypeChange}
+            />
+            Premix
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="Concentrate"
+              checked={containerType === "Concentrate"}
+              onChange={handleContainerTypeChange}
+            />
+            Concentrate
+          </label>
+        </div>
         <div className="edit-container__form-row">
           <label className="edit-container__label">
             Team
