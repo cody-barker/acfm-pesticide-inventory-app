@@ -287,17 +287,19 @@ function Shelves() {
         <td>{container.team.name}</td>
         <td>{container.shelf}</td>
         <td>{container.row}</td>
-        {sortedContents.map((content, index) => {
-          const product = products.find(
-            (product) => product.id === content.product_id
-          );
-          return (
-            <td key={index}>
-              <div>{content.concentration}%</div>{" "}
-              <div>{product ? product.name : "Refresh the page"}</div>{" "}
-            </td>
-          );
-        })}
+        <td className="contents__td">
+          {sortedContents.map((content, index) => {
+            const product = products.find(
+              (product) => product.id === content.product_id
+            );
+            return (
+              <td key={index}>
+                <div>{content.concentration}%</div>{" "}
+                <div>{product ? product.name : "Refresh the page"}</div>{" "}
+              </td>
+            );
+          })}
+        </td>
       </tr>
     );
   });
