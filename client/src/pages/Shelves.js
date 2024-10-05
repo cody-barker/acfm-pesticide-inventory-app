@@ -133,7 +133,6 @@ function Shelves() {
       .then((r) => {
         if (r.ok) {
           r.json().then((containers) => {
-            console.log(containers);
             // Update here to handle an array of containers
             containers.forEach((newContainer) => {
               newContainer.expires = expires; // Update expires if necessary
