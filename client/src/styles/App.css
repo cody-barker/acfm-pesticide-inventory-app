@@ -286,6 +286,10 @@ input {
   border-radius: 3em;
 }
 
+select {
+  padding: 0.5em;
+}
+
 input:focus,
 select:focus {
   outline: none;
