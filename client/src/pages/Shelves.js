@@ -27,6 +27,7 @@ function Shelves() {
   const [selectedTeam, setSelectedTeam] = useState("");
   const [expires, setExpires] = useState("");
   const [filterExpiresSoon, setFilterExpiresSoon] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   const showToastMessage = () => {
     toast("Container added!", {
@@ -90,6 +91,10 @@ function Shelves() {
 
   function handleExpiresChange(event) {
     setExpires(event.target.value.slice(0, 10)); // Slice date to exclude time
+  }
+
+  function handleQuantityChange(e) {
+    setQuantity(e.target.value);
   }
 
   const addContentField = () => {
@@ -293,10 +298,10 @@ function Shelves() {
               (product) => product.id === content.product_id
             );
             return (
-              <td key={index}>
+              <div className="contents__container" key={index}>
                 <div>{content.concentration}%</div>{" "}
                 <div>{product ? product.name : "Refresh the page"}</div>{" "}
-              </td>
+              </div>
             );
           })}
         </td>
@@ -422,6 +427,17 @@ function Shelves() {
                   Add More Contents
                 </button>
               </div>
+              <label for="container-quantity">Quantity:</label>
+              <input
+                type="number"
+                id="container-quantity"
+                name="container[quantity]"
+                min="1"
+                max="3"
+                value={quantity}
+                onChange={handleQuantityChange}
+              />
+
               <button type="submit" className="button">
                 Submit Container
               </button>

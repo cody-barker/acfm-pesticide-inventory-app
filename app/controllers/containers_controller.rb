@@ -10,18 +10,28 @@ class ContainersController < ApplicationController
   def show
     render json: @container, include: :contents
   end
+def create
+  team = @user.teams.find_by(id: container_params[:team_id])
+  
+  # Get the quantity of containers to create
+  quantity = (container_params[:quantity] || 1).to_i # Default to 1 if not provided
+  quantity = [quantity, 3].min # Ensure quantity does not exceed 3
 
-  def create
-    team = @user.teams.find_by(id: container_params[:team_id])
-    container = team.containers.create!(container_params.except(:team_id))
-        CreationLog.create!(
-          container: container,
-          team: team,
-          created_at: container.created_at
-        )
-
-        render json: container, status: :created
+  # Create the specified number of containers
+  containers = []
+  quantity.times do
+    container = team.containers.create!(container_params.except(:team_id, :quantity))
+    CreationLog.create!(
+      container: container,
+      team: team,
+      created_at: container.created_at
+    )
+    containers << container
   end
+
+  render json: containers, status: :created
+end
+
 
   def update
     new_team = params[:container][:team_id].present? ? Team.find(params[:container][:team_id]) : nil
@@ -59,8 +69,9 @@ class ContainersController < ApplicationController
   end
 
   def container_params
-    params.require(:container).permit(:shelf, :row, :expires, :team_id, contents_attributes: [:id, :product_id, :concentration, :_destroy])
+      params.require(:container).permit(:shelf, :row, :expires, :team_id, :quantity, contents_attributes: [:id, :product_id, :concentration, :_destroy])
   end
+
 
   def set_container
     @container = @user.containers.find(params[:id])

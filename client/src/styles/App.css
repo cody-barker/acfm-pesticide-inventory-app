@@ -138,8 +138,9 @@ ul {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 .contents__container {
-  display: flex;
+  padding: 0.5em;
 }
 
 .teams-table--current {
