@@ -88,6 +88,10 @@ function Shelves() {
     setContents(updatedContents);
   };
 
+  function handleExpiresChange(event) {
+    setExpires(event.target.value.slice(0, 10)); // Slice date to exclude time
+  }
+
   const addContentField = () => {
     setContents([...contents, { product_id: "", concentration: "" }]);
   };
@@ -104,19 +108,11 @@ function Shelves() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const today = new Date();
-    const sixMonthsFromNow = new Date(
-      today.getFullYear(),
-      today.getMonth() + 6,
-      today.getDate()
-    );
-    const formattedDate = sixMonthsFromNow.toISOString().slice(0, 10);
-
     const container = {
       user_id: user.id,
       shelf: shelf,
       row: row,
-      expires: formattedDate,
+      expires: expires,
       contents_attributes: contents,
       team_id: selectedTeam,
     };
@@ -131,7 +127,7 @@ function Shelves() {
       .then((r) => {
         if (r.ok) {
           r.json().then((container) => {
-            container.expires = formattedDate;
+            container.expires = expires;
             setUser((prevUser) => ({
               ...prevUser,
               containers: [...prevUser.containers, container],
@@ -166,6 +162,32 @@ function Shelves() {
 
   const handleConcentrationFilterChange2 = (e) => {
     setSelectedConcentration2(e.target.value);
+  };
+
+  const handleAddPremix = () => {
+    const today = new Date();
+    const sixMonthsFromNow = new Date(
+      today.getFullYear(),
+      today.getMonth() + 6,
+      today.getDate()
+    );
+    const formattedDate = sixMonthsFromNow.toISOString().slice(0, 10);
+    setExpires(formattedDate);
+
+    setIsModalOpen(true);
+  };
+
+  const handleAddConcentrate = () => {
+    const today = new Date();
+    const twoYearsFromNow = new Date(
+      today.getFullYear() + 2,
+      today.getMonth(),
+      today.getDate()
+    );
+    const formattedDate = twoYearsFromNow.toISOString().slice(0, 10);
+    setExpires(formattedDate);
+
+    setIsModalOpen(true);
   };
 
   const filteredContainers = user.containers.filter((container) => {
@@ -347,7 +369,7 @@ function Shelves() {
                       name="expiration_date"
                       type="date"
                       value={expires}
-                      onChange={(e) => setExpires(e.target.value)}
+                      onChange={handleExpiresChange}
                       required
                     />
                   </label>
@@ -505,17 +527,26 @@ function Shelves() {
         </div>
 
         <div>
-          <p className="flex-column">
-            <button
-              onClick={handleModalToggle}
-              className="button button--add modal-button"
-            >
-              {isModalOpen ? "Cancel" : "Add a Container"}
-            </button>
+          <div className="flex-column">
+            <div className="add-buttons">
+              <button
+                className="button button--add modal-button"
+                onClick={handleAddPremix}
+              >
+                Add Premix
+              </button>
+              <button
+                className="button button--add modal-button"
+                onClick={handleAddConcentrate}
+              >
+                Add Concentrate
+              </button>
+            </div>
+
             <span className="flex-column__span">
               Selected Prescription: {tableRows.length} Containers
             </span>
-          </p>
+          </div>
         </div>
         <div className="inventory-table-container">
           {filteredContainers.length > 0 ? (
