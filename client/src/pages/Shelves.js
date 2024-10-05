@@ -448,7 +448,7 @@ function Shelves() {
               </div>
 
               <button type="submit" className="button">
-                Submit Container
+                {quantity > 1 ? "Submit Containers" : "Submit Container"}
               </button>
               {errors.map((err) => (
                 <Error key={err}>{err}</Error>
