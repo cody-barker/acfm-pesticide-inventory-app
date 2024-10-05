@@ -10,27 +10,28 @@ class ContainersController < ApplicationController
   def show
     render json: @container, include: :contents
   end
-def create
-  team = @user.teams.find_by(id: container_params[:team_id])
-  
-  # Get the quantity of containers to create
-  quantity = (container_params[:quantity] || 1).to_i # Default to 1 if not provided
-  quantity = [quantity, 3].min # Ensure quantity does not exceed 3
 
-  # Create the specified number of containers
-  containers = []
-  quantity.times do
-    container = team.containers.create!(container_params.except(:team_id, :quantity))
-    CreationLog.create!(
-      container: container,
-      team: team,
-      created_at: container.created_at
-    )
-    containers << container
+  def create
+    team = @user.teams.find_by(id: container_params[:team_id])
+    
+    # Get the quantity of containers to create
+    quantity = (container_params[:quantity] || 1).to_i # Default to 1 if not provided
+    quantity = [quantity, 3].min # Ensure quantity does not exceed 3
+
+    # Create the specified number of containers
+    containers = []
+    quantity.times do
+      container = team.containers.create!(container_params.except(:team_id, :quantity))
+      CreationLog.create!(
+        container: container,
+        team: team,
+        created_at: container.created_at
+      )
+      containers << container
+    end
+
+    render json: containers, status: :created
   end
-
-  render json: containers, status: :created
-end
 
 
   def update

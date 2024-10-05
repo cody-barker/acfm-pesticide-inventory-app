@@ -120,6 +120,7 @@ function Shelves() {
       expires: expires,
       contents_attributes: contents,
       team_id: selectedTeam,
+      quantity: quantity,
     };
 
     fetch("/containers", {
@@ -131,12 +132,17 @@ function Shelves() {
     })
       .then((r) => {
         if (r.ok) {
-          r.json().then((container) => {
-            container.expires = expires;
+          r.json().then((containers) => {
+            console.log(containers);
+            // Update here to handle an array of containers
+            containers.forEach((newContainer) => {
+              newContainer.expires = expires; // Update expires if necessary
+            });
             setUser((prevUser) => ({
               ...prevUser,
-              containers: [...prevUser.containers, container],
+              containers: [...prevUser.containers, ...containers], // Spread the new containers
             }));
+            // Reset state after adding containers
             setShelf(1);
             setRow("A");
             setContents([{ product_id: "", concentration: "" }]);
@@ -427,16 +433,19 @@ function Shelves() {
                   Add More Contents
                 </button>
               </div>
-              <label for="container-quantity">Quantity:</label>
-              <input
-                type="number"
-                id="container-quantity"
-                name="container[quantity]"
-                min="1"
-                max="3"
-                value={quantity}
-                onChange={handleQuantityChange}
-              />
+              <div className="quantity-select__container">
+                <label htmlFor="quantity">Quantity:</label>
+                <select
+                  className="button button--add"
+                  id="quantity"
+                  value={quantity}
+                  onChange={handleQuantityChange}
+                >
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                </select>
+              </div>
 
               <button type="submit" className="button">
                 Submit Container

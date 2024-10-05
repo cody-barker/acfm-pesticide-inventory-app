@@ -292,6 +292,13 @@ select:focus {
   opacity: 0.9;
 }
 
+.quantity-select__container {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+}
+
 .concentration-input::placeholder {
   text-align: center;
 }
