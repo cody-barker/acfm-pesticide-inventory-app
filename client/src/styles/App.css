@@ -5,7 +5,7 @@
   --color--two: #404c24;
   --color--three: #d4c9c1;
   --color--four: #a2ac94;
-  --color--five: rgb(37, 37, 37);
+  --color--five: #252525;
   --box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
 }
 
@@ -76,7 +76,6 @@ ul {
   border: 1px solid var(--color--one);
   border-radius: 3em;
   cursor: pointer;
-  box-shadow: var(--box-shadow);
   font-size: 1rem;
 }
 
@@ -93,7 +92,6 @@ ul {
   border: 1px solid var(--color--one);
   border-radius: 3em;
   cursor: pointer;
-  box-shadow: var(--box-shadow);
   font-size: 1rem;
 }
 
@@ -129,7 +127,6 @@ ul {
   margin: 0 1em;
   border-collapse: collapse;
   border: 1px solid var(--color--one);
-  box-shadow: var(--box-shadow);
   text-align: center;
 }
 
@@ -180,7 +177,6 @@ th {
   border-radius: 2em;
   padding: 0.5em 1em;
   border: 1px solid var(--color--one);
-  box-shadow: var(--box-shadow);
 }
 
 .button--grey:hover {
@@ -365,7 +361,6 @@ select:focus {
 
 select {
   background-color: transparent;
-  box-shadow: var(--box-shadow);
   font-size: 1rem;
 }
 
@@ -391,7 +386,6 @@ select:hover {
   padding: 2.5em;
   border: 1px solid var(--color--five);
   border-radius: 2em;
-  box-shadow: var(--box-shadow);
   background-color: var(--color--four);
   color: var(--color--five);
 }
@@ -436,7 +430,6 @@ button.button.button--remove-product {
   padding: 1em;
   border-collapse: collapse;
   border: 1px solid var(--color--one);
-  box-shadow: var(--box-shadow);
 }
 
 .clickable-row {
@@ -481,7 +474,6 @@ table tr:nth-of-type(even) {
   margin: 0 1em;
   border-collapse: collapse;
   border: 1px solid var(--color--one);
-  box-shadow: var(--box-shadow);
 }
 
 .inventory-table--team {
@@ -787,7 +779,6 @@ table tr:nth-of-type(even) {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--box-shadow);
 }
 
 .filter-container__filter-group {
