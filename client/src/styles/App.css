@@ -982,6 +982,11 @@ table th {
   color: var(--color--three);
 }
 
+.hamburger-icon--close {
+  color: var(--color--three);
+  font-size: 3rem;
+}
+
 .reset-button {
   background-color: transparent;
   border: none;
