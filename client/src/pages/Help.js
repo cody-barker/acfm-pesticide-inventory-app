@@ -29,7 +29,7 @@ function Help() {
     {
       title: "How do I add concentrates to the chem shed?",
       content:
-        "Shelves -> Add a Container. Set the team name to Facilities. By default, the expiration date is set 2 years from today, and the date will turn red if the product expires within 3 months.",
+        "Shelves -> Add a Container. Set the team name to Facilities, and set the expiration date to 2 years from today. By default, the expiration date is set 6 months from today, so you will need to change it.",
     },
     {
       title: "How do I remove containers from the chem shed for use?",
@@ -101,15 +101,24 @@ function Help() {
       </div>
       <div className="video-wrapper">
         <h2 className="h2 h2--video">Video Tutorial</h2>
-        <iframe
+        {/* <iframe
           title="demo-video"
           className="demo-video"
-          src="https://www.youtube.com/embed/3ZT5qP2dsG0?si=5RZxF6DpiQ1bUi06"
+          src="https://youtu.be/5YynEyBNSgE"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen
-        ></iframe>
+          
+        ></iframe> */}
+        <iframe 
+          src="https://www.youtube.com/embed/hiJ7feiMlV0?si=u8SCPel1Fwowazzx" 
+          title="How to Use This App" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" 
+          referrerpolicy="strict-origin-when-cross-origin" 
+          allowfullscreen>
+        </iframe>
       </div>
     </div>
   );

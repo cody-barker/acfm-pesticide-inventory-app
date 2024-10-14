@@ -6,7 +6,6 @@ function Totals() {
   const { user } = useContext(UserContext);
   const { products } = useContext(ProductsContext);
 
-  // Generate unique prescriptions and their quantities
   const uniquePrescriptions = useMemo(() => {
     const prescriptionMap = new Map();
 
@@ -16,45 +15,41 @@ function Totals() {
       );
 
       if (filteredContents.length > 0) {
-        const prescription = filteredContents
+        // Sort by concentration in descending order, and by product name in case of a tie
+        const sortedPrescription = filteredContents
           .map((content) => {
             const product = products.find((p) => p.id === content.product_id);
             const productName = product ? product.name : "Unknown Product";
             return { concentration: content.concentration, productName };
           })
-          .sort((a, b) => b.concentration - a.concentration) // Sort by concentration descending
-          .map(({ concentration, productName }) => (
-            <span
-              key={`${concentration}-${productName}`}
-              style={{
-                display: "inline-block",
-                marginRight: "10px", // Add spacing between items
-                textAlign: "center",
-              }}
-            >
-              <div className="totals__table-td">
-                <div>{concentration}%</div>
-                <div>{productName}</div>
-              </div>
-            </span>
-          ));
+          .sort((a, b) => {
+            // Sort first by concentration, then by product name (alphabetically) if concentrations are equal
+            if (b.concentration !== a.concentration) {
+              return b.concentration - a.concentration;
+            }
+            return a.productName.localeCompare(b.productName);
+          });
 
-        if (prescriptionMap.has(prescription)) {
-          prescriptionMap.set(
-            prescription,
-            prescriptionMap.get(prescription) + 1
-          );
+        const keyString = JSON.stringify(sortedPrescription);
+
+        // Tally the prescription
+        if (prescriptionMap.has(keyString)) {
+          prescriptionMap.set(keyString, prescriptionMap.get(keyString) + 1);
         } else {
-          prescriptionMap.set(prescription, 1);
+          prescriptionMap.set(keyString, 1);
         }
       }
     });
 
+    // Convert prescriptionMap to an array for rendering
     return Array.from(prescriptionMap.entries()).map(
-      ([prescription, quantity]) => ({
-        prescription,
-        quantity,
-      })
+      ([keyString, quantity]) => {
+        const prescription = JSON.parse(keyString);
+        return {
+          prescription,
+          quantity,
+        };
+      }
     );
   }, [user.containers, products]);
 
@@ -80,7 +75,6 @@ function Totals() {
     a.name.localeCompare(b.name)
   );
 
-  // Map over all products to create table rows for concentrates
   const concentrateComps = sortedProducts.map((product) => (
     <tr key={product.id}>
       <td>{product.name}</td>
@@ -88,7 +82,6 @@ function Totals() {
     </tr>
   ));
 
-  // Calculate totals for both tables
   const totalPrescriptions = uniquePrescriptions.reduce(
     (total, item) => total + item.quantity,
     0
@@ -129,7 +122,14 @@ function Totals() {
           <tbody>
             {uniquePrescriptions.map((item, index) => (
               <tr key={index}>
-                <td>{item.prescription}</td>
+                <td className="premix-table__td">
+                  {item.prescription.map((entry, idx) => (
+                    <div key={idx} className="prescription-item">
+                      <div>{entry.concentration}%</div>
+                      <div>{entry.productName}</div>
+                    </div>
+                  ))}
+                </td>
                 <td className="totals__table-td">{item.quantity}</td>
               </tr>
             ))}

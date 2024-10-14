@@ -1,0 +1,14 @@
+
+Use State to Handle CreationLogs
+1. Create CreationLogs context
+2. Wrap App in CreationLogs Provider
+3. Pass CreationLogs context to Teams page
+4. Update creationLogs in Teams accordingly
+5. Update CreationLogs state and db whenever a container is created or updated
+
+
+Use State to handle Team detail
+1. Remove fetch to teams/:id
+2. Provide User context
+3. Find team based on user.teams.find
+4. Iterate over team.containers

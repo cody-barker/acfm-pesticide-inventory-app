@@ -26,7 +26,7 @@ function Teams() {
   useEffect(() => {
     const fetchCreationLogs = async () => {
       try {
-        const response = await fetch(`/creation_logs`);
+        const response = await fetch(`/creation-logs`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -73,7 +73,7 @@ function Teams() {
 
   return (
     <div className="teams-list__container">
-      <h1>Teams</h1>
+      <h2>Teams</h2>
 
       <label htmlFor="date-picker" className="date-picker__label">
         Select a Date to View Premix Returned Since

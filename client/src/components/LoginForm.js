@@ -26,15 +26,12 @@ function LoginForm() {
         if (r.ok) {
           r.json().then(async (user) => {
             setUser(user);
-
-            // Fetch products after successful login
             const productsResponse = await fetch("/products");
             if (productsResponse.ok) {
               const products = await productsResponse.json();
               setProducts(products);
             } else {
               console.error("Failed to fetch products");
-              // Handle error case as needed
             }
           });
         } else {
@@ -44,7 +41,6 @@ function LoginForm() {
       .catch((error) => {
         setIsLoading(false);
         console.error("Login error:", error);
-        // Handle fetch error as needed
       });
   }
 

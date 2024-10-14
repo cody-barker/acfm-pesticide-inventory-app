@@ -169,7 +169,7 @@ function EditContainer() {
               value={shelf}
               onChange={handleShelfChange}
             >
-              {[...Array(10).keys()].map((i) => (
+              {[...Array(32).keys()].map((i) => (
                 <option key={i + 1} value={i + 1}>
                   {i + 1}
                 </option>
@@ -209,7 +209,7 @@ function EditContainer() {
                 <label className="edit-container__label">
                   Product
                   <select
-                    className="edit-container__select button"
+                    className="edit-container__select button product__select"
                     value={content.product_id}
                     required
                     onChange={(e) =>

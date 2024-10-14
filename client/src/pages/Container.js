@@ -102,17 +102,19 @@ function Container() {
             <td>{container.team.name}</td>
             <td>{container.shelf}</td>
             <td>{container.row}</td>
-            {sortedContents.map((content, index) => (
-              <td className="td__concentration--p" key={index}>
-                <p>
-                  {content.concentration}% {""}
-                </p>
-                {
-                  products.find((product) => product.id === content.product_id)
-                    ?.name
-                }
-              </td>
-            ))}
+            <td className="contents__td">
+              {sortedContents.map((content, index) => {
+                const product = products.find(
+                  (product) => product.id === content.product_id
+                );
+                return (
+                  <div className="contents__container" key={index}>
+                    <div>{content.concentration}%</div>{" "}
+                    <div>{product ? product.name : "Refresh the page"}</div>{" "}
+                  </div>
+                );
+              })}
+            </td>
           </tr>
         </tbody>
       </table>

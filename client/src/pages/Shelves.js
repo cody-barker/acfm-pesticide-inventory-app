@@ -6,6 +6,7 @@ import Error from "../components/Error";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "../components/Modal";
+import { GrPowerReset } from "react-icons/gr";
 
 function Shelves() {
   const { loading: productsLoading } = useContext(ProductsContext);
@@ -24,8 +25,10 @@ function Shelves() {
   const [selectedProduct2, setSelectedProduct2] = useState("");
   const [selectedConcentration2, setSelectedConcentration2] = useState("");
   const [selectedTeam, setSelectedTeam] = useState("");
-
   const [expires, setExpires] = useState("");
+  const [filterExpiresSoon, setFilterExpiresSoon] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+
   const showToastMessage = () => {
     toast("Container added!", {
       className: "custom-toast",
@@ -43,6 +46,7 @@ function Shelves() {
     setSelectedTeam("");
     setShelf(1);
     setRow("A");
+    setFilterExpiresSoon(false);
   };
 
   useEffect(() => {
@@ -85,6 +89,14 @@ function Shelves() {
     setContents(updatedContents);
   };
 
+  function handleExpiresChange(event) {
+    setExpires(event.target.value.slice(0, 10)); // Slice date to exclude time
+  }
+
+  function handleQuantityChange(e) {
+    setQuantity(e.target.value);
+  }
+
   const addContentField = () => {
     setContents([...contents, { product_id: "", concentration: "" }]);
   };
@@ -101,21 +113,14 @@ function Shelves() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const today = new Date();
-    const sixMonthsFromNow = new Date(
-      today.getFullYear(),
-      today.getMonth() + 6,
-      today.getDate()
-    );
-    const formattedDate = sixMonthsFromNow.toISOString().slice(0, 10);
-
     const container = {
       user_id: user.id,
       shelf: shelf,
       row: row,
-      expires: formattedDate,
+      expires: expires,
       contents_attributes: contents,
       team_id: selectedTeam,
+      quantity: quantity,
     };
 
     fetch("/containers", {
@@ -127,12 +132,16 @@ function Shelves() {
     })
       .then((r) => {
         if (r.ok) {
-          r.json().then((container) => {
-            container.expires = formattedDate;
+          r.json().then((containers) => {
+            // Update here to handle an array of containers
+            containers.forEach((newContainer) => {
+              newContainer.expires = expires; // Update expires if necessary
+            });
             setUser((prevUser) => ({
               ...prevUser,
-              containers: [...prevUser.containers, container],
+              containers: [...prevUser.containers, ...containers], // Spread the new containers
             }));
+            // Reset state after adding containers
             setShelf(1);
             setRow("A");
             setContents([{ product_id: "", concentration: "" }]);
@@ -165,6 +174,32 @@ function Shelves() {
     setSelectedConcentration2(e.target.value);
   };
 
+  const handleAddPremix = () => {
+    const today = new Date();
+    const sixMonthsFromNow = new Date(
+      today.getFullYear(),
+      today.getMonth() + 6,
+      today.getDate()
+    );
+    const formattedDate = sixMonthsFromNow.toISOString().slice(0, 10);
+    setExpires(formattedDate);
+
+    setIsModalOpen(true);
+  };
+
+  const handleAddConcentrate = () => {
+    const today = new Date();
+    const twoYearsFromNow = new Date(
+      today.getFullYear() + 2,
+      today.getMonth(),
+      today.getDate()
+    );
+    const formattedDate = twoYearsFromNow.toISOString().slice(0, 10);
+    setExpires(formattedDate);
+
+    setIsModalOpen(true);
+  };
+
   const filteredContainers = user.containers.filter((container) => {
     const firstFilterMatch = container.contents.some(
       (content) =>
@@ -185,12 +220,21 @@ function Shelves() {
     const teamFilterMatch =
       !selectedTeam || container.team.id === parseInt(selectedTeam);
 
-    return firstFilterMatch && secondFilterMatch && teamFilterMatch;
+    const isExpiringSoon =
+      new Date(container.expires) <
+      new Date(new Date().setMonth(new Date().getMonth() + 3));
+
+    return (
+      firstFilterMatch &&
+      secondFilterMatch &&
+      teamFilterMatch &&
+      (!filterExpiresSoon || isExpiringSoon)
+    );
   });
 
   const sortedContainers = filteredContainers.slice().sort((a, b) => {
     if (a.shelf !== b.shelf) {
-      return a.shelf - b.shelf;
+      return b.shelf - a.shelf;
     }
     return a.row.localeCompare(b.row);
   });
@@ -253,19 +297,19 @@ function Shelves() {
         <td>{container.team.name}</td>
         <td>{container.shelf}</td>
         <td>{container.row}</td>
-        {sortedContents.map((content, index) => {
-          const product = products.find(
-            (product) => product.id === content.product_id
-          );
-          return (
-            <td key={index}>
-              <div>{content.concentration}%</div>{" "}
-              {/* Concentration appears above */}
-              <div>{product ? product.name : "Refresh the page"}</div>{" "}
-              {/* Product name */}
-            </td>
-          );
-        })}
+        <td className="contents__td">
+          {sortedContents.map((content, index) => {
+            const product = products.find(
+              (product) => product.id === content.product_id
+            );
+            return (
+              <div className="contents__container" key={index}>
+                <div>{content.concentration}%</div>{" "}
+                <div>{product ? product.name : "Refresh the page"}</div>{" "}
+              </div>
+            );
+          })}
+        </td>
       </tr>
     );
   });
@@ -308,7 +352,7 @@ function Shelves() {
                       onChange={handleShelfChange}
                       required
                     >
-                      {[...Array(10).keys()].map((num) => (
+                      {[...Array(32).keys()].map((num) => (
                         <option key={num + 1} value={num + 1}>
                           {num + 1}
                         </option>
@@ -337,7 +381,7 @@ function Shelves() {
                       name="expiration_date"
                       type="date"
                       value={expires}
-                      onChange={(e) => setExpires(e.target.value)}
+                      onChange={handleExpiresChange}
                       required
                     />
                   </label>
@@ -346,7 +390,7 @@ function Shelves() {
                 {contents.map((content, index) => (
                   <div className="flex-row" key={index}>
                     <select
-                      className="button"
+                      className="button product__select"
                       value={content.product_id}
                       onChange={(e) => handleContentChange(index, e)}
                       name="product_id"
@@ -388,8 +432,22 @@ function Shelves() {
                   Add More Contents
                 </button>
               </div>
+              <div className="quantity-select__container">
+                <label htmlFor="quantity">Quantity:</label>
+                <select
+                  className="button button--add"
+                  id="quantity"
+                  value={quantity}
+                  onChange={handleQuantityChange}
+                >
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                </select>
+              </div>
+
               <button type="submit" className="button">
-                Submit Container
+                {quantity > 1 ? "Submit Containers" : "Submit Container"}
               </button>
               {errors.map((err) => (
                 <Error key={err}>{err}</Error>
@@ -399,7 +457,6 @@ function Shelves() {
         </div>
         <div className="filter-container">
           <div className="filter-container__filter-group">
-            {/* Existing filters */}
             <label className="filter">
               <select
                 value={selectedConcentration}
@@ -419,7 +476,7 @@ function Shelves() {
               <select
                 value={selectedProduct}
                 onChange={handleProductFilterChange}
-                className="button button--filter"
+                className="button button--filter product__select"
                 name="select-product-1"
               >
                 <option value="">All Products</option>
@@ -432,7 +489,6 @@ function Shelves() {
             </label>
           </div>
           <div className="filter-container__filter-group">
-            {/* Existing filters */}
             <label className="filter">
               <select
                 value={selectedConcentration2}
@@ -452,7 +508,7 @@ function Shelves() {
               <select
                 value={selectedProduct2}
                 onChange={handleProductFilterChange2}
-                className="button button--filter"
+                className="button button--filter product__select"
                 name="select-product-2"
               >
                 <option value="">All Products</option>
@@ -482,30 +538,41 @@ function Shelves() {
             </label>
           </div>
           <button
+            className="filter__button--toggle--expiring"
+            onClick={() => setFilterExpiresSoon((prev) => !prev)}
+          >
+            {filterExpiresSoon ? "Show All Containers" : "Show Expiring Soon"}
+          </button>
+          <button
             onClick={handleResetFilters}
             className="reset-button"
             alt="reset button"
           >
-            <img
-              className="reset-button__image"
-              src="/assets/reset-icon.svg"
-              alt="reset button"
-            />
+            <GrPowerReset className="reset-button__image" />
           </button>
         </div>
 
         <div>
-          <p className="flex-column">
-            <button
-              onClick={handleModalToggle}
-              className="button button--add modal-button"
-            >
-              {isModalOpen ? "Cancel" : "Add a Container"}
-            </button>
+          <div className="flex-column">
+            <div className="add-buttons">
+              <button
+                className="button button--add modal-button"
+                onClick={handleAddPremix}
+              >
+                Add Premix
+              </button>
+              <button
+                className="button button--add modal-button"
+                onClick={handleAddConcentrate}
+              >
+                Add Concentrate
+              </button>
+            </div>
+
             <span className="flex-column__span">
               Selected Prescription: {tableRows.length} Containers
             </span>
-          </p>
+          </div>
         </div>
         <div className="inventory-table-container">
           {filteredContainers.length > 0 ? (

@@ -4,7 +4,6 @@ class TeamsController < ApplicationController
     render json: Team.all
   end
 
-
   def show
     @team = Team.find(params[:id])
     render json: @team
@@ -16,22 +15,22 @@ class TeamsController < ApplicationController
     render json: team, status: :created
   end
 
-   def update
-      team = Team.find(params[:id])
-      team.update!(team_params)
-      render json: team, status: :ok
-    end
+  def update
+    team = Team.find(params[:id])
+    team.update!(team_params)
+    render json: team, status: :ok
+  end
 
-    def destroy
-      team = Team.find(params[:id])
-      team.destroy
-      render json: team, status: :no_content
-    end
+  def destroy
+    team = Team.find(params[:id])
+    team.destroy
+    render json: team, status: :no_content
+  end
 
-    private
+  private
 
-    def team_params
-      params.require(:team).permit(:name, :user_id)
-    end
+  def team_params
+    params.require(:team).permit(:name, :user_id)
+  end
 
 end

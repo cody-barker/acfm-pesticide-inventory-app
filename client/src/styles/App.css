@@ -5,7 +5,7 @@
   --color--two: #404c24;
   --color--three: #d4c9c1;
   --color--four: #a2ac94;
-  --color--five: rgb(37, 37, 37);
+  --color--five: #252525;
   --box-shadow: 1.5px 1.5px 1px rgb(143, 143, 143);
 }
 
@@ -31,7 +31,7 @@ ul {
 .page {
   display: flex;
   flex-direction: column;
-  min-height: 100svh;
+  min-height: 100vh;
 }
 
 .page__content {
@@ -41,7 +41,7 @@ ul {
 }
 
 .page-height {
-  min-height: 70svh;
+  min-height: 70vh;
 }
 
 .footer {
@@ -76,7 +76,6 @@ ul {
   border: 1px solid var(--color--one);
   border-radius: 3em;
   cursor: pointer;
-  box-shadow: var(--box-shadow);
   font-size: 1rem;
 }
 
@@ -93,7 +92,6 @@ ul {
   border: 1px solid var(--color--one);
   border-radius: 3em;
   cursor: pointer;
-  box-shadow: var(--box-shadow);
   font-size: 1rem;
 }
 
@@ -109,6 +107,18 @@ ul {
   text-align: center;
 }
 
+.filter__button--toggle--expiring {
+  margin: 0 1rem;
+  background-color: inherit;
+  border: none;
+  color: var(--color--five);
+  font-size: 1rem;
+}
+
+.filter__button--toggle--expiring:hover {
+  cursor: pointer;
+}
+
 .teams-list .button--team {
   padding: 0.75em 1.5em;
 }
@@ -117,8 +127,17 @@ ul {
   margin: 0 1em;
   border-collapse: collapse;
   border: 1px solid var(--color--one);
-  box-shadow: var(--box-shadow);
   text-align: center;
+}
+
+.contents__td {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.contents__container {
+  padding: 0.5em;
 }
 
 .teams-table--current {
@@ -128,6 +147,14 @@ ul {
 .teams-table td,
 th {
   padding: 0.5em;
+}
+
+.add-buttons {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .button--filter {
@@ -150,7 +177,6 @@ th {
   border-radius: 2em;
   padding: 0.5em 1em;
   border: 1px solid var(--color--one);
-  box-shadow: var(--box-shadow);
 }
 
 .button--grey:hover {
@@ -256,9 +282,21 @@ input {
   border-radius: 3em;
 }
 
-input:focus {
+select {
+  padding: 0.5em;
+}
+
+input:focus,
+select:focus {
   outline: none;
   opacity: 0.9;
+}
+
+.quantity-select__container {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
 }
 
 .concentration-input::placeholder {
@@ -323,13 +361,7 @@ input:focus {
 
 select {
   background-color: transparent;
-  box-shadow: var(--box-shadow);
   font-size: 1rem;
-}
-
-select:focus {
-  outline: none;
-  opacity: 90%;
 }
 
 select:hover {
@@ -337,7 +369,7 @@ select:hover {
 }
 
 .wrapper {
-  min-height: 100svh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -354,7 +386,6 @@ select:hover {
   padding: 2.5em;
   border: 1px solid var(--color--five);
   border-radius: 2em;
-  box-shadow: var(--box-shadow);
   background-color: var(--color--four);
   color: var(--color--five);
 }
@@ -399,7 +430,6 @@ button.button.button--remove-product {
   padding: 1em;
   border-collapse: collapse;
   border: 1px solid var(--color--one);
-  box-shadow: var(--box-shadow);
 }
 
 .clickable-row {
@@ -444,7 +474,6 @@ table tr:nth-of-type(even) {
   margin: 0 1em;
   border-collapse: collapse;
   border: 1px solid var(--color--one);
-  box-shadow: var(--box-shadow);
 }
 
 .inventory-table--team {
@@ -477,6 +506,15 @@ table tr:nth-of-type(even) {
   margin-bottom: 1em;
 }
 
+.premix-table__td {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.prescription-item {
+  padding: 0.5em;
+}
+
 .table-total {
   margin-top: 1em;
 }
@@ -503,6 +541,12 @@ table tr:nth-of-type(even) {
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.date-radio-buttons {
+  display: flex;
+  gap: 2em;
+  margin-bottom: 1em;
 }
 
 .edit-container__label {
@@ -554,6 +598,10 @@ table tr:nth-of-type(even) {
   text-align: center;
   margin-top: 3em;
   width: 50%;
+}
+
+.product__select {
+  max-width: 180px;
 }
 
 .product-options-wrapper {
@@ -731,7 +779,6 @@ table tr:nth-of-type(even) {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--box-shadow);
 }
 
 .filter-container__filter-group {
@@ -752,8 +799,10 @@ span {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 0 1em;
+  margin: 0 auto;
+  padding: 1em;
   height: auto;
+  max-width: 800px;
 }
 
 .help-topic {
@@ -882,7 +931,7 @@ span {
   .inventory-table th,
   .inventory-table td {
     padding: 0.2em;
-    font-size: 0.75em;
+    font-size: 0.9em;
   }
 
   select,
@@ -897,7 +946,8 @@ span {
   .form__label,
   .edit-container__label,
   .edit-container__input,
-  .concentration-input {
+  .concentration-input,
+  .filter__button--toggle--expiring {
     font-size: 0.9em;
   }
 
@@ -932,6 +982,11 @@ table th {
   color: var(--color--three);
 }
 
+.hamburger-icon--close {
+  color: var(--color--three);
+  font-size: 3rem;
+}
+
 .reset-button {
   background-color: transparent;
   border: none;
@@ -940,6 +995,7 @@ table th {
   justify-content: center;
   cursor: pointer;
   margin: 1em 0;
+  padding: 0 1em;
 }
 
 .reset-button:hover {
@@ -947,12 +1003,19 @@ table th {
 }
 
 .reset-button__image {
-  width: 18px;
+  font-size: 20px;
+  color: var(--color--five);
 }
 
 @media (min-width: 422px) {
   .add-form {
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .product__select {
+    max-width: 130px;
   }
 }
 
@@ -983,6 +1046,7 @@ table th {
 
   .nav-links.open {
     display: flex;
+    z-index: 1;
   }
 
   .menu-toggle {
@@ -1012,18 +1076,12 @@ table th {
   .inventory-table th,
   .inventory-table td {
     padding: clamp(0.1em, 0.2em, 0.5em);
-    font-size: 0.65em;
+    font-size: 0.9em;
   }
 
-  .modal__content {
-    font-size: 0.75rem;
-  }
-
-  .modal__button--close {
-    font-size: 0.75rem;
-  }
-
+  .modal__content,
+  .modal__button--close,
   .add-form {
-    font-size: 0.75rem;
+    font-size: 0.9rem;
   }
 }

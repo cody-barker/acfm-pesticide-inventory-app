@@ -37,8 +37,11 @@ function NavBar() {
           />
         </NavLink>
         <button className="menu-toggle" onClick={toggleMenu}>
-          <span className="hamburger-icon">&#9776;</span>{" "}
-          {/* Simple hamburger icon */}
+          {isMenuOpen ? (
+            <span className="hamburger-icon--close">&times;</span>
+          ) : (
+            <span className="hamburger-icon">&#9776;</span>
+          )}
         </button>
         <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
           <NavLink className="nav-button" to="/" onClick={closeMenu}>
